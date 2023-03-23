@@ -16,24 +16,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ARTICLE SETUP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{This is the title}
+\title{Robust method for measuring aminoacylation through tRNA-seq}
 
-\author[1*]{Firstname Middlename Surname}
-\author[1,2\authfn{1}\authfn{3}]{Firstname Middlename Familyname}
-\author[2\authfn{1}\authfn{4}]{Firstname Initials Surname}
-\author[2*]{Firstname Surname}
-\affil[1]{Institution 1}
-\affil[2]{Institution 2}
+\author[1,2]{Kristian Davidsen}
+\author[1*]{Lucas B Sullivan}
+\affil[1]{Fred Hutchinson Cancer Center}
+\affil[2]{Molecular and cellular biology program, University of Washington}
 
-\corr{email1@example.com}{FMS}
-\corr{email2@example.com}{FS}
-
-\contrib[\authfn{1}]{These authors contributed equally to this work}
-\contrib[\authfn{2}]{These authors also contributed equally to this work}
-
-\presentadd[\authfn{3}]{Department, Institute, Country}
-\presentadd[\authfn{4}]{Department, Institute, Country}
-% \presentadd[\authfn{5}]{eLife Sciences editorial Office, eLife Sciences, Cambridge, United Kingdom}
+\corr{sullivan@fredhutch.org}{LBS}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ARTICLE START
@@ -45,10 +35,66 @@
 
 \begin{abstract}
 Please provide an abstract of no more than 150 words. Your abstract should explain the main contributions of your article, and should not contain any material that is not included in the main text.
+
+Furthermore, we provide a command-line tool in an open-source software package (\url{https://github.com/krdav/tRNA-charge-seq}) \\ \ \\
 \end{abstract}
 
 
 \section{Introduction (Level 1 heading)}
+Quantification of \textit{in vivo} transfer RNA (tRNA) aminoacylation is complicated by the many, highly similar, tRNA transcripts.
+It was first with Northern blotting that tRNA transcripts could be resolved with sufficient resolution.
+Aminoacylation can then be resolved by differential migration during electrophoresis and following probe quantification the level of aminoacylation, or charge, can be calculated \citep{Ho1987-ug, Varshney1991-zp, Stenum2017-wn}.
+However, Northern blotting has many known limitations such as cross-binding probes, low sensitivity, low throughput when testing multiple tRNAs, small or no separation between aminoacylated and unaminoacylated tRNA etc.
+Additionally, tRNA modifications can affect probe binding and thus alter quantification \citep{Prossliner2023-uo}.
+
+A major methodological advance was to couple aminoacylation quantification to high-throughput sequencing \citep{Evans2017-st}.
+This was achieved by using the Malaprade reaction to open the 3' ribose of unaminoacylated tRNA and subsequent 3' base cleavage using high pH and heat; a reaction extensively used in the past \citep{Whitfeld1954-wl, Khym1961-xf, Neu1964-hu, Alefelder1998-ln}.
+
+
+
+
+First to use tRNA directed splint annealing to enhance ligation efficiency \citep{Shigematsu2017-tv}.
+
+First to use low salt and extended incubation with TGIRT-III polymerase to get high read-through in reverse transcription step \citep{Behrens2021-gb}.
+
+
+
+
+
+
+To our knowledge, no aminoacylation quantification method has been thoroughly evaluated 
+
+
+
+
+
+Lorem ipsum
+And look here is a duck  (\autoref*{fig:duck}).
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[height=2cm]{figures/duck.jpg}
+\caption{
+This is a duck
+}
+\label{fig:duck}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[height=3cm]{figures/tRNAseq_gel-images/adapter_digestion/adapter_digestion_long-exp.pdf}
+\caption{
+This is a gel
+}
+\label{fig:gel}
+\end{figure}
+Find it all on my GitHub (\url{https://github.com/krdav/tRNA-charge-seq}).
+
+
+
+
+
 
 Thanks for using Overleaf to write your article. Your introduction goes here! Some examples of commonly used commands and features are listed below, to help you get started.
 
@@ -104,6 +150,39 @@ Source: \url{https://www.sedl.org/afterschool/toolkits/science/pdf/ast_sci_data_
 \lipsum[9]
 
 \section{Methods and Materials}
+
+\subsection*{Oligo design}
+Design building on experience from Ignolia, Behrens and YAMAT-seq papers.
+
+Using splint directed ligation, one splint for CC ending and one for CCA ending.
+
+Using SpC3 to block ligation of the splint to the tRNA.
+
+RT-oligo: similar design as Ignolia and Behrens, with a 5' phosphorylated random A/G base to increase circular ligation efficiency.
+We chose to add an additional 9 random bases following the random A/G base and refer to this as the unique molecular identifier (UMI).
+This UMI has 524288 possible sequences and since the input RNA molecules are several orders of magnitude more abundant it is not strictly speaking a molecular identifier.
+Nevertheless, it serves three purposes: 1) increase 5' sequence diversity for improved sequencing for read P1, 2) decrease any potential circular ligase primary sequence preference and 3) serve as a quality control for the library prep.
+As a quality control, the number of observed UMI sequences is compared with the number expected ($E[X]$) given the number of random UMI draws ($n$) i.e. sequencing reads for the particular sample and the number of possible UMIs ($k$).
+The number of expected UMI sequences is calculated as:
+$$
+E[X] = n \left[ 1 - \left(\frac{n-1}{n} \right)^k \right]
+$$
+
+
+Using varying adapter lengths to shift the sequencing "reading frame"  to avoid the 3' CCA sequence to cause near-zero sequence diversity on the read P2.
+
+Illumina library oligos are designed as a Truseq dual index library with combined i5 and i7 indices.
+Library oligos are synthesized with a phosphorothioate bond between the last two nucleotides to prevent degradation by KAPA HiFi Polymerase [Behrens].
+
+
+
+
+
+
+
+
+
+
 
 Guidelines can be included for standard research article sections, such as this one. 
 
