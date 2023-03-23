@@ -1,0 +1,10 @@
+
+Testing PCR cycle for optimal amplification (https://docs.google.com/spreadsheets/d/1c9qwRS7tQZRz0o5nmHvRHwoByPNbpHCqIlUBHJIcl30/edit#gid=0).
+Using P10 circles and the same reaction mix as described in my tRNAseq protocol.
+Only ran 20 uL per tube and then setup PCR machine to run 22 cycles (excluding the 3 early cycles).
+Then removed samples at cycle 4, 6, 8, 10, 12, 14, 16, 18, 20 and 22.
+Added 5 uL loading buffer, then loaded 5 uL per well onto a 4-12% TBE gel.
+Gel loading from left to right:
+Ladder, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, Ladder
+
+
