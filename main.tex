@@ -1,0 +1,320 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ELIFE ARTICLE TEMPLATE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% PREAMBLE 
+\documentclass[9pt,lineno]{elife}
+% Use the onehalfspacing option for 1.5 line spacing
+% Use the doublespacing option for 2.0 line spacing
+% Please note that these options may affect formatting.
+% Additionally, the use of the \newcommand function should be limited.
+
+\usepackage{lipsum} % Required to insert dummy text
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\DeclareSIUnit\Molar{M}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ARTICLE SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Robust method for measuring aminoacylation through tRNA-seq}
+
+\author[1,2]{Kristian Davidsen}
+\author[1*]{Lucas B Sullivan}
+\affil[1]{Fred Hutchinson Cancer Center}
+\affil[2]{Molecular and cellular biology program, University of Washington}
+
+\corr{sullivan@fredhutch.org}{LBS}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ARTICLE START
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Please provide an abstract of no more than 150 words. Your abstract should explain the main contributions of your article, and should not contain any material that is not included in the main text.
+
+Furthermore, we provide code with boilerplate example (\url{https://github.com/krdav/tRNA-charge-seq}) \\ \ \\
+\end{abstract}
+
+
+\section{Introduction}
+Quantification of transfer RNA (tRNA) aminoacylation levels has been performed using radiolabeling \citep{Wolfson2002-gp}, Northern blotting \citep{Ho1987-ug, Varshney1991-zp, Stenum2017-wn}, DNA microarrays \citep{Dittmar2005-va} and high-throughput sequencing \citep{Evans2017-st}.
+While the radiolabeling approach is very accurate, it is limited to purified tRNAs undergoing lab manipulation.
+Northern blotting uses differential migration of acylated tRNA during electrophoresis to measure acylation levels.
+However, this has many known limitations such as cross-binding probes, low sensitivity, low throughput when testing multiple tRNAs, small or no separation between aminoacylated and unaminoacylated tRNA etc.
+Chemical differentiation of acylated tRNAs combined with DNA microarrays were introduced to circumvent the problems with Northern blotting but were superseded by high-throughput sequencing enabling quantification on all tRNAs in one experiment.
+
+Chemical differentiation of acylated tRNAs was achieved by using the Malaprade reaction to attack the 2,3-dihydroxyls on the 3' ribose of unaminoacylated tRNA, causing ring opening and destabilization.
+The destabilized base is then specifically eliminated using high pH and heat.
+Aminoacylated tRNAs are protected from the Malaprade reaction due to esterification of one of the 3' ribose hydroxyls.
+The chain of reactions was characterized and used extensively in the past in an effort to sequence RNA molecules \citep{Whitfeld1953-ca, Whitfeld1954-wl, Khym1961-xf, Neu1964-hu}, and while futile for RNA sequencing, it has proven a highly useful method to "tag" unaminoacylated tRNAs by introducing a single base truncation.
+We shall refer to this chain of reactions as the "Whitfeld reaction".
+
+The accuracy and robustness of the aminoacylation measurement depends on two parts: the completeness of the Whitfeld reaction and the quality of tRNA sequencing.
+A major problem in tRNA sequencing is base modifications known to be numerous on tRNAs.
+These can lead to stalling, wrong base incorporation, skipping or falloff during the reverse transcription step of the sequencing protocol \citep{Motorin2007-nb}.
+Reverse transcriptase is most severely affected by base modifications disrupting the Watson–Crick base pairing, while other modifications are often less affected or silent \citep{Wang2021-fc}.
+To increase readthrough the demethylase AlkB has been used \citep{Zheng2015-kj}, while more recently optimization of incubation conditions, including low salt and extended incubation time, has shown large increases in readthrough \citep{Behrens2021-gb}.
+But other factors can lead to errors in tRNA sequencing such as low RNA integrity, incomplete deacylation prior to adapter ligation, adapter ligation bias, PCR amplification bias and problems in read alignment.
+
+Adapter ligation bias is a well documented problem in small RNA sequencing \citep{Fuchs2015-nb, Zhuang2012-nu} receiving little attention in most tRNA sequencing protocols where it is particularly problematic because adapters often incorporate a barcode for sample multiplexing.
+The problem is further exacerbated when tRNA sequencing is coupled with the Whitfeld reaction because this creates different sequence contexts for aminoacylated and unaminoacylated tRNAs.
+The best solution to ligation bias is to optimize conditions such that the ligation goes to completion.
+The 3' end of the cloverleaf tRNA structure contains four nucleotides not participating in the basepairing of the acceptor stem: the discriminator base followed by the invariant CCA-end.
+These free nucleotides can be engaged in basepairing by an oligo splint designed to guide the ligation of the adapter and this approach has shown high tRNA specificity and ligation efficiency \cite{Shigematsu2017-tv, Smith2015-ht}.
+
+Read mapping is another known problem for tRNA sequencing.
+It arises due to the high error-rate of the reverse transcriptase reading through modified bases resulting in frequent base misincorporations or skipping.
+Combined with the short nature of tRNAs, reads will frequently not have any region with a continuous stretch of more then 15 nt. that perfectly match its reference.
+This is a problem for almost all alignment algorithms because they rely on some variation of subsequence matching for heuristics to enable speed-up.
+The problem has been addressed by clustering of the reference sequences \citep{Hoffmann2018-uz} as well as masking known modified positions in the reference sequences \citep{Behrens2021-gb}.
+
+In recent years many variations of the tRNA sequencing methods have been published \citep{Wang2021-fc, Zheng2015-kj, Shigematsu2017-tv, Erber2020-qg, Thomas2021-fi, Lucas2023-vm, Pinkard2020-yd, Warren2021-wt, Yamagami2022-yb} but only few couple it with the Whitfeld reaction to probe aminoacylation levels \citep{Evans2017-st, Behrens2021-gb, Watkins2022-er} and even less is known about the accuracy of these measurements.
+Here, we present an up-to-date method that ingrates the best developments from tRNA sequencing with an improved version of the Whitfeld reaction to accurately measure tRNA aminoacylation.
+We perform validations of the quantitative capabilities of the method and analyse the different possible modes of failure.
+Finally, we provide a code repository to enable further improvement of read mapping using non-heuristic alignment (\url{https://github.com/krdav/tRNA-charge-seq}).
+
+
+
+\section{Results}
+
+
+After oxidation yielding a dialdehyde, the terminal base removal in the Whitfeld reaction is catalyzed by a combination of high temperature and pH.
+In the work by Whitfeld \citep{Whitfeld1954-wl} glycine was used, later lysine and other primary amines were used \citep{Khym1961-xf} as well as boric acid \citep{randerath1973sequence}.
+It has been proposed that in the amine catalyzed cleavage the phosphoric ester linkage is broken by a $\beta$-elimination reaction \citep{Rammler1971-mt, uziel1973periodate} yielding an unsaturated product [see figure; Whitfeld reaction], but the reaction is complex, involving several semi-stable intermediates and different pathways depending on the pH \citep{Uziel1975-ja}.
+
+
+
+
+
+
+
+
+\subsection{Level 2 Heading}
+
+\lipsum[3]
+
+\subsubsection{Level 3 Heading}
+
+\lipsum[5]
+
+\paragraph{Level 4 Heading}
+\lipsum[7]
+
+
+And look here is a duck \FIG{fig1}.
+
+
+
+
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[height=2cm]{figures/duck.jpg}
+\caption{
+First figure: method summary, oligo design (maybe just illustrations)
+}
+\label{fig:fig1}
+\end{figure}
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[height=2cm]{figures/duck.jpg}
+\caption{
+Second figure: method optimization, improved Whitfeld reaction, ligation completion etc. (mostly gel images)
+}
+\label{fig:fig2}
+\end{figure}
+
+\figsupp[Shorter caption for main text.]
+{This is a supplementary figure's full caption, which will be used at the end of the manuscript. 
+  \figsuppdata{A data source; see \url{https://doi.org/xxx}}
+  \figsuppdata{Another data source.}
+  \figsuppsrccode{And the source code.}}
+{\includegraphics[width=6cm]{figures/duck.jpg}}\label{figsupp:sfig2_1}
+
+\figsupp[Shorter caption for main text.]
+{This is a supplementary figure's full caption, which will be used at the end of the manuscript. 
+  \figsuppdata{A data source; see \url{https://doi.org/xxx}}
+  \figsuppdata{Another data source.}
+  \figsuppsrccode{And the source code.}}
+{\includegraphics[width=6cm]{figures/duck.jpg}}\label{figsupp:sfig2_2}
+
+
+
+
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[height=2cm]{figures/duck.jpg}
+\caption{
+Third figure: alignment optimization, comparison to Behrens, coverage and mutation plots etc.
+}
+\label{fig:fig3}
+\end{figure}
+
+
+
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[height=2cm]{figures/duck.jpg}
+\caption{
+Fourth figure: replication with all barcode samples
+}
+\label{fig:fig4}
+\end{figure}
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[height=2cm]{figures/duck.jpg}
+\caption{
+Fifth figure: charge titration validation
+}
+\label{fig:fig5}
+\end{figure}
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[height=2cm]{figures/duck.jpg}
+\caption{
+Sixth figure: charge half-life
+}
+\label{fig:fig6}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Discussion}
+
+% For discussion secion:
+% Future could be NanoPore sequencing; however, still considerable problems for measuring aminoacylation accurately:
+% It all depends on the CCA vs CC i.e. here very high quality is necessary
+% Thomas et al. 2021 showed the way forward on NanoPore tRNA sequencing but still major caveats
+% Lucas et al. (2023 NanoPore paper) solved many of the problems but still only gets around 50\% read alignment despite long reads. We get X\%.
+% Still not as high throughput
+% However, and hopefully, if these barriers can be overcome direct sequencing offered by NanoPore would be preferable 
+
+Histidine is not suitable for tRNAseq using splint ligation barcodes due to the additional G added to the 5' end and shielding the discriminator base from base pairing (Heinemann 2011)
+
+
+Regarding alignment mention well developed software such as ShapeMapper 2 as an alternative, although ShapeMapper employs bowtie/STAR for read mapping.
+
+
+
+Limitations:
+Not rigorously tested with tRNA abundances in mind.
+
+
+
+Future directions:
+Plenty of room to further optimize the RT reaction.
+New and old enzymes such as group II intron RT and non-LTR RT (Upton 2021) with some commercially available e.g. Induro Reverse Transcriptase.
+Temperature and buffer composition.
+Enhancers.
+
+
+Investigate the effect of deacylation on tRNA abundance.
+
+
+
+
+
+
+
+
+
+
+
+\section{Methods and Materials}
+
+
+For ligation tests human tRNA was isolated from whole cell RNA from H1299 cells.
+After deacylation at 45C in 1 M lysine (pH=8) for 4 hours, the tRNA fraction was isolated on a denaturing gel.
+
+For testing 3'-end base cleavage, spike-in control and ligation tests two RNA oligos were acquired from IDT, both with the sequence of \textit{E. coli} tRNA$\text{Lys}$ and ending on either CC or CCA.
+These were purified on a denaturing gel to minimize truncation products.
+
+For spike-in control an RNA oligo was acquired from IDT with the sequence of \textit{E. coli} tRNA$\text{Thr}$ and ending on CCAA.
+On this oligo the Whitfeld reaction was performed, omitting the dephosphorylation step and gel purifying the resulting product to generate tRNA$\text{Thr}$ and ending on CCA-Phos.
+A sample of this was dephosphorylated using rSAP, purified and mixed in a one-to-one ratio with its phosphorylated parent.
+This 50\% 3'-phosphorylated \textit{E. coli} tRNA$\text{Thr}$ is used as a spike-in to simulate a 50\% aminoacylated tRNA.
+
+
+
+
+Four types of sequenced controls were used: non-oxidized tRNA, deacylated tRNA, \textit{E. coli} tRNA$\text{Lys}$ spike-in and 50\% 3'-phosphorylated \textit{E. coli} tRNA$\text{Thr}$ spike-in.
+Samples of non-oxidized tRNA were prepared similarly to normal samples but with NaIO4 swapped to NaCl.
+Samples of deacylated tRNA were prepared by first performing an initial deacylation step on the input RNA by incubation at 45C for 4 h in 1 M lysine (pH=8).
+For all non-\textit{E. coli} samples, the above mentioned \textit{E. coli} tRNA$\text{Lys}$ oligo ending on CCA and 50\% 3'-phosphorylated \textit{E. coli} tRNA$\text{Thr}$ was spiked-in to each RNA samples before the NaIO4 oxidation step.
+
+
+Ligation tests using pre-adenylated single stranded adapters.
+Figure reference (probably Fig 2, S9).
+[Describe design and adenylation of adapters.]
+Ligations were performed using 40 ng tRNA, a ~5x excess of pre-adenylated adapters, 17.5\% PEG-8000, 200 U Rnl2tr KQ ligase (NEB) and the vendor provided buffer.
+
+
+
+
+
+\subsection*{Oligo design}
+Design building on experience from Ignolia, Behrens and YAMAT-seq papers.
+
+Using splint directed ligation, one splint for CC ending and one for CCA ending.
+
+Using SpC3 to block ligation of the splint to the tRNA.
+
+RT-oligo: similar design as Ignolia and Behrens, with a 5' phosphorylated random A/G base to increase circular ligation efficiency.
+We chose to add an additional 9 random bases following the random A/G base and refer to this as the unique molecular identifier (UMI).
+This UMI has 524288 possible sequences and since the input RNA molecules are several orders of magnitude more abundant it is not strictly speaking a molecular identifier.
+Nevertheless, it serves three purposes: 1) increase 5' sequence diversity for improved sequencing for read P1, 2) decrease any potential circular ligase primary sequence preference and 3) serve as a quality control for the library prep.
+As a quality control, the number of observed UMI sequences is compared with the number expected ($E[X]$) given the number of random UMI draws ($n$) i.e. sequencing reads for the particular sample and the number of possible UMIs ($k$).
+The number of expected UMI sequences is calculated as:
+$$
+E[X] = n \left[ 1 - \left(\frac{n-1}{n} \right)^k \right]
+$$
+
+
+Using varying adapter lengths to shift the sequencing "reading frame"  to avoid the 3' CCA sequence to cause near-zero sequence diversity on the read P2.
+
+Illumina library oligos are designed as a Truseq dual index library with combined i5 and i7 indices.
+Library oligos are synthesized with a phosphorothioate bond between the last two nucleotides to prevent degradation by KAPA HiFi Polymerase [Behrens].
+
+
+
+
+
+
+\section{Acknowledgments}
+Alicia for samples and discussion.
+Rasi for ideas and discussion.
+David for help in lab.
+Sequencing core.
+
+\section{Funding}
+L.B.S. acknowledges support from the National Institute of General Medical Sciences (NIGMS; R35GM147118).
+
+
+\bibliography{main}
+\end{document}
