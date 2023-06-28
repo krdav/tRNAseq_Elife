@@ -92,12 +92,14 @@ It has been proposed that in the amine catalyzed cleavage the phosphoric ester l
 \centering
 \fbox{\includegraphics[width=0.7\linewidth]{figures/Fig1.pdf}}
 \caption{
-Figure caption
+Summary illustrating the steps of the charge tRNAseq method we used to measure aminoacylation, relative expression and tRNA modification levels.
 }
 \label{fig:Fig1}
 \figsupp[Whitfeld reaction scheme.]{
-Suppl. figure Caption
-}{\fbox{\includegraphics[width=0.9\linewidth]{figures/Fig1S.pdf}}}\label{figsupp:f1S1}
+Schematic of the Whitfeld reaction with acylated and unacylated tRNA leading to generation of CCA and CC-ending tRNAs.
+For unacylated tRNA, 3' adenosine is oxidized by periodate and then cleaved off by lysine induced β-elimination [references].
+Acylated tRNA is protected from periodate oxidation but will be deacylated in the subsequent incubation with lysine.
+}{\fbox{\includegraphics[width=0.9\linewidth]{figures/Fig1S1.pdf}}}\label{figsupp:f1S1}
 \end{figure}
 
 
@@ -113,25 +115,77 @@ I also like figure 1 supplementary figure 1 (\FIGSUPP[Fig1]{f1S1})
 \centering
 \fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2.pdf}}
 \caption{
-Figure caption
+Optimizing the chemistry of charge tRNAseq.
+\textbf{(A)} Time required to complete periodate oxidation of the E.coli tRNA-Lys-CCA oligo on ice.
+Following oxidation, RNA was processed similar to \cite{Evans2017-st} to cleave off the 3' adenosine.
+Successful cleavage produce E.coli tRNA-Lys-CC.
+CCA, input oligo.
+CC, product oligo.
+Mix, 50/50 mix of CCA and CC.
+SE, short exposure.
+LE, long exposure.
+\textbf{(B)} TapeStation electropherogram comparing stability of whole cell RNA before and after 4 hour lysine cleavage at pH=8 or 1.5 hour borax cleavage at pH=9.5.
+tRNA range marked by red background, 18/28S by blue.
+See \FIGSUPP[Fig2]{f2S1}, panel B for RNA stability timecourse as it occurs on a gel.
+\textbf{(C)} Time required to complete lysine cleavage of the E.coli tRNA-Lys-CCA oligo (CCA) at 45°C.
+Except the cleavage step, RNA was processed similar to \cite{Evans2017-st}.
+\textbf{(D)} Effect of individual components on cleavage of the E.coli tRNA-Lys-CCA oligo (CCA).
+All samples were processed as a one-pot reaction, except the borax sample which was processed similar to \cite{Evans2017-st}.
+rSAP, shrimp alkaline phosphatase.
+\textbf{(E)} Ligation test comparing the effect of RNA processing.
+Deacylated and gel purified human tRNA was processed identically as in panel (D), then ligated to l1Sp.
+Other adapters were tested with similar results (see \FIGSUPP[Fig2]{f2S3}).
 }
 \label{fig:Fig2}
 
-\figsupp[Suppl. fig 1.]{
-Suppl. figure Caption
-}{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S1.pdf}}}\label{figsupp:f2S1}
+\figsupp[Optimizing lysine induced cleavage.]{
+Optimizing lysine induced cleavage for the charge tRNAseq method.
+\textbf{(A)} Measured aminoacylation level after 5, 30, 90 and 270 minutes of deacylation in 1 M lysine pH=8.
+After deacylation, RNA was purified and submitted to the Whitfeld reaction using lysine cleavage at pH=9.5 for 90 min to ensure complete deacylation.
+The RNA was then processed using the described charge tRNAseq method.
+\textbf{(B)} RNA stability over time for lysine cleavage at pH=8 and borax cleavage at pH=9.5.
+\textbf{(C)} Lysine reacts with dialdehydes forming from quencher oxidation.
+One-pot Whitfeld reactions were performed at pH=8 and pH=9.5 and quenched with either glycerol (Gly), glucose (Glc), ribose (Rib) or uridine (Urd) at concentrations indicated.
+Pictures taken after the lysine cleavage step indicate side product formation consistent with lysine reacting with dialdehydes formed during the periodate quenching \citep{Saraiva2006-gw}.
+}{\fbox{\includegraphics[width=0.65\linewidth]{figures/Fig2S1.pdf}}}\label{figsupp:f2S1}
 
-\figsupp[Suppl. fig 2.]{
-Suppl. figure Caption
+\figsupp[Splint based ligation is highly efficient.]{
+High ligation efficiency of all the barcoded adapters, depends on splint complementarity.
+\textbf{(A)} Ligation reactions using deacylated purified human tRNA as substrate.
+\textbf{(B)} Ligation reactions using E.coli tRNA-Lys-CC oligo as substrate.
+\textbf{(C)} Comparing standard ligation using tRNA ending complementary splint (l1Sp lane) vs. non-complementary splint (NCMPL lane).
+For both ligations the l1Sp adapter was used.
+For the non-complementary splint ligation the two standard TGGN and GGN overhang generating splints were swapped by two splints generating CAAC and AAC overhangs.
 }{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S2.pdf}}}\label{figsupp:f2S2}
 
-\figsupp[Suppl. fig 3.]{
-Suppl. figure Caption
-}{\fbox{\includegraphics[width=0.8\linewidth]{figures/Fig2S3.pdf}}}\label{figsupp:f2S3}
+\figsupp[Ligation tests, related to panel E.]{
+Ligation test comparing the effect of RNA processing.
+Similar to \FIG{Fig2}, panel E but with two different adapters.
+}{\fbox{\includegraphics[width=0.9\linewidth]{figures/Fig2S3.pdf}}}\label{figsupp:f2S3}
 
 \figsupp[Suppl. fig 4.]{
 Suppl. figure Caption
 }{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S4.pdf}}}\label{figsupp:f2S4}
+
+\figsupp[Suppl. fig 5.]{
+Suppl. figure Caption
+}{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig2S5.pdf}}}\label{figsupp:f2S5}
+
+\figsupp[Suppl. fig 6.]{
+Suppl. figure Caption
+}{\fbox{\includegraphics[width=0.5\linewidth]{figures/Fig2S6.pdf}}}\label{figsupp:f2S6}
+
+\figsupp[Suppl. fig 7.]{
+Suppl. figure Caption
+}{\fbox{\includegraphics[width=0.9\linewidth]{figures/Fig2S7.pdf}}}\label{figsupp:f2S7}
+
+\figsupp[Suppl. fig 8.]{
+Suppl. figure Caption
+}{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S8.pdf}}}\label{figsupp:f2S8}
+
+\figsupp[Suppl. fig 9.]{
+Suppl. figure Caption
+}{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S9.pdf}}}\label{figsupp:f2S9}
 \end{figure}
 
 
