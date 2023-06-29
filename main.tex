@@ -88,6 +88,19 @@ It has been proposed that in the amine catalyzed cleavage the phosphoric ester l
 
 
 
+\subsubsection{Adapter ligation introduce charge measurement bias}
+Charge bias using regular pre-adenylated adapters.
+We had observed a low ligation efficiency and thus reasoned that increasing ligation efficiency could decrease bias.
+Adding sequence diversity to the adapter could also decrease bias and increase ligation efficiency.
+However
+Blunt-end ligation using pre-adenylated DNA adapters was inefficient and could only be optimized slightly [fig ref].
+We note that our DNA adapters are slightly different than \cite{Behrens2021-gb}, thus possibly explaining the difference in ligation efficiency.
+
+\subsubsection{Splint assisted ligation}
+Then we tried splint assisted ligation and it worked splendidly...
+
+
+
 \begin{figure}[ht!]
 \centering
 \fbox{\includegraphics[width=0.7\linewidth]{figures/Fig1.pdf}}
@@ -138,39 +151,25 @@ Other adapters were tested with similar results (see \FIGSUPP[Fig2]{f2S5}).
 }
 \label{fig:Fig2}
 
-
-
 \figsupp[Measurement bias in charge tRNAseq using blunt-end ligation.]{
 Measurement bias in charge tRNAseq using blunt-end ligation.
-\textbf{(A)}
-
-\textbf{(B)}
-
-
-
-}{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S1.pdf}}}\label{figsupp:f2S1}
-
+\textbf{(A)} Measured charge of E.coli tRNA-Lys oligo control ligated to four different pre-adenylated adapters.
+A charge control was made using a mix of 50\% E.coli tRNA-Lys-CCA and 50\% E.coli tRNA-Lys-CC and thus its charge does not refer to aminoacylation but the CCA/CC ratio.
+This was spiked into each ligation reaction, which was performed using the method described by \cite{Behrens2021-gb}.
+\textbf{(B)} Distribution of charge differences among samples with two barcode replicates.
+Deviation is reported as percentage points and the kernel density estimate (KDE) is overlaid.
+}{\fbox{\includegraphics[width=0.75\linewidth]{figures/Fig2S1.pdf}}}\label{figsupp:f2S1}
 
 \figsupp[tRNA-adapter blunt-end ligation is inefficient.]{
-\textbf{(A)}
-
-\textbf{(B)}
-
-
-\textbf{(C)}
-
-
-
-A) Effect of incubation temperature, time and addition of a phosphatase (rSAP) using the l3N adapter to ligate purified human tRNA. B) Effect of additives using 4C, 24 h incubation and the l2N adapter to ligate purified human tRNA. An irrelevant well has been crossed out. C) Effect of ligase type using the l1N adapter to ligate the tRNALys oligo. Some wells have been added an additional amount of non-adenylated adapter equal to the amount of pre-adenylated adapter added (indicated by l1N in well label).
-
-
-
-}{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S2.pdf}}}\label{figsupp:f2S2}
-
-
-
-
-
+Despite optimization attempts, high ligation efficiency could not be achieved for blunt-end ligation. 
+\textbf{(A)} Effect of incubation temperature, time and addition of a phosphatase (rSAP).
+Using deacylated and gel purified human tRNA as substrate and pre-adenylated l3N as adapter, otherwise following the method as \cite{Behrens2021-gb}.
+\textbf{(B)} Effect of additives and higher adapter concentration.
+Using deacylated and gel purified human tRNA as substrate, pre-adenylated l2N as adapter and 4°C, 24 h incubation like panel A.
+An irrelevant well has been crossed out to avoid image splicing.
+\textbf{(C)} Effect of ligase type.
+Using the E.coli tRNA-Lys-CCA oligo as substrate, pre-adenylated l1N as adapter and 4°C, 24 h incubation with 20\% DMSO like panel B.
+}{\fbox{\includegraphics[width=0.8\linewidth]{figures/Fig2S2.pdf}}}\label{figsupp:f2S2}
 
 \figsupp[Optimizing lysine induced cleavage.]{
 Optimizing lysine induced cleavage for the charge tRNAseq method.
@@ -198,8 +197,10 @@ Similar to \FIG{Fig2}, panel E but with two different adapters.
 }{\fbox{\includegraphics[width=0.9\linewidth]{figures/Fig2S5.pdf}}}\label{figsupp:f2S5}
 
 \figsupp[Sequenced controls.]{
-
+Charge tRNAseq control samples and spike-ins conform to 
 \textbf{(A)}
+E.coli tRNA-Lys-CC oligo spike-in 
+
 
 
 \textbf{(B)}
