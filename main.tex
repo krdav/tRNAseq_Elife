@@ -213,7 +213,7 @@ For Maxima, other incubation conditions tested are: 1 h at 60°C (similar to \ci
 After RT-PCR, the RNA template was remove by NaOH hydrolysis, liberating the DNA adapter annotated on the gel.
 \textbf{(B)} Coverage plots for cytoplasmic tRNA transcripts grouped by cognate amino acid, comparing samples prepared with TGIRT-III or Maxima using standard incubation (42°C, 16 h).
 \textbf{(C)} Percentage of full length transcripts grouped by cognate amino acid (i.e. left side of plots in panel B).
-Errorbars are bootstrapped 95\% confidence interval over the 7 individual samples barcoded, pooled and used for RT-PCR template with both TGIRT-III and Maxima.
+Errorbars are bootstrapped 95\% confidence interval of the mean over the 7 individual samples barcoded, pooled and used for RT-PCR template with both TGIRT-III and Maxima.
 }{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig2S7.pdf}}}\label{figsupp:f2S7}
 
 \figsupp[tRNA homology requires careful PCR conditions.]{
@@ -223,7 +223,7 @@ A gel purified charge tRNAseq DNA library was resuspended in TBE buffer and incu
 }{\fbox{\includegraphics[width=0.5\linewidth]{figures/Fig2S8.pdf}}}\label{figsupp:f2S8}
 
 \figsupp[Baseline tRNA charge for H1299 cells.]{
-Baseline tRNA aminoacylation charge in H1299 cells grown in DMEM (4 replicates, bootstrapped 95\% confidence interval).
+Baseline tRNA aminoacylation charge in H1299 cells grown in DMEM (4 replicates, bootstrapped 95\% confidence interval of the mean).
 Charge on tRNA\textsuperscript{His} is likely erroneously low because the discriminator base is shielded by base pairing \citep{Heinemann2012-hq}, creating a steric hindrance for the splint assisted ligation.
 }{\fbox{\includegraphics[width=0.9\linewidth]{figures/Fig2S9.pdf}}}\label{figsupp:f2S9}
 
@@ -257,9 +257,24 @@ Charge on tRNA\textsuperscript{His} is likely erroneously low because the discri
 
 
 
+The 5-methoxycarbonylmethyl-2-thiouridine (mcm5s2U) modification is known to be present on the first anticodon nucleoside (position 34) in human tRNA Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU, while absent in the similar tRNA Arg-UCG \citep{Lentini2018-xs}.
+The thioketone has been reported sensitive to periodate oxidation
 
 
 
+Thionucleosides are sensitive to periodate treatment, oxidizing them to sulfonates and making them further sensitive to nucleophilic attack \citep{Ziff1968-la, Rao1974-zq}.
+Periodate oxidation followed by lysine cleavage would presumably result in a lysine adduct \citep{Ziff1968-la}.
+
+5-methoxycarbonylmethyl-2-thiouridine (mcm5s2U) modification on human tRNA:
+tRNA-Lys-TTT
+tRNA-Gln-TTG
+tRNA-Arg-TCT
+tRNA-Glu-TTC
+\citep{Lentini2018-xs}
+
+MODOMICS \citep{Boccaletto2022-lr}
+
+Alkylation reactions of the thioketone on 2-thiouridine using N-ethylmaleimide or iodoacetamide \citep{Edwards2020-jg}.
 
 
 
@@ -267,13 +282,28 @@ Charge on tRNA\textsuperscript{His} is likely erroneously low because the discri
 \centering
 \fbox{\includegraphics[width=0.85\linewidth]{figures/Fig3.pdf}}
 \caption{
-Blabla
+Masking of reference tRNA transcript sequences improves alignment performance.
+\textbf{(A)} Grid search optimization of parameters determining the extent of reference masking (see method section for details).
+Parameters used for reference masking are chosen to minimize the percentage of reads assigned to tRNAs with multiple codons.
+\textbf{(B)} There is no trade-off between mapping success and multiple codon mapping.
+\textbf{(C)} Reference masking increase RPM values of select codons.
+RPM levels of the codons shown was found before and after optimized reference masking.
+Errorbars are bootstrapped 95\% confidence interval of the mean over the 9  barcode replicate samples.
 }
 \label{fig:Fig3}
 
-\figsupp[Fig3 suppl.]{
-qwerty
+\figsupp[Reference masking effect on RPM and charge levels.]{
+\textbf{(A)} Reference masking effect on charge levels per transcripts (left) and per codon (right).
+Points showing $>1.05$ fold increase or decrease upon reference masking are colored orange and annotated on the right side of the plot.
+\textbf{(B)} Reference masking effect on RPM levels per transcripts (left) and per codon (right).
+Transcript points showing $>3$, and codon points showing $>1.5$, fold increase or decrease upon reference masking are colored orange.
+The highest fold change transcripts and codons are annotated on the right side of the plot.
 }{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig3S1.pdf}}}\label{figsupp:f3S1}
+
+\figsupp[Anticodon modification mcm5s2U is detected in periodate oxidized samples.]{
+Mismatch and gap frequency and RT stop percentage is increased upon periodate oxidation for transcript known to be 5-methoxycarbonylmethyl-2-thiouridine (mcm5s2U) modified.
+The mcm5s2U modification is known to be present on the first anticodon nucleoside (position 34) in human tRNA Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU, while absent in the similar tRNA Arg-UCG \citep{Lentini2018-xs}.
+}{\fbox{\includegraphics[width=0.55\linewidth]{figures/Fig3S2.pdf}}}\label{figsupp:f3S2}
 \end{figure}
 
 
@@ -284,21 +314,35 @@ qwerty
 
 \begin{figure}[ht!]
 \centering
-\fbox{\includegraphics[width=0.50\linewidth]{figures/duck.jpg}}
+\fbox{\includegraphics[width=0.65\linewidth]{figures/Fig4.pdf}}
 \caption{
-Blabla
+Barcode replicates show small variance and barcode bias.
+Each of the nine adapters were ligated to the same sample containing a heterogeneous mix of CC and CCA-ending tRNAs.
+Ligations were then pooled and submitted to the remainder of the charge tRNAseq protocol.
+\textbf{(A)} The percentage point deviation from the median codon charge, grouped by barcode identity (left) or shown summarized as a density plot (right).
+\textbf{(B)} The percentage deviation from the median codon RPM, grouped by barcode identity (left) or shown summarized as a density plot (right).
+Density plots are provided with kernel density estimate (KDE) in blue, normal distribution estimate in red and inserts with mean ($\mu$) and standard deviation ($\sigma$).
 }
 \label{fig:Fig4}
 
-\figsupp[Fig4 suppl.]{
-qwerty
-}{\fbox{\includegraphics[width=0.85\linewidth]{figures/duck.jpg}}}\label{figsupp:f4S1}
+\figsupp[Charge and RPM deviation at the transcript level.]{
+Similar to \FIG{Fig4}, but at the transcript level.
+}{\fbox{\includegraphics[width=0.65\linewidth]{figures/Fig4S1.pdf}}}\label{figsupp:f4S1}
+
+\figsupp[Best and worst barcode replicates.]{
+Best and worst pairwise comparisons between barcode replicates.
+Sorting pairwise comparisons between barcode replicates according to the sum of squared differences and showing the best and worst either at the transcript or codon level.
+\textbf{(A)} For charge levels.
+Barcode l4Sp tends to overestimate charge.
+\textbf{(B)} For RPM levels.
+For all plots the red line is proportionality.
+}{\fbox{\includegraphics[width=.98\linewidth]{figures/Fig4S2.pdf}}}\label{figsupp:f4S2}
 \end{figure}
 
 
 \begin{figure}[ht!]
 \centering
-\fbox{\includegraphics[width=0.50\linewidth]{figures/duck.jpg}}
+\fbox{\includegraphics[width=0.65\linewidth]{figures/Fig5.pdf}}
 \caption{
 Blabla
 }
@@ -306,7 +350,7 @@ Blabla
 
 \figsupp[Fig5 suppl. 1]{
 qwerty
-}{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig5S1.pdf}}}\label{figsupp:f5S1}
+}{\fbox{\includegraphics[width=0.65\linewidth]{figures/Fig5S1.pdf}}}\label{figsupp:f5S1}
 
 \figsupp[Fig5 suppl. 2]{
 qwerty
@@ -316,20 +360,23 @@ qwerty
 
 
 
+
+
+
+
+
 \begin{figure}[ht!]
 \centering
-\includegraphics[height=2cm]{figures/duck.jpg}
+\fbox{\includegraphics[width=0.70\linewidth]{figures/Fig6.pdf}}
 \caption{
-Sixth figure: charge half-life
+Blabla
 }
-\label{fig:fig6}
+\label{fig:Fig6}
+
+\figsupp[Fig6 suppl.]{
+qwerty
+}{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig6S1.pdf}}}\label{figsupp:f6S1}
 \end{figure}
-
-
-
-
-
-
 
 
 
@@ -381,6 +428,12 @@ Investigate the effect of deacylation on tRNA abundance.
 
 \section{Methods and Materials}
 
+For barcode replicate test (Fig4).
+tRNA from 8h incubation condition was used because it contains a spectrum of charge levels spanning almost fully charged isoleucine tRNAs and almost fully deacylated asparagine tRNA.
+
+
+
+
 
 For ligation tests human tRNA was isolated from whole cell RNA from H1299 cells.
 After deacylation at 45°C in 1 M lysine (pH=8) for 4 hours, the tRNA fraction was isolated on a denaturing gel.
@@ -407,6 +460,18 @@ Figure reference (probably Fig 2, S9).
 [Describe design and adenylation of adapters.]
 Ligations were performed using 40 ng tRNA, a ~5x excess of pre-adenylated adapters, 17.5\% PEG-8000, 200 U Rnl2tr KQ ligase (NEB) and the vendor provided buffer.
 
+
+
+
+
+
+
+
+\subsection{Reference masking}
+These are the parameters.
+Grid search.
+Unique transcript is not an optimal criteria because it can easily lead to masking parameters adjusting to mask a single transcript out of a family of highly similar transcripts.
+This can lead to the false confidence in assignment of annotation to truncated reads that cannot truly distinguish between this family of highly similar transcripts.
 
 
 
