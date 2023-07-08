@@ -93,6 +93,7 @@ Finally, we provide a code repository enabling users to use our read processing,
 Summary illustrating the steps of the charge tRNA-Seq method we used to measure aminoacylation, relative expression and tRNA modification levels.
 First, the Whitfeld reaction (detailed in \FIGSUPP[Fig1]{f1S1}) is used to discriminate between tRNAs with and without an aminoacylation by cleaving off the 3′ base of deacylated tRNA.
 Second, the tRNA is folded to expose the discriminator base (N) and CCA/CC-end, creating a sticky-end for splint assisted ligation to a barcoded adapter.
+Stars (*) on the 3′ end of splint and adapter indicate modifications to block self-ligation.
 Third, using the purified ligation product, RT-PCR is used to generate cDNA.
 Fourth, the cDNA is converted into a dsDNA library and sequenced to determine tRNA charge, expression and modifications.
 }
@@ -154,7 +155,6 @@ This affords us the advantage of using a pure DNA splint without any RNA nucleot
 
 Importantly, we validated that tRNA processed using the one-pot Whitfeld reaction could be effectively used as substrate in the ligation reaction (\FIG{Fig2}, panel E).
 We noted that a small amount of unligated tRNA appeared in reactions with tRNA oxidized with periodate.
-% Need to make this panel:
 This unligated tRNA is of unknown origin and largely refractory to further ligation (\FIGSUPP[Fig2]{f2S5}, panel B); however, as shown with the later charge titration, this did not have a measurable impact on the accuracy of the aminoacylation measurement.
 
 
@@ -242,8 +242,12 @@ For the non-complementary splint ligation the two standard TGGN and GGN overhang
 }{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S4.pdf}}}\label{figsupp:f2S4}
 
 \figsupp[Ligation tests, related to panel E.]{
-Ligation test comparing the effect of RNA processing.
+\textbf{(A)} Ligation test comparing the effect of RNA processing.
 Similar to \FIG{Fig2}, panel E but with two different adapters.
+\textbf{(B)} The unligated tRNA that arises after tRNA is oxidized with periodate in panel A is refractory to further ligation.
+The unligated tRNA was gel purified from enough ligation reactions as shown in panel A to setup two new ligation reactions using either l1N pre-adenylated adapter for blunt end ligation or l6Sp for splint assisted ligation.
+For l1N, ligation was setup with 35 ng tRNA, 20 pmol adapter, 17.5\% PEG-8000, 20\% DMSO, 1xT4 RNA ligase buffer, 1 μL T4 RNA ligase 2 (truncated KQ) and 1 μL SuperaseIn.
+For l6Sp, the ligation was setup similar as in the charge tRNA-Seq protocol.
 }{\fbox{\includegraphics[width=0.9\linewidth]{figures/Fig2S5.pdf}}}\label{figsupp:f2S5}
 
 \figsupp[Sequenced controls.]{
@@ -588,7 +592,7 @@ tRNA was defined as the range between 70 and 85 nt. as approximated by the low r
 For blunt-end ligations in \FIGSUPP[Fig2]{f2S2}, 40 ng tRNA, either isolated from H1299 cells or as tRNA-Lys-CCA oligo, was ligated to 20 pmol pre-adenylated adapter in a 20 μL reaction containing 25\% PEG-8000, 200 U T4 RNA ligase 2 (truncated KQ; Rnl2tr KQ), 10 U SUPERaseIn and the vendor provided buffer.
 For splint assisted ligation in \FIGSUPP[Fig2]{f2S4}, 35 ng tRNA, either isolated from H1299 cells or as tRNA-Lys-CC oligo, was ligated to 20 pmol annealed adapter:splint partial duplex as described for charge tRNA-Seq sample processing below.
 For the non-complementary splint test, two splint oligos were made with CAAC and AAC overhangs (Supplementary file 1) and annealed to adapter l1Sp.
-For the ligation test in \FIG{Fig2}, panel E and \FIGSUPP[Fig2]{f2S5}, 500 ng tRNA isolated from H1299 cells was subjected to the one-pot Whitfeld reaction described for charge tRNA-Seq sample processing below but with a single step remove.
+For the ligation test in \FIG{Fig2}, panel E and \FIGSUPP[Fig2]{f2S5}, panel A, 500 ng tRNA isolated from H1299 cells was subjected to the one-pot Whitfeld reaction described for charge tRNA-Seq sample processing below but with a single step remove.
 For the no oxidation sample NaIO4 was replaces with NaCl, for the no dephosphorylation sample shrimp alkaline phosphatase (rSAP) was replaces with water and for the no cleavage sample RNA was purified after periodate quenching.
 A parallel sample was processed as described in \cite{Evans2017-st}.
 All samples were purified using the Monarch RNA Cleanup Kit and 35 ng was used per ligation test with adapters l1Sp, l2Sp and l3Sp using the ligation protocol as described for charge tRNA-Seq sample processing below.
