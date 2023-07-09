@@ -463,11 +463,16 @@ Having developed an accurate method for measuring tRNA charge on over a hundred 
 We used RNA purified from the H1299 cell line, starting at high tRNA charge (\FIG{Fig2}, panel F), and tracked the aminoacylation decay over time after switching to physiological buffer (pH=7.2) and incubation at 20°C similar to \cite{Peacock2014-wk}.
 Sampling 11 timepoints with 4 replicates, charge measurements for each transcript were fitted to a first-order decay function to estimate the half-life of all transcripts (Supplementary file 4), as exemplified by the Arg-CCG-1-1 transcript (\FIG{Fig6}, panel A).
 When transcripts were grouped by their cognate amino acid, we could confirm that the half-lifes are indeed determined mostly by amino acid identity and that they span a large 37 fold range (\FIG{Fig6}, panel B).
-Our half-life estimates are highly correlated with those reported by \cite{Peacock2014-wk}, but surprisingly ours appear to be approximately 4 fold higher despite using the same incubation temperature and a similar buffer with only slightly lower pH (7.2 vs. 7.5; \FIGSUPP[Fig6]{f6S1}, panel B).
+Our half-life estimates are highly correlated with those reported by \cite{Peacock2014-wk}, but surprisingly ours appear to be approximately 4 fold higher despite using the same incubation temperature and a similar buffer, with only slightly lower pH (7.2 vs. 7.5; \FIGSUPP[Fig6]{f6S1}, panel B).
+
+It seems counterintuitive that the aminoacylation half-life should not be affected by the tRNA sequence at all; however, as the amino acid is attached to the invariant CCA-end, the nucleotides most proximal to the ester bond are the same for all tRNAs.
+The most proximal non-invariant nucleotide is the discriminator base, sitting just before the CCA-end, 
 
 
-It seems counterintuitive that the aminoacylation half-life should not be affected by the tRNA sequence at all; however, as the amino acid is attached to the invariant CCA-end the nucleotides most proximal to the ester bond is the same for all tRNAs.
-The most proximal non-invariant nucleotide is the discriminator base, sitting 
+Because we sample all transcripts, we are able to show that the discriminator base does influence the half-life and that a purine base leads to longer half-life than a uracil.
+
+
+
 
 we could show that the discriminator base does influence the half-life.
 
@@ -490,9 +495,9 @@ The fitted first-order decay to estimate the aminoacylation half-life is shown a
 Similar dashed lines are plotted in green for the 95\% confidence interval (these are hard to see).
 \textbf{(B)} Aminoacylation half-life estimates grouped by amino acid.
 Each marker represents one transcript, errorbars are bootstrapped 95\% confidence intervals.
-\textbf{(C)} Distribution of aminoacylation half-life estimates for tRNA\textsuperscript{Gln} transcripts grouped by discriminator base identity.
+\textbf{(C)} Distribution of aminoacylation half-life estimates for tRNA\textsuperscript{Gln} and tRNA\textsuperscript{Thr} transcripts grouped by discriminator base identity.
 Errorbars are bootstrapped 95\% confidence intervals.
-For the single transcript with G discriminator base the bootstrap is performed on measurement replicates while for the T discriminator base it is performed on the six transcripts.
+For the single transcripts with G or A discriminator base the bootstrap is performed on measurement replicates while for the T discriminator base it is performed on the transcripts observations.
 }
 \label{fig:Fig6}
 
