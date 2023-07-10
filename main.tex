@@ -139,7 +139,7 @@ Following the Whitfeld reaction the tRNAs must be sequenced in order to measure 
 To achieve this with enough throughout to process a hundred samples we chose to use barcoded adapter ligation to enable sample pooling before the RT-PCR step \citep{McGlincy2017-ro}.
 We followed the protocol of \cite{Behrens2021-gb}, with few modifications to the oligo design, but found that the measured charge was highly variable between replicates and that the measurements were biased by the barcode identity to an unacceptable degree (\FIGSUPP[Fig2]{f2S2}).
 We hypothesized that this was due ligation bias commonly encountered in the type of blunt-end ligation used \citep{Fuchs2015-nb, Zhuang2012-nu, Jayaprakash2011-ab}.
-We then reasoned that increasing ligation efficiency could mitigate ligation bias but our attempts to at this failed as we were never able to reach more then ~50\% ligation of the input tRNA (\FIGSUPP[Fig2]{f2S3}).
+We then reasoned that increasing ligation efficiency could mitigate ligation bias but our attempts to at this failed as we were never able to reach more than $\sim$50\% ligation of the input tRNA (\FIGSUPP[Fig2]{f2S3}).
 
 
 
@@ -296,49 +296,22 @@ Furthermore, a parameter (\verb|frac_max_score|) controls the sharing of a mask 
 To find the optimal combination of reference masking parameters we performed a grid search with the objective of finding the masking that resulted in the least number of reads assigned to transcripts with multiple codons (\FIG{Fig3}, panel A).
 This lead to 334 positions in the 282 sequence reference getting masked, resulting in an alignment improvement from 11.34\% to 4.37\% reads with multiple transcript alignments.
 
-Masked positions do not contribute to the alignment score and thus possibly lowering the alignment score; however, we observed no trade-off between optimized reference masking and read mapping percentage and maintained an average ~99\% read mapping (\FIG{Fig3}, panel B).
+Masked positions do not contribute to the alignment score and thus possibly lowering the alignment score; however, we observed no trade-off between optimized reference masking and read mapping percentage and maintained an average $\sim$99\% read mapping (\FIG{Fig3}, panel B).
 Like \cite{Behrens2021-gb}, we observe a striking difference in the mapping of certain tRNA transcripts, for example transcripts decoding the Ser-UCU codon (i.e. AGA anticodon) are lifted out of obscurity (\FIG{Fig3}, panel C).
 Generally, reference masking appears to move annotations towards
-around a dusin transcripts but a substantial mapping change at the codon level only occurs for four codons (\FIGSUPP[Fig3]{f3S1}, panel B).
-The effect of reference masking on the aminoacylation charge measurements was low as expected because this is a relative number (\FIGSUPP[Fig3]{f3S1}, panel A).
+around a dusin transcripts but a substantial mapping change at the codon level only occurs for four codons (\FIGSUPP[Fig3]{f3S1}, panel a).
+The effect of reference masking on the aminoacylation charge measurements was low as expected because this is a relative number (\FIGSUPP[Fig3]{f3S1}, panel B).
 
 
 
 
 
 \subsubsection{tRNA modifications are reflected in mismatches, gaps and RT stops}
-
-
-Using the annotations assigned with the masked reference the reads were re-aligned to their annotated tRNA transcript sequence to extract mismatches, gaps and the percentage drop in coverage at each position, referred to here as RT stops, or termination signal by \cite{Wang2021-fc}.
-
-
-methylations \citep{Clark2016-ph}
-
-
-Then go on and explain results in f3S2 (\FIGSUPP[Fig3]{f3S2}).
-
-
-
-The 5-methoxycarbonylmethyl-2-thiouridine (mcm5s2U) modification is known to be present on the first anticodon nucleoside (position 34) in human tRNA Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU, while absent in the similar tRNA Arg-UCG \citep{Lentini2018-xs}.
-The thioketone has been reported sensitive to periodate oxidation
-
-
-
-Thionucleosides are sensitive to periodate treatment, oxidizing them to sulfonates and making them further sensitive to nucleophilic attack \citep{Ziff1968-la, Rao1974-zq}.
-Periodate oxidation followed by lysine cleavage would presumably result in a lysine adduct \citep{Ziff1968-la}.
-
-5-methoxycarbonylmethyl-2-thiouridine (mcm5s2U) modification on human tRNA:
-tRNA-Lys-TTT
-tRNA-Gln-TTG
-tRNA-Arg-TCT
-tRNA-Glu-TTC
-\citep{Lentini2018-xs}
-
-MODOMICS \citep{Boccaletto2022-lr}
-
-Alkylation reactions of the thioketone on 2-thiouridine using N-ethylmaleimide or iodoacetamide \citep{Edwards2020-jg}.
-
-
+We also support RT misincorporation data for inference of nucleotide modifications which is typically only valid for modifications that disrupt Watson–Crick base pairing such as methylations \citep{Clark2016-ph, Behrens2021-gb}.
+As such the 5-methoxycarbonylmethyl-2-thiouridine (mcm5s2U) modification should be silent; however, thionucleosides are sensitive to periodate treatment, oxidizing them to sulfonates and making them further sensitive to nucleophilic attack \citep{Ziff1968-la, Rao1974-zq}.
+When periodate oxidation of mcm5s2U is followed by lysine cleavage it would presumably result in a lysine adduct \citep{Ziff1968-la}, disrupting Watson–Crick base pairing.
+We verified this by comparing the misincorporation signature in samples processed with/without periodate oxidation, looking at human tRNA Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU, shown by \cite{Lentini2018-xs} to carry be mcm5s2U modification (\FIGSUPP[Fig3]{f3S2}).
+Large changes in the misincorporation signature is observed upon periodate oxidation, but curiously some tRNAs respond with a large decrease in RT readthrough while others see an increase in the mutation and/or gap frequency.
 
 \begin{figure}[ht!]
 \centering
@@ -356,11 +329,11 @@ Errorbars are bootstrapped 95\% confidence interval of the mean over the 9  barc
 \label{fig:Fig3}
 
 \figsupp[Reference masking effect on RPM and charge levels.]{
-\textbf{(A)} Reference masking effect on charge levels per transcripts (left) and per codon (right).
-Points showing $>1.05$ fold increase or decrease upon reference masking are colored orange and annotated on the right side of the plot.
-\textbf{(B)} Reference masking effect on RPM levels per transcripts (left) and per codon (right).
+\textbf{(A)} Reference masking effect on RPM levels per transcripts (left) and per codon (right).
 Transcript points showing $>3$, and codon points showing $>1.5$, fold increase or decrease upon reference masking are colored orange.
 The highest fold change transcripts and codons are annotated on the right side of the plot.
+\textbf{(B)} Reference masking effect on charge levels per transcripts (left) and per codon (right).
+Points showing $>1.05$ fold increase or decrease upon reference masking are colored orange and annotated on the right side of the plot.
 }{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig3S1.pdf}}}\label{figsupp:f3S1}
 
 \figsupp[Anticodon modification mcm5s2U is detected in periodate oxidized samples.]{
@@ -373,20 +346,14 @@ The mcm5s2U modification is known to be present on the first anticodon nucleosid
 
 
 
-\subsection{Barcode replicates reveal high precision}
+\subsection{Barcode replicates show high precision}
+To assess our measurement precision we performed our charge tRNA-Seq protocol on the same tRNA sample using all nine barcoded adapters.
+We used partially deacylated RNA to achieve a representative spread of aminoacylation levels within a single sample (\FIGSUPP[Fig4]{f4S2}, panel A) and then extracted statistics compared to the median barcode replicate measurement.
+When comparing charge measurements binned by barcode, we observed that most were narrowly distributed with the median close to zero indicating little or no barcode bias (\FIG{Fig4}, panel A).
+Adapter l4Sp is the exception that proves why bias needs to be investigated, because it is consistently overestimating charge levels by a median of $\sim$3 percentage points.
+Overall however, charge measurements show high precision with a standard deviation from the median of just 1.7 percentage points, with similar results at the transcript level (\FIGSUPP[Fig4]{f4S1}, panel A).
 
-bla bla bla
-
-(\FIG{Fig4}, panel A)
-and
-(\FIGSUPP[Fig4]{f4S1}, panel A)
-
-
-
-\lipsum[5]
-
-
-
+For RPM values, some barcode replicates were more narrowly distributed than others. However, these differences are marginal and with a standard deviation from the median of 5.1 percentage we consider the RPM measurements to be precise (\FIG{Fig4}, panel B and \FIGSUPP[Fig4]{f4S1}, panel B).
 
 \begin{figure}[ht!]
 \centering
@@ -398,6 +365,7 @@ Ligations were then pooled and submitted to the remainder of the charge tRNA-Seq
 \textbf{(A)} The percentage point deviation from the median charge at the codon level, grouped by barcode identity (left) or shown summarized as a density plot (right).
 \textbf{(B)} The percentage deviation from the median RPM at the codon level, grouped by barcode identity (left) or shown summarized as a density plot (right).
 Density plots are provided with kernel density estimate (KDE) in blue, normal distribution estimate in red and inserts with mean ($\mu$) and standard deviation ($\sigma$).
+For plots of transcript level data see \FIGSUPP[Fig4]{f4S1}.
 }
 \label{fig:Fig4}
 
@@ -420,21 +388,16 @@ For all plots the red line is proportionality.
 
 
 
+\subsection{Charge titration shows high accuracy}
+Testing the accuracy of charge measurements is a much hard problem.
+Spiking in a defined ratio of CC and CCA-ending oligo ignores the possible effect of the Whitfeld reaction and comparison to charge measured by Northern blotting presents a different set of issues with probe annealing, band resolution etc.
+As an alternative, we titrated charge by mixing different proportions of intact and deacylated RNA allowing us to predict and measure charge levels of over 150 transcripts (\FIG{Fig5}, panel A).
+The results showed excellent proportionality between predicted and measured charge across the full range of values (\FIG{Fig5}, panel B), thus indicating that the charge measurements are highly accurate.
+This experiment also confirmed our previous observations that barcode bias is limited to the l4Sp adapter which is overestimating charge (\FIG{Fig5}, panel C).
+Also, no bias was found in independently prepared sequencing libraries or any of the different mixing proportions of intact and deacylated RNA (\FIGSUPP[Fig5]{f5S1}).
 
-\subsection{Charge titration reveal high accuracy}
-
-bla bla bla
-
-Others (Evans) used a single tRNA with known charge as an internal control, we developed a stable 50\% charge control using a 3′ phosphorylation as protection from periodate oxidation (f5S1) (\FIGSUPP[Fig5]{f5S1}, panel A).
-
-(\FIG{Fig5}, panel A)
-
-
-
-
-
-
-
+Inspired by \cite{Evans2017-st}, which used accurate radiolabeling techniques to provide a single accurate reference point, we developed a 50\% charge control using 3′ phosphorylation as protection from periodate oxidation.
+This control was spiked into samples before the Whitfeld reaction and showed a mean charge of 50.36\% and a standard deviation of 1.11 percentage points (\FIGSUPP[Fig5]{f5S2}, panel B), further validating measurement accuracy.
 
 \begin{figure}[ht!]
 \centering
@@ -443,12 +406,14 @@ Others (Evans) used a single tRNA with known charge as an internal control, we d
 Charge titration shows linearity over the full range of charge measurements.
 \textbf{(A)} Schematic illustration of the method to generate samples with predictable charge percentages.
 \textbf{(B)} Titration data for tRNA transcript Arg-CCG-1-1 with the red line indicating proportionality between predicted and measured charge.
+[Here insert reference to best/worst rep]
 \textbf{(C)} Error binned by barcode.
 Here, error is the percentage point difference between the measured vs. predicted charge for all transcripts in the bin.
 }
 \label{fig:Fig5}
 
-\figsupp[Prediction error binned by sequencing run and titration sample.]{
+\figsupp[Charge titration prediction error binned by sequencing run and titration sample.]{
+Charge titration prediction error binned by sequencing run and titration sample.
 \textbf{(A)} Run-to-run bias as assess by the percentage point difference between the measured vs. predicted charge for all transcripts of two independently prepared sequencing libraries, sequenced on different days.
 \textbf{(B)} Error distribution binned by titration sample.
 In both figures, error is the percentage point difference between the measured vs. predicted charge for all transcripts in the bin.
@@ -456,7 +421,7 @@ In both figures, error is the percentage point difference between the measured v
 
 \figsupp[Spike-in control for 50\% charge.]{
 Spike-in control for 50\% charge using E.coli tRNA-Thr-CGT.
-\textbf{(A)} Ligation between E.coli tRNA-Thr-CCA-Phos and l8Sp is completely blocked indicating ~100\% 3′ phosphorylation.
+\textbf{(A)} Ligation between E.coli tRNA-Thr-CCA-Phos and l8Sp is completely blocked indicating $\sim$100\% 3′ phosphorylation.
 CCA-P, E.coli tRNA-Thr-CCA-Phos.
 CCA, E.coli tRNA-Thr-CCA.
 50/50, equal mix of CCA-p and CCA.
@@ -492,6 +457,7 @@ Measuring aminoacylation half-life using charge tRNA-Seq.
 \textbf{(A)} Aminoacylation decay for tRNA transcript Arg-CCG-1-1 over the 11 timepoints sampled.
 The fitted first-order decay to estimate the aminoacylation half-life is shown as a red line.
 Similar dashed lines are plotted in green for the 95\% confidence interval (these are hard to see).
+[Here insert reference to best/worst rep]
 \textbf{(B)} Aminoacylation half-life estimates grouped by amino acid.
 Each marker represents one transcript, errorbars are bootstrapped 95\% confidence intervals.
 \textbf{(C)} Distribution of aminoacylation half-life estimates for tRNA\textsuperscript{Gln} and tRNA\textsuperscript{Thr} transcripts grouped by discriminator base identity.
@@ -635,7 +601,7 @@ The RNA concentration was adjusted to 1 μg/μL, 10 μL was transferred to a fre
 Initially, the spike-in control contained 5 ng/μL E.coli tRNA-Lys-CCA, later 5 ng/μL of each E.coli tRNA-Thr-CGT CCA-Phos and E.coli tRNA-Thr-CGT CCA was also included.
 To this 5 μL freshly prepared 200 mM NaIO4 was added following 10 min incubation on ice, in the dark.
 For non-oxidized control samples, NaCl was used instead of NaIO4.
-The oxidation was quenched by adding 5 μL 50\% (v/v) ethylene glycol (~9 M) and incubating for 5 min on ice and 5 min at room temperate, in the dark.
+The oxidation was quenched by adding 5 μL 50\% (v/v) ethylene glycol ($\sim$9 M) and incubating for 5 min on ice and 5 min at room temperate, in the dark.
 Then 50 μL 1 M lysine (pH=8) with 1 μL SuperaseIn was added and tubes were incubate for 4 h at 45°C.
 To dephosphorylate RNA, completing the Whitfeld reaction, 8 μL 10X rCutSmart Buffer and 1 μL rSAP was added followed by 30 min incubation at 37°C.
 RNA was then purified using the Monarch RNA Cleanup Kit (50 μg), eluting with 30 μL water.
@@ -683,7 +649,8 @@ Oxidation was quenched using 20 μL 50\% ethylene glycol and incubated 30 min at
 Then buffer exchange was performed using a P-6 gel column pre-equilibrated with 100 mM lysine (pH=8).
 To the eluate 400 μL 1M lysine (pH=8) and 1 μL SuperaseIn was added followed by 5 h incubation at 45°C and purification using the Monarch RNA Cleanup Kit (using two 50 μg columns).
 The product, a 1 nt. truncated and 3′ phosphorylated oligo (E.coli tRNA-Thr-CCA-Phos), was resolved on a gel to isolate the full length oligo, as described for the other control.
-Half of this product was submitted to dephosphorylation using rSAP and purified using the Oligo Clean \& Concentrator kit yielding E.coli tRNA-Thr-CCA
+Half of this product was submitted to dephosphorylation using rSAP and purified using the Oligo Clean \& Concentrator kit yielding E.coli tRNA-Thr-CCA.
+Complete phosphorylation of E.coli tRNA-Thr-CCA-Phos and complete dephosphorylation of E.coli tRNA-Thr-CCA was verified using ligation (\FIGSUPP[Fig5]{f5S2}, panel A).
 Then concentrations of both E.coli tRNA-Thr-CCA-Phos and E.coli tRNA-Thr-CCA was measured to generate an equimolar mix adjusted such that 10 ng was spiked into each sample of 10 μg whole cell RNA before periodate oxidation.
 The 3′ phosphorylation protects from periodate oxidation and thus adding it before periodate oxidation afforded an internal control of a 50\% charged tRNA probing the completeness of the whole Whitfeld reaction and potential adapter ligation bias.
 
@@ -696,7 +663,7 @@ For adapters l1, l2, l3 and l4 the barcode sequence was 8 nt. starting at the 5�
 The design of adapters used for splint assisted ligation was influenced by \cite{Smith2015-ht} and \cite{Shigematsu2017-tv} but with several important differences.
 The first difference is that we do not use ribonucleotides at any positions in our adapters or splint oligos.
 This affords us higher quality adapter oligos due to the higher coupling efficiency of deoxyribose during oligo synthesis as well as robustness against hydrolysis of DNA compared to RNA.
-A primary reason to use ribonucleotides in the adapters and splint oligos is to increase ligation efficiency; however, we achieved ~100\% ligation efficiency on isolated human tRNA using our design without ribonucleotides (\FIGSUPP[Fig2]{f2S4}, panel A).
+A primary reason to use ribonucleotides in the adapters and splint oligos is to increase ligation efficiency; however, we achieved $\sim$100\% ligation efficiency on isolated human tRNA using our design without ribonucleotides (\FIGSUPP[Fig2]{f2S4}, panel A).
 The second difference is that instead of ligating the adapter to the 3′ and the splint to the 5′ of the tRNA, we only ligate the adapter and block the splint from ligation with a 3′ C3 spacer, as well as dephosphorylating the 5′ of the tRNA.
 Similar to the blunt-end ligation adapters, a 3′ dideoxycytidine is included on all adapters to block self-ligation and concatemer formation.
 The third difference is that we use two different lengths splint oligos with overhang compatible to NCCA and NCC-ending tRNA.
