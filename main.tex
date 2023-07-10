@@ -412,12 +412,16 @@ Here, error is the percentage point difference between the measured vs. predicte
 }
 \label{fig:Fig5}
 
+\figsupp[qwerty.]{
+qwertyu
+}{\fbox{\includegraphics[width=0.65\linewidth]{figures/Fig5S1.pdf}}}\label{figsupp:f5S1}
+
 \figsupp[Charge titration prediction error binned by sequencing run and titration sample.]{
 Charge titration prediction error binned by sequencing run and titration sample.
 \textbf{(A)} Run-to-run bias as assess by the percentage point difference between the measured vs. predicted charge for all transcripts of two independently prepared sequencing libraries, sequenced on different days.
 \textbf{(B)} Error distribution binned by titration sample.
 In both figures, error is the percentage point difference between the measured vs. predicted charge for all transcripts in the bin.
-}{\fbox{\includegraphics[width=0.65\linewidth]{figures/Fig5S1.pdf}}}\label{figsupp:f5S1}
+}{\fbox{\includegraphics[width=0.65\linewidth]{figures/Fig5S2.pdf}}}\label{figsupp:f5S2}
 
 \figsupp[Spike-in control for 50\% charge.]{
 Spike-in control for 50\% charge using E.coli tRNA-Thr-CGT.
@@ -427,7 +431,7 @@ CCA, E.coli tRNA-Thr-CCA.
 50/50, equal mix of CCA-p and CCA.
 \textbf{(B)} E.coli tRNA-Thr charge measured for charge tRNA-Seq samples prepared with an equimolar mix of E.coli tRNA-Thr-CCA-Phos and E.coli tRNA-Thr-CCA.
 The red dashed line indicates 50\% charge.
-}{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig5S2.pdf}}}\label{figsupp:f5S2}
+}{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig5S3.pdf}}}\label{figsupp:f5S3}
 \end{figure}
 
 
@@ -441,7 +445,7 @@ However, most of the tRNAs used in this study were derived from in vitro transcr
 Having developed an accurate method for measuring tRNA charge on over a hundred samples in a single sequencing run, we wanted to use this to determine the aminoacylation half-lifes of tRNA transcripts with their native RNA modifications.
 
 We used RNA purified from the H1299 cell line, starting at high tRNA charge (\FIG{Fig2}, panel F), and tracked the aminoacylation decay over time after switching to physiological buffer (pH=7.2) and incubation at 20°C similar to \cite{Peacock2014-wk}.
-Sampling 11 timepoints with 4 replicates, charge measurements for each transcript were fitted to a first-order decay function to estimate the half-life of all transcripts (Supplementary file 4), as exemplified by the Arg-CCG-1-1 transcript (\FIG{Fig6}, panel A).
+Sampling 11 timepoints with 4 replicates, charge measurements for each transcript were fitted to a first-order decay function to estimate the half-life of all transcripts (Supplementary file 4), as exemplified by the Arg-TCG-2-1 transcript (\FIG{Fig6}, panel A).
 When transcripts were grouped by their cognate amino acid, we could confirm that the half-lifes are indeed determined mostly by amino acid identity and that they span a large 37 fold range (\FIG{Fig6}, panel B).
 Our half-life estimates are highly correlated with those reported by \cite{Peacock2014-wk}, but surprisingly ours appear to be approximately 4 fold higher despite using the same incubation temperature and a similar buffer, with only slightly lower pH (7.2 vs. 7.5; \FIGSUPP[Fig6]{f6S1}, panel B).
 
@@ -454,10 +458,10 @@ Because we sample all transcripts, we are able to show that the discriminator ba
 \fbox{\includegraphics[width=0.70\linewidth]{figures/Fig6.pdf}}
 \caption{
 Measuring aminoacylation half-life using charge tRNA-Seq.
-\textbf{(A)} Aminoacylation decay for tRNA transcript Arg-CCG-1-1 over the 11 timepoints sampled.
+\textbf{(A)} Aminoacylation decay for a representative tRNA transcript Arg-TCG-2-1 over the 11 timepoints sampled.
+The best and worst fits for tRNA transcripts is shown in \FIGSUPP[Fig6]{f6S2} for reference.
 The fitted first-order decay to estimate the aminoacylation half-life is shown as a red line.
 Similar dashed lines are plotted in green for the 95\% confidence interval (these are hard to see).
-[Here insert reference to best/worst rep]
 \textbf{(B)} Aminoacylation half-life estimates grouped by amino acid.
 Each marker represents one transcript, errorbars are bootstrapped 95\% confidence intervals.
 \textbf{(C)} Distribution of aminoacylation half-life estimates for tRNA\textsuperscript{Gln} and tRNA\textsuperscript{Thr} transcripts grouped by discriminator base identity.
@@ -472,6 +476,11 @@ For the single transcripts with G or A discriminator base the bootstrap is perfo
 Errorbars are +/- standard deviations.
 A linear regression line is shown as a red line.
 }{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig6S1.pdf}}}\label{figsupp:f6S1}
+
+\figsupp[Best and worst transcript half-life estimates.]{
+The best and worst transcript half-life estimates, ranked based on the sum of squared differences between the fitted decay function and the mean charge of the replicates.
+Related to the representative (i.e. ranked as the median) transcript shown in \FIG{Fig6}, panel B.
+}{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig6S2.pdf}}}\label{figsupp:f6S2}
 \end{figure}
 
 
