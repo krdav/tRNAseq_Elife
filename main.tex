@@ -23,7 +23,7 @@ breaklines=true
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ARTICLE SETUP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{A robust method for measuring aminoacylation through tRNA-seq}
+\title{A robust method for measuring aminoacylation through tRNA-Seq}
 
 \author[1,2]{Kristian Davidsen}
 \author[1*]{Lucas B Sullivan}
@@ -41,7 +41,10 @@ breaklines=true
 \maketitle
 
 \begin{abstract}
-Please provide an abstract of no more than 150 words. Your abstract should explain the main contributions of your article, and should not contain any material that is not included in the main text.
+tRNA aminoacylation levels are difficult to quantify with current methods having either low throughput or low precision and/or accuracy.
+We present an optimized charge tRNA-Seq method combining new and previously described developments to generate precise and accurate tRNA charge measurements.
+We show several controls and tests for validation of quantitation and provide an end-to-end method that scales to hundreds of samples including software for data processing.
+Our method also supports using the charge tRNA-Seq data to determine relative expression levels and reverse transcription misincorporations to infer RNA modifications.
 \end{abstract}
 
 
@@ -296,7 +299,7 @@ This lead to 334 positions in the 282 sequence reference getting masked and resu
 Masked positions do not contribute to the alignment score and thus possibly lowering it below the minimum threshold; however, we observed no trade-off between optimized reference masking and read mapping percentage (\FIG{Fig3}, panel B).
 Like \cite{Behrens2021-gb}, we observe a striking difference in the mapping of certain tRNA transcripts.
 For example, transcripts decoding the Ser-UCU codon (AGA anticodon) are lifted out of obscurity (\FIG{Fig3}, panel C).
-Generally, reference masking appears to increase annotations for around a dusin transcripts but a substantial mapping change only occurs for four codons (\FIGSUPP[Fig3]{f3S1}, panel a).
+Generally, reference masking appears to increase annotations for around a dozem transcripts but a substantial mapping change only occurs for four codons (\FIGSUPP[Fig3]{f3S1}, panel a).
 The effect of reference masking on the charge measurements was low as expected because this is a relative number (\FIGSUPP[Fig3]{f3S1}, panel B).
 
 
@@ -543,7 +546,7 @@ After purification and reconstitution in water, 8 ng of a 50/50 mix of E.coli tR
 The true ratio of these oligos is hard to control because each contain a different fraction of truncated oligos that will not contribute to the number of mapped reads; however, the sequenced CCA/CC ratio is an important measure of the sample to sample variance.
 Then the RNA was 3′ dephosphorylated using T4 PNK and after another round of RNA purification the tRNA fraction was isolated on a 10\% Urea-TBE gel using SYBRGold staining and a blue light transilluminator for visualization.
 After gel elution and reconstitution in water, 100 ng tRNA was transferred to a PCR tube and ligated to 20 pmol pre-adenylated adapter (l1, l2, l3 or l4) in 25\% PEG-8000, 1xT4 RNA ligase buffer using 1 μL T4 RNA ligase 2 (truncated KQ) and 1 μL SuperaseIn.
-Adapters were adenylated using the NEB 5′ DNA Adenylation Kit following the manufacturers instruction.
+Prior to ligation adapters were adenylated using the NEB 5′ DNA Adenylation Kit following the manufacturers instruction.
 After purification, adapter adenylation was verified using differential gel migration.
 Ligation reactions were incubated 6 h at 25°C, pooled by adapter barcode and purified, followed by isolation of the ligation product from unligated tRNA using a 10\% Urea-TBE gel.
 
@@ -555,37 +558,38 @@ After the RT-PCR incubation, the remainder of the sample processing follows the 
 \subsection{Charge tRNA-Seq method optimization}
 Optimization of the oxidation, cleavage and dephosphorylation, collectively called the Whitfeld reaction \cite{Whitfeld1953-ca}, was done using oligos E.coli tRNA-Lys-UUU-CCA and E.coli tRNA-Lys-UUU-CC (Supplementary file 1; anticodon omitted from name below).
 Both oligos were gel purified on a 10\% Urea-TBE gel to resolve full length from truncated oligos.
-First, the time required for oxidation was tested, following the same quenching and borax buffered high pH induced cleavage used described by \cite{Evans2017-st}.
+First, the time required for oxidation was tested, following the same quenching and borax buffered high pH induced cleavage used by \cite{Evans2017-st}.
 For this, samples of 35 ng E.coli tRNA-Lys-CCA were prepared in 10 μL 100 mM sodium acetate (pH=4.5) and used as substrate for the Whitfeld reaction conversion to E.coli tRNA-Lys-CC.
-Reaction progress was monitored on a 10\% Urea-TBE gel by resolving the one nucleotide difference with the substrate, the product and a 50/50 mix as markers.
+Reaction progress was monitored on a 10\% Urea-TBE gel by resolving the one nucleotide difference using the substrate, the product and a 50/50 mix as markers.
 Also using this approach, we tested using lysine induced cleavage \citep{Khym1961-xf} by swapping the sodium borate used for cleavage with 1 M lysine (pH=8).
 The cleavage step also includes deacylation and to verify the completeness of this, four samples of 10 μg whole cell RNA were prepared in 10 μL 100 mM sodium acetate (pH=4.5) and incubated with 50 μL 1 M lysine (pH=8) at 45°C for 5, 30, 90 and 270 min.
 Then, 1 mL ice cold 80\% isopropanol containing 100 mM sodium acetate (pH=4.5) was added, RNA was precipitated, washed twice, dried and reconstituted in 10 μL 100 mM sodium acetate (pH=4.5).
 These deacylated samples were then submitted to the charge tRNA-Seq sample processing described below, except using lysine at pH=9.5 and 90 min incubation at 45°C to ensure complete deacylation.
-Incubation time in lysine (pH=8) was chosen to be 4 h.
+Following this, incubation time in lysine (pH=8) was chosen to be 4 h.
 To compare the RNA integrity after cleavage with lysine vs. borax, samples of 10 μg whole cell RNA were prepared in 10 μL 100 mM sodium acetate (pH=4.5) and added 50 μL of either 1 M lysine (pH=8) or 100 mM sodium borate (pH=9.5).
-Tube were incubated 45°C and samples taken at time 0, 1.5, 4 and 8 h.
-RNA integrity was determined using TapeStation (high sensitivity RNA) and 10\% Urea-TBE gel.
+Tubes were incubated 45°C and samples taken at time 0, 1.5, 4 and 8 h.
+RNA integrity was determined using TapeStation (high sensitivity RNA) and 10\% Urea-TBE gel .
 Upon combining the steps of the Whitfeld reaction to a one-pot reaction a color change was observed after addition of lysine.
+% KD: This panel/experiment will change slightly
 To test the effect of the periodate quencher, 25 μL of freshly prepared 200 mM NaIO4 in 100 mM sodium acetate (pH=4.5) was quenched by 25 μL of either water (control), glycerol \citep{Alefelder1998-ln}, glucose \citep{Evans2017-st}, ribose \citep{Watkins2022-er} or uridine at concentrations indicated for 10 min at room temperature.
 Then 50 μL 1 M lysine at either pH 8 or 9.5 was added and reactions incubated at 45°C for 1 h before moving to room temperature for visual inspection (\FIGSUPP[Fig2]{f2S1}, panel C).
 
 For ligation optimization human tRNA was isolated from H1299 cells.
-First, whole cell RNA was isolated (described above), reconstituted in water and deacylation at 45°C in 1 M lysine (pH=8) for 4 h.
-Then, RNA was purified using the Monarch RNA Cleanup Kit (50 μg) and run on a 10\% Urea-TBE gel to resolve the tRNA from mRNA and rRNA.
+First, whole cell RNA was isolated as described above, reconstituted in water and deacylation at 45°C in 1 M lysine (pH=8) for 4 h.
+Then RNA was purified using the Monarch RNA Cleanup Kit (50 μg) and run on a 10\% Urea-TBE gel to resolve the tRNA from mRNA and rRNA.
 tRNA was defined as the range between 70 and 85 nt. as approximated by the low range ssRNA ladder.
-For blunt-end ligations in \FIGSUPP[Fig2]{f2S3}, 40 ng tRNA, either isolated from H1299 cells or as tRNA-Lys-CCA oligo, was ligated to 20 pmol pre-adenylated adapter in a 20 μL reaction containing 25\% PEG-8000, 200 U T4 RNA ligase 2 (truncated KQ; Rnl2tr KQ), 10 U SUPERaseIn and the vendor provided buffer.
-For splint assisted ligation in \FIGSUPP[Fig2]{f2S4}, 35 ng tRNA, either isolated from H1299 cells or as tRNA-Lys-CC oligo, was ligated to 20 pmol annealed adapter:splint partial duplex as described for charge tRNA-Seq sample processing below.
+For blunt-end ligations in \FIGSUPP[Fig2]{f2S3}, 40 ng tRNA, either isolated from H1299 cells or as E.coli tRNA-Lys-CC oligo, was ligated to 20 pmol pre-adenylated adapter in a 20 μL reaction containing 25\% PEG-8000, 200 U T4 RNA ligase 2 (truncated KQ; Rnl2tr KQ), 10 U SUPERaseIn and the vendor provided buffer.
+For splint assisted ligation in \FIGSUPP[Fig2]{f2S4}, 35 ng tRNA, either isolated from H1299 cells or as E.coli tRNA-Lys-CC oligo, was ligated to 20 pmol annealed adapter:splint partial duplex as described for charge tRNA-Seq sample processing below.
 For the non-complementary splint test, two splint oligos were made with CAAC and AAC overhangs (Supplementary file 1) and annealed to adapter l1Sp.
 For the ligation test in \FIG{Fig2}, panel E and \FIGSUPP[Fig2]{f2S5}, panel A, 500 ng tRNA isolated from H1299 cells was subjected to the one-pot Whitfeld reaction described for charge tRNA-Seq sample processing below but with a single step remove.
 For the no oxidation sample NaIO4 was replaces with NaCl, for the no dephosphorylation sample shrimp alkaline phosphatase (rSAP) was replaces with water and for the no cleavage sample RNA was purified after periodate quenching.
-A parallel sample was processed as described in \cite{Evans2017-st}.
-All samples were purified using the Monarch RNA Cleanup Kit and 35 ng was used per ligation test with adapters l1Sp, l2Sp and l3Sp using the ligation protocol as described for charge tRNA-Seq sample processing below.
+These were compared to a sample processed as described in \cite{Evans2017-st}.
+All samples were purified using the Monarch RNA Cleanup Kit and 35 ng was used per ligation test with adapters l1Sp, l2Sp and l3Sp using the ligation protocol described for charge tRNA-Seq sample processing below.
 
 
 
 \subsection{Charge tRNA-Seq sample processing}
-Described in details in Supplementary file 2.
+Stepwise description with details in Supplementary file 2.
 Whole cell RNA was reconstituted in 100 mM sodium acetate (pH=4.5) and keep on ice until the end of the periodate oxidation step.
 For deacylated control samples, RNA was prepared by first performing a deacylation step on the input RNA by incubation in 1 M lysine (pH=8) at 45°C for 4 h, followed by purification using the Monarch RNA Cleanup Kit (50 μg).
 The RNA concentration was adjusted to 1 μg/μL, 10 μL was transferred to a fresh tube and 1 μL E.coli tRNA spike-in control was added.
@@ -594,7 +598,7 @@ To this 5 μL freshly prepared 200 mM NaIO4 was added following 10 min incubatio
 For non-oxidized control samples, NaCl was used instead of NaIO4.
 The oxidation was quenched by adding 5 μL 50\% (v/v) ethylene glycol ($\sim$9 M) and incubating for 5 min on ice and 5 min at room temperate, in the dark.
 Then 50 μL 1 M lysine (pH=8) with 1 μL SuperaseIn was added and tubes were incubate for 4 h at 45°C.
-To dephosphorylate RNA, completing the Whitfeld reaction, 8 μL 10X rCutSmart Buffer and 1 μL rSAP was added followed by 30 min incubation at 37°C.
+To dephosphorylate RNA 8 μL 10X rCutSmart Buffer and 1 μL rSAP was added followed by 30 min incubation at 37°C.
 RNA was then purified using the Monarch RNA Cleanup Kit (50 μg), eluting with 30 μL water.
 A 6 μL sample was then denatured by mixing with 2x urea loading buffer (8 M urea, 30 mM sodium acetate, 2 mM EDTA, 0.02 \% (w/v) bromophenol blue and xylene cyanol, pH adjusted to 4.7-5) and incubating 2 min at 90°C.
 The tRNA fraction was then isolated on a 10\% Urea-TBE gel using SYBRGold staining and a blue light transilluminator for visualization.
@@ -607,11 +611,11 @@ Each ligation reaction was adjusted to 20 μL with water, mixed and incubated 1 
 Samples were pooled by adapter barcode, purified using the Oligo Clean \& Concentrator kit and then ligated tRNA was isolated on a gel and purified similarly to the initial tRNA isolation.
 
 Reverse transcription was setup with 60 ng of the purified adapter ligated tRNA as template using the buffer composition, incubation temperature and time suggested by \cite{Behrens2021-gb}.
-To 10 μL template in a PCR tube, 2 μL 1.25 μM RT oligo and 4 μL RT buffer was added following denaturation/annealing using 90°C for 2 min, 70°C for 30 s and cooling 0.2°C/s to 4°C.
+To 10 μL template in a PCR tube, 2 μL 1.25 μM RT oligo and 4 μL RT buffer was added following denaturation and annealing by incubation at 90°C for 2 min, 70°C for 30 s and cooling 0.2°C/s to 4°C.
 Then, to each tube 1 μL 100 mM DTT, 1 μL SuperaseIn and 1 μL TGIRT-III RT polymerase (or Maxima H Minus for \FIGSUPP[Fig2]{f2S7}) was added following 10 min incubation at 42°C.
 Then 1 μL 25 mM dNTPs was added and the incubation was resumed at 42°C for 16 h on a thermocycler with the heated lid set to 50°C.
 The RNA template was hydrolyzed by adding 1 μL 5 M NaOH followed by incubation at 95°C for 3 min.
-The samples were then purified using the Oligo Clean \& Concentrator kit and the cDNA was isolated on a gel and purified similarly to the initial tRNA isolation, eluting cDNA using 7 μL water.
+The samples were then purified using the Oligo Clean \& Concentrator kit and the cDNA was isolated on a gel and purified similarly to the initial tRNA isolation, eluting with 7 μL water.
 cDNA was circularized by transferring 5.5 μL cDNA to a PCR tube and adding 2 μL 5 M betaine, 1 μL 10x CircLigase buffer, 0.5 μL 1 mM ATP, 0.5 μL 50 mM MnCl2 and 0.5 μL CircLigase.
 The reaction was incubated at 60°C for 3 h on a thermocycler with a 70°C heated lid, then the enzyme was deactivated by denaturing at 80°C for 10 min.
 
@@ -621,7 +625,7 @@ The PCR reactions were incubated at 95°C for 3 min followed by 3 cycles of 98°
 The optimal number of PCR cycles were determined by preparing three PCR reactions, incubating them with X=10, 12 and 14 and running 4 μL of each reaction on a 4-12\% TBE gel.
 The PCR reactions with optimal X, resulting in abundant amplification product with little PCR crossover, were purified using the DNA Clean \& Concentrator-5 kit and resolved on a 4-12\% TBE gel.
 The gel was stained using SYBRGold and visualized using a blue light transilluminator to isolated the library DNA by cutting out the size range covering all possible insert lengths (170-290 bp).
-Gel elution was done by crushing the gel with a disposable pestle and adding 300 μL TBE, then snap freezing in liquid nitrogen and incubating at room temperature overnight with mixing.
+Gel elution was done by crushing the gel with a disposable pestle, adding 300 μL TBE, snap freezing in liquid nitrogen and incubating at room temperature overnight with mixing.
 If necessary, elution time could be decreased by incubation at higher temperature; although, this required adding higher salt concentrations to prevent DNA reannealing (\FIGSUPP[Fig2]{f2S8}, panel B).
 The gel slurry was filtered through a Spin-X filter following DNA purification using the DNA Clean \& Concentrator-5 kit and eluting with 20 μL 10 mM Tris (pH=8).
 DNA with different Illumina P7/P5 barcodes were pooled for multiplexing and sequenced using Illumina paired end sequencing using 2x100 bp reads.
@@ -634,16 +638,16 @@ First, 2 μg per well of the E.coli tRNA-Lys-CCA oligo was loaded on a 10\% Urea
 After gel elution and purification using the Oligo Clean \& Concentrator kit the RNA concentration was measured and adjusted such that 5 ng was spiked into each sample of 10 μg whole cell RNA before periodate oxidation.
 Adding the control before periodate oxidation afforded an internal control of the completeness of the oxidation reaction.
 
-Second, 30 μL of 100 μM E.coli tRNA-Thr-CCAA oligo was submitted to the partial Whitfeld reaction, stopping before the dephosphorylation step.
+Second, 30 μL of 100 μM E.coli tRNA-Thr-CCAA oligo was submitted to a partial Whitfeld reaction, stopping before the dephosphorylation step.
 The oxidation reaction was performed by adding 10 μL 100 mM sodium acetate (pH=4.5) and 20 μL 200 mM NaIO4 followed by incubation for 30 min at room temperature in the dark.
 Oxidation was quenched using 20 μL 50\% ethylene glycol and incubated 30 min at room temperature in the dark.
 Then buffer exchange was performed using a P-6 gel column pre-equilibrated with 100 mM lysine (pH=8).
-To the eluate 400 μL 1M lysine (pH=8) and 1 μL SuperaseIn was added followed by 5 h incubation at 45°C and purification using the Monarch RNA Cleanup Kit (using two 50 μg columns).
-The product, a 1 nt. truncated and 3′ phosphorylated oligo (E.coli tRNA-Thr-CCA-Phos), was resolved on a gel to isolate the full length oligo, as described for the other control.
+To the eluate 400 μL 1 M lysine (pH=8) and 1 μL SuperaseIn was added followed by 5 h incubation at 45°C and purification using the Monarch RNA Cleanup Kit (using two 50 μg columns).
+The product, a 1 nt. truncated and 3′ phosphorylated oligo named E.coli tRNA-Thr-CCA-Phos, was resolved on a gel to isolate the full length oligo, as described for the other control.
 Half of this product was submitted to dephosphorylation using rSAP and purified using the Oligo Clean \& Concentrator kit yielding E.coli tRNA-Thr-CCA.
 Complete phosphorylation of E.coli tRNA-Thr-CCA-Phos and complete dephosphorylation of E.coli tRNA-Thr-CCA was verified using ligation (\FIGSUPP[Fig5]{f5S3}, panel A).
 Then concentrations of both E.coli tRNA-Thr-CCA-Phos and E.coli tRNA-Thr-CCA was measured to generate an equimolar mix adjusted such that 10 ng was spiked into each sample of 10 μg whole cell RNA before periodate oxidation.
-The 3′ phosphorylation protects from periodate oxidation and thus adding it before periodate oxidation afforded an internal control of a 50\% charged tRNA probing the completeness of the whole Whitfeld reaction and potential adapter ligation bias.
+The 3′ phosphorylation protects from periodate oxidation and thus adding it before periodate oxidation afforded an internal control of a 50\% charged tRNA, probing the completeness of the whole Whitfeld reaction and potential adapter ligation bias.
 
 
 
@@ -651,27 +655,26 @@ The 3′ phosphorylation protects from periodate oxidation and thus adding it be
 For adapters used for blunt-end ligation the design was similar to \cite{McGlincy2017-ro} and \cite{Behrens2021-gb}, with a 5′ phosphorylation to enable adenylation and a 3′ dideoxycytidine to prevent self-ligation and concatemer formation.
 For adapters l1, l2, l3 and l4 the barcode sequence was 8 nt. starting at the 5′, for adapters l1N, l2N and l3N the barcode sequence was truncated to 5 nt. to make space for a preceding six random nucleotides to diversify the sequence context engaged in ligation.
 
-The design of adapters used for splint assisted ligation was influenced by \cite{Smith2015-ht} and \cite{Shigematsu2017-tv} but with several important differences.
-The first difference is that we do not use ribonucleotides at any positions in our adapters or splint oligos.
-This affords us higher quality adapter oligos due to the higher coupling efficiency of deoxyribose during oligo synthesis as well as robustness against hydrolysis of DNA compared to RNA.
+The design of adapters used for splint assisted ligation was influenced by \cite{Smith2015-ht} and \cite{Shigematsu2017-tv} but with several important differences listed below.
+First, we do not use ribonucleotides at any positions in our adapters or splint oligos.
+This affords us higher quality oligos due to the higher coupling efficiency of deoxyribose during oligo synthesis as well as robustness against hydrolysis of DNA compared to RNA.
 A primary reason to use ribonucleotides in the adapters and splint oligos is to increase ligation efficiency; however, we achieved $\sim$100\% ligation efficiency on isolated human tRNA using our design without ribonucleotides (\FIGSUPP[Fig2]{f2S4}, panel A).
-The second difference is that instead of ligating the adapter to the 3′ and the splint to the 5′ of the tRNA, we only ligate the adapter and block the splint from ligation with a 3′ C3 spacer, as well as dephosphorylating the 5′ of the tRNA.
+Second, instead of ligating the adapter to the 3′ and the splint to the 5′ of the tRNA, we only ligate the adapter and block the splint from ligation with a 3′ C3 spacer, as well as dephosphorylating the 5′ of the tRNA.
 Similar to the blunt-end ligation adapters, a 3′ dideoxycytidine is included on all adapters to block self-ligation and concatemer formation.
-The third difference is that we use two different lengths splint oligos with overhang compatible to NCCA and NCC-ending tRNA.
-Also, we encode the nucleotide in the splint complementary to the discriminator base (N) as a random nucleotide instead of using four oligos.
-The fourth difference is that our adapters vary in length by the size of their barcodes, from 5 to 8 nt.
-This will offset the sequencing reading frame of read P2 (P7) as it goes into the 3′ end of the tRNA, thus increasing the sequence diversity and base calling quality.
+Third, we use two different lengths splint oligos with overhang compatible to NCCA and NCC-ending tRNA.
+Fourth, our adapters vary in length by the size of their barcodes, from 5 to 8 nt.
+This is to offset the sequencing reading frame of read P2 (P7) as it progresses into the 3′ end of the tRNA, thus increasing the sequence diversity and base calling quality.
 
-The RT-PCR oligo was designed similar to \cite{McGlincy2017-ro} and \cite{Behrens2021-gb} with a 5′ phosphorylation for subsequent circular ligation of the cDNA and an 18-atom hexa-ethyleneglycol spacer (iSp18) to terminate the polymerase extension and avoiding rolling-circle amplification during the PCR to attach Illumina P7/P5 sequences.
+The RT-PCR oligo was designed in a similar way as \cite{McGlincy2017-ro} and \cite{Behrens2021-gb} with a 5′ phosphorylation for subsequent circular ligation of the cDNA and an 18-atom hexa-ethyleneglycol spacer (iSp18) to terminate the polymerase extension and avoiding rolling-circle amplification during the PCR to attach Illumina P7/P5 sequences.
 The RT oligo has a random purine base on the 5′ to increase circular ligation efficiency.
 We added an additional 9 random nucleotides following this purine to increase the diversity of the sequence engaged in circular ligation.
-The random nucleotides also provide a unique molecular identifier (UMI) with 524288 possible sequences that enable collapsing of reads derived from the same tRNA molecule.
+These random nucleotides also provide a unique molecular identifier (UMI) with 524288 possible sequences that enable collapsing of reads derived from the same tRNA molecule.
 The UMI is also used as a general sample quality control by comparing the number of observed UMI sequences with the number expected.
-The number of expected unique UMI observations is calculated as:
+The expected number unique UMI observations is calculated as:
 \begin{equation}
 E[X] = n \left[ 1 - \left(\frac{n-1}{n} \right)^k \right]
 \end{equation}
-With $E[X]$ being the number expected observations, $n$ being the number of reads for the particular sample and $k$ being the number of possible UMIs.
+With $E[X]$ being the expected number of unique UMI observations, $n$ being the number of reads for the particular sample and $k$ being the number of possible UMIs.
 
 The final dsDNA library was designed as an Illumina TruSeq dual index library with combined i5 and i7 indices attached by PCR with P7/P5 oligos.
 These oligos were synthesized with a phosphorothioate bond between the last two nucleotides to prevent degradation by the KAPA HiFi polymerase.
@@ -685,13 +688,13 @@ Read pairs were then trimmed and merged using AdapterRemoval:
 \begin{lstlisting}
 AdapterRemoval --preserve5p --collapse --minalignmentlength 10 --adapter1 AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC<P7_index>ATCTCGTATGCCGTCTTCTGCTTG --adapter2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT<P5_index>GTGTAGATCTCGGTGGTCGCCGTATCATT --minlength <MIN_LEN>
 \end{lstlisting}
-With \verb|<P7_index>| and \verb|<P5_index>| defined by the i7/i5 index sequences for the given sample and \verb|<MIN_LEN>| set to 25 for charge tRNA-Seq using blunt-end ligation and 39 for splint assisted ligation charge tRNA-Seq.
-Each file with merged reads were then split into samples based on adapter barcode.
-A read was assigned to a particular adapter barcode if its 3′ end had a substring within a hamming distance of one from the barcode sequence, including the region complementary to the splint.
+With \verb|<P7_index>| and \verb|<P5_index>| defined by the i7/i5 index sequences for the given sample and \verb|<MIN_LEN>| set to 25 for charge tRNA-Seq using blunt-end ligation and 39 for charge tRNA-Seq using splint assisted ligation.
+Each file with merged reads were then split based on adapter barcode.
+A read was assigned to a particular adapter barcode if its 3′ end had a substring within a hamming distance of one to the barcode sequence, including the region complementary to the splint.
 The adapter sequence was then trimmed off the 3′ end; similarly, the 10 nt. UMI was located, saved and trimmed off the 5′ end, leaving only the tRNA sequence with possible 5′ non-template bases introduced during RT-PCR.
-Finally, each sample was randomly downsampled to 2e6 reads if exceeding this number.
+Finally, samples with an excess of 2e6 reads were downsampled to 2e6 reads.
 
-Trimmed reads were aligned to a masked reference (described below) using the Smith-Waterman algorithm implemented by SWIPE \citep{Rognes2011-iu}:
+Trimmed reads were aligned to a masked reference as described below using the Smith-Waterman algorithm implemented by SWIPE \citep{Rognes2011-iu}:
 \begin{lstlisting}
 swipe --symtype 1 --outfmt 7 --num_alignments 3 --num_descriptions 3 --evalue 0.000000001 --strand 1 -G 6 -E 3 --matrix <SCORE_MATRIX>'
 \end{lstlisting}
@@ -700,14 +703,14 @@ With an input score matrix (\verb|<SCORE_MATRIX>|) defining a match score of 1, 
 Alignment results were processed to extract three key data: 1) tRNA charge, 2) relative expression level and 3) mismatches, gaps and RT truncations.
 First the alignment was parsed to extract transcript annotation(s), alignment score and other relevant information.
 A read was assigned the annotation with the highest alignment score and upon ties up to three annotations were merged.
-When reporting data on the transcript level, a unique annotation was required for filtering, when reporting at the codon level multiple annotations were allowed but required to carry the same anticodon and similarly for data on the amino acid level.
+When reporting data on the transcript level, a unique annotation was required for filtering, when reporting at the codon level multiple annotations were allowed but a unique anticodon was required and similarly for data on the amino acid level.
 Relative expression levels were calculated as reads per million (RPM) with a count correction such that reads with identical sequence and UMI were only counted once.
 Charge was calculated using uncorrected counts as this is a relative number.
 Mismatches, gaps and RT truncations were extracted by redoing the Smith-Waterman alignment between the read and its unmasked transcript annotation using a match score of 1, a mismatch score of -1, a gap opening score of -2 and a gap extension score of -1.
 Using this new alignment, mismatched, gaps and the index at the end of the alignment were extracted.
-Then for each transcript the fraction of reads having mismatches and gaps at a given position was calculated and the percentage drop in coverage at each position, referred to here as RT stops, or termination signal by \cite{Wang2021-fc}.
+Then for each transcript the fraction of reads having mismatches and gaps at a given position was calculated and the percentage drop in coverage at each position, referred to here as RT stops.
 For both mutation, gap fractions and RT stops the UMI corrected read count was used.
-For boilerplate example of the whole read processing workflow see \url{https://github.com/krdav/tRNA-charge-seq/blob/main/projects/example/process_data.ipynb}.
+We provide a boilerplate example of the whole read processing workflow on GitHub: \url{https://github.com/krdav/tRNA-charge-seq/blob/main/projects/example/process_data.ipynb}.
 
 
 
@@ -744,15 +747,15 @@ A single 10 μg sample of this RNA was then subjected to the one-pot Whitfeld re
 \subsection{Charge titration test}
 Whole cell RNA was reconstituted with 100 mM sodium acetate (pH=4.5) and adjusted to 1 μg/μL while keeping the RNA cold throughout.
 Half of this was moved to a fresh tube and deacylated by adding 5x volumes of 1 M lysine (pH=8), incubating at 45°C for 4 h and purifying using the Monarch RNA Cleanup Kit.
-Meanwhile the other half was stored at -80°C.
+Meanwhile, the other half was stored at -80°C.
 The concentration of the deacylated RNA was adjusted to 1 μg/μL and mixtures of intact and deacylated RNA was made using the following percentages of intact/deacylated RNA: 100/0, 85/15, 70/30, 55/45, 40/60, 25/75, 10/90, 0/100.
-Then these mixtures were subjected to the charge tRNA-Seq sample processing protocol described above with between 4 to 8 barcode replicates across independently prepared sequencing libraries, sequenced on different days.
+Then these mixtures were subjected to the charge tRNA-Seq sample processing protocol described above with between 4 to 8 barcode replicates across independently prepared sequencing libraries, sequenced on different flow cells.
 
 Reads were processed and the aminoacylation charge of each transcript was extracted to relate the measured with the predicted charge.
 However, the actual mixing ratios may deviate from the ones noted above due to inaccuracies in measuring the RNA concentration of intact and deacylated RNA, and due to depletion of certain tRNA species during the deacylation process, for example tRNAs sensitive to hydrolysis or depurination.
-We address this using a correction factor $F_i$ described below.
+We address this using a correction factor, $F_i$, described below.
 To calculate the predicted charge let $A$ represent intact RNA, $B$ represent deacylated RNA and the index $i$ represent the transcript.
-Define the concentration, $C$, of a tRNA transcript $i$ in the intact RNA as 1, while letting the concentration of the same tRNA transcript in the deacylated RNA be a fraction, $F_i$, of the intact RNA:
+Now, define the concentration, $C$, of a tRNA transcript $i$ in the intact RNA as 1, while letting the concentration of the same tRNA transcript in the deacylated RNA be a fraction, $F_i$, of the intact RNA:
 \begin{equation}
 \begin{split}
 C^A_i = 1 \\
@@ -782,20 +785,20 @@ Then using \EQ{pred_charge} the differences between predicted and measured charg
 Whole cell RNA was reconstituted with 1 mM sodium acetate (pH=4.5) and adjusted to 1.5 μg/μL while keeping the RNA cold throughout.
 A zero timepoint was then taken and 80 μL was transferred to a PCR tube after which the experiment was started by adding 20 μL room temperature 5x buffer, quickly mixing and placing the tube on a thermocycler set to 20°C.
 The buffer used was an intracellular physiological buffer at 1x containing: 19 mM NaCl, 125 mM KCl, 0.33 mM CaCl2, 1.4 mM MgCl2, 0.5 mM spermidine, 30 mM HEPES, adjusted to pH=7.2 with KOH.
-Time from start of incubation was tracked and samples drawn at the following timepoints: 4 min, 8 min, 16 min, 32 min, 1 h, 2 h, 4 h, 8 h, 16 h, 40 h.
-For the 40 h timepoint, two samples were drawn: one standard and one receiving shame (NaCl) oxidation.
+Time from start of incubation was tracked and samples drawn at the following timepoints: 4 min, 8 min, 16 min, 32 min, 1 h, 2 h, 4 h, 8 h, 16 h and 40 h.
+For the 40 h timepoint, two samples were drawn: one standard and one receiving sham (NaCl) oxidation.
 Sample were taken by removing 8 μL, mixing it in a prepared tube with 2 μL ice cold 500 mM sodium acetate (pH=4.5) and storing it at -80°C until all timepoints were collected.
 This was repeated four times to generate independent replicates.
 Then samples were processed similar to the charge tRNA-Seq protocol described above, but with the three 5 min incubation times during oxidation and quenching increased to 30 min each due to the lower periodate solubility in the presence of potassium ions.
 
-After read processing and alignment, data integrity was verified by checking that the E.coli tRNA spike-in control and the non-oxidized 40 h samples conformed to expectation.
+After read processing and alignment, data integrity was verified by checking that the E.coli tRNA spike-in control and the non-oxidized 40 h samples conformed to expectations.
 RNA integrity at the end of the experiment was also verified on a gel (\FIGSUPP[Fig6]{f6S1}, panel A).
 The aminoacylation charge was then calculated at the codon level and the data fitted to an equation describing first-order decay:
 \begin{equation}
 N(t) = N_0 \left( \frac{1}{2} \right) ^\frac{t}{t_{1/2}} + N_{\infty}
 \end{equation}
 Where $N(t)$ is the charge of a given codon as a function of time, $N_0$ is the charge at time zero and $t_{1/2}$ is the decay half-life.
-We added the $N_{\infty}$ parameter to model the lower asymptote of the charge to accommodate the small fraction of tRNAs that still presents with a CCA-end after full deacylation.
+We added the $N_{\infty}$ parameter to model the lower asymptote of charge to accommodate the small fraction of tRNAs that still presents with a CCA-end after full deacylation.
 The three parameters were fitted to the data by minimizing the sum of squared errors using the Broyden–Fletcher–Goldfarb–Shanno (BFGS) algorithm with upper and lower bound constraints for $N_0$ between 100 and 0 percent, for $t_{1/2}$ between 1e5 and 1 min and for $N_{\infty}$ between 3.5 and 0 percent.
 A point estimate for the three parameters were found using all timepoints and replicates and a 95\% confidence interval was found using bootstrapping (N=1000) by sampling a single time-series made up of random draws from the replicates (Supplementary file 4).
 
