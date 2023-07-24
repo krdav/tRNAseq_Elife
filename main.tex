@@ -164,12 +164,13 @@ This unligated tRNA is of unknown origin and largely refractory to further ligat
 
 \subsection{Combining optimizations results in a robust method for measuring tRNA charge}
 After combining the optimized Whitfeld reaction with subsequent splint assisted ligation, we used the RT-PCR method proposed by \cite{Behrens2021-gb} using the TGIRT polymerase \citep{Mohr2013-hu} to maximize the readthrough of modified nucleotides.
-We later found that high readthrough also could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S7}).
-The RT-PCR was primed by an oligo containing a 10 nt. unique molecular identifier (UMI) to diversify the sequence context for the subsequent circular ligation and allow collapsing of PCR replicates during data analysis.
+We later found that high readthrough also could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S6}).
+The RT-PCR was primed by an oligo containing a 10 nt. unique molecular identifier (UMI) to diversify the sequence context for the subsequent circular ligation and allow collapsing of reads derived from the same tRNA molecule during data analysis.
+
 A final PCR was performed to attach Illumina barcodes to pool samples for multiplex sequencing.
 
-Using this as our final charge tRNA-Seq method, we use the E.coli tRNA-Lys-CCA oligo as a spike-in control before the Whitfeld reaction to validate near complete conversion to its CC-end, suggesting efficient periodate oxidation (\FIGSUPP[Fig2]{f2S6}, panel A).
-Similarly, we validated the completeness of deacylation using deacylated controls and the integrity of the tRNA CCA-end using non-oxidized controls (\FIGSUPP[Fig2]{f2S6}, panel B and C).
+Using this as our final charge tRNA-Seq method, we use the E.coli tRNA-Lys-CCA oligo as a spike-in control before the Whitfeld reaction to validate near complete conversion to its CC-end, suggesting efficient periodate oxidation (\FIGSUPP[Fig2]{f2S7}, panel A).
+Similarly, we validated the completeness of deacylation using deacylated controls and the integrity of the tRNA CCA-end using non-oxidized controls (\FIGSUPP[Fig2]{f2S7}, panel B and C).
 We then measured the baseline charge of H1299 cells grown in DMEM using four replicates, observing excellent repeatability and high charge for most codons except tRNA\textsuperscript{Ser} codons and a tRNA\textsuperscript{Glu} codon, validating observation by \cite{Evans2017-st} (\FIG{Fig2}, panel F).
 
 \begin{figure}[ht!]
@@ -252,16 +253,6 @@ For l1N, ligation was setup with 35 ng tRNA, 20 pmol adapter, 17.5\% PEG-8000, 2
 For l6Sp, the ligation was setup as described in the charge tRNA-Seq protocol.
 }{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig2S5.pdf}}}\label{figsupp:f2S5}
 
-\figsupp[Sequenced controls.]{
-Charge tRNA-Seq control samples and spike-ins validate method.
-\textbf{(A)} Cleavage of the 3′ adenosine on spike-in oligo is near complete and similarly measured across adapters.
-Using the E.coli tRNA-Lys-CCA oligo as a spike-in control to monitor completion of the Whitfeld reaction.
-If complete, 100\% E.coli tRNA-Lys-CC should be produced and thus appearing as 0\% charged.
-\textbf{(B)} Aminoacylation level of tRNA transcripts after undergoing deacylation by incubation at 45°C for 4 h in 1 M lysine (pH=8).
-Mitochondrial tRNA\textsuperscript{fMet} was excluded because formylated or acetylated amino acids are known to be highly resistant towards deacylation \citep{Schofield1968-qn}.
-\textbf{(C)} Aminoacylation level of tRNA transcripts from four samples receiving sham oxidation (NaCl) during the Whitfeld reaction.
-}{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S6.pdf}}}\label{figsupp:f2S6}
-
 \figsupp[RT readthrough comparing TGIRT to Maxima.]{
 \textbf{(A)} The Maxima RT polymerase produces similar levels of full size cDNA as TGIRT-III under the standard (Std) tRNA-Seq RT-PCR conditions (42°C, 16 h, suggested by \cite{Behrens2021-gb}).
 For Maxima, other incubation conditions tested are: 1 h at 60°C (similar to \cite{Lucas2023-vm}), 3 h at 60°C and 1 h at 60°C followed by 15 h at 42°C (1h+).
@@ -269,7 +260,18 @@ After RT-PCR, the RNA template was removed by NaOH hydrolysis, liberating the DN
 \textbf{(B)} Coverage plots for cytoplasmic tRNA transcripts grouped by cognate amino acid, comparing samples prepared with TGIRT-III or Maxima using standard incubation (42°C, 16 h).
 \textbf{(C)} Percentage of full length transcripts grouped by cognate amino acid (i.e. left side of plots in panel B).
 Errorbars are bootstrapped 95\% confidence interval of the mean over the 7 individual samples barcoded, pooled and used for RT-PCR template with both TGIRT-III and Maxima.
-}{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig2S7.pdf}}}\label{figsupp:f2S7}
+}{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig2S6.pdf}}}\label{figsupp:f2S6}
+
+\figsupp[Sequenced controls.]{
+Charge tRNA-Seq control samples and spike-ins validate method.
+\textbf{(A)} Cleavage of the 3′ adenosine on spike-in oligo is near complete and similarly measured across adapters.
+Using the E.coli tRNA-Lys-CCA oligo as a spike-in control to monitor completion of the Whitfeld reaction.
+If complete, 100\% E.coli tRNA-Lys-CC should be produced and thus appearing as 0\% charged.
+Each dot represents one sample spiked with E.coli tRNA-Lys-CCA oligo before the Whitfeld reaction and processed using the charge tRNA-Seq processing described in the method section.
+\textbf{(B)} Aminoacylation level of human tRNA transcripts after undergoing deacylation by incubation at 45°C for 4 h in 1 M lysine (pH=8).
+Mitochondrial tRNA\textsuperscript{fMet} was excluded because formylated or acetylated amino acids are known to be highly resistant towards deacylation \citep{Schofield1968-qn}.
+\textbf{(C)} Aminoacylation level of tRNA transcripts from four samples receiving sham oxidation (NaCl) during the Whitfeld reaction.
+}{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S7.pdf}}}\label{figsupp:f2S7}
 
 \figsupp[tRNA homology requires careful PCR conditions.]{
 \textbf{(A)} The specificity of the final library PCR step (attaching Illumina P7 and P5 sequences) deteriorates with increasing product-to-primer ratios, probably due to high tRNA homology and PCR crossover \citep{Holcomb2014-vz}.
@@ -614,7 +616,7 @@ Samples were pooled by adapter barcode, purified using the Oligo Clean \& Concen
 
 Reverse transcription was setup with 60 ng of the purified adapter ligated tRNA as template using the buffer composition, incubation temperature and time suggested by \cite{Behrens2021-gb}.
 To 10 μL template in a PCR tube, 2 μL 1.25 μM RT oligo and 4 μL RT buffer was added following denaturation and annealing by incubation at 90°C for 2 min, 70°C for 30 s and cooling 0.2°C/s to 4°C.
-Then, to each tube 1 μL 100 mM DTT, 1 μL SuperaseIn and 1 μL TGIRT-III RT polymerase (or Maxima H Minus for \FIGSUPP[Fig2]{f2S7}) was added following 10 min incubation at 42°C.
+Then, to each tube 1 μL 100 mM DTT, 1 μL SuperaseIn and 1 μL TGIRT-III RT polymerase (or Maxima H Minus for \FIGSUPP[Fig2]{f2S6}) was added following 10 min incubation at 42°C.
 Then 1 μL 25 mM dNTPs was added and the incubation was resumed at 42°C for 16 h on a thermocycler with the heated lid set to 50°C.
 The RNA template was hydrolyzed by adding 1 μL 5 M NaOH followed by incubation at 95°C for 3 min.
 The samples were then purified using the Oligo Clean \& Concentrator kit and the cDNA was isolated on a gel and purified similarly to the initial tRNA isolation, eluting with 7 μL water.
