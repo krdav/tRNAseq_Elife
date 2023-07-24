@@ -103,7 +103,7 @@ Fourth, the cDNA is converted into a dsDNA library and sequenced to determine tR
 
 \figsupp[Whitfeld reaction scheme.]{
 Schematic of the Whitfeld reaction with acylated and deacylated tRNA leading to generation of CCA and CC-ending tRNAs.
-For deacylated tRNA, 3′ adenosine is oxidized by periodate and then cleaved off by lysine induced β-elimination [references].
+For deacylated tRNA, 3′ adenosine is oxidized by periodate and then cleaved off by lysine induced β-elimination \citep{Rammler1971-mt, uziel1973periodate}.
 Acylated tRNA is protected from periodate oxidation but will be deacylated in the subsequent incubation with lysine.
 }{\fbox{\includegraphics[width=0.9\linewidth]{figures/Fig1S1.pdf}}}\label{figsupp:f1S1}
 \end{figure}
@@ -121,7 +121,7 @@ To do this, we used an E.coli tRNA-Lys-CCA oligo and measured conversion to its 
 Periodate oxidation of cis-glycols is known to occur rapidly, even at low temperature \citep{Dyer1956-zh}; therefore, we tested if oxidation could be performed on ice to protect tRNA aminoacylations prone to hydrolysis.
 We found that complete oxidation is achieved after just 5 min (\FIG{Fig2}, panel A) and therefore chose 10 min as optimal, with incubation on ice and in the dark because sunlight induces periodate oxidation side-reactions \citep{Erskine1953-cr}.
 
-Oxidation of deacylated tRNA yields a dialdehyde on the terminal ribose which enables the phosphoric ester linkage to be broken in a $\beta$-elimination reaction \citep{Rammler1971-mt, uziel1973periodate}, yielding an unsaturated product (\FIGSUPP[Fig1]{f1S1}).
+Oxidation of deacylated tRNA yields a dialdehyde on the terminal ribose which enables the phosphoric ester linkage to be broken in a β-elimination reaction \citep{Rammler1971-mt, uziel1973periodate}, yielding an unsaturated product (\FIGSUPP[Fig1]{f1S1}).
 While this cleavage reaction is complex, involving several semi-stable intermediates and different pathways depending on the pH, it appears to be induced by high pH and the presence of a primary amine \citep{Uziel1975-ja}.
 Lysine has been identified as a good source of primary amine and incubation at 45°C has been found optimal \citep{Khym1961-xf, Neu1964-hu}.
 In previous charge tRNA-Seq methods, a borax buffered solution at pH=9.5 has been used to induce cleavage, instead we wanted to test using lysine at pH=8 to improve RNA stability.
@@ -217,6 +217,7 @@ This side product causes problems in the later purification step.
 Measurement bias in charge tRNA-Seq using blunt-end ligation.
 \textbf{(A)} Measured charge of a E.coli tRNA-Lys oligo control spiked into samples processed with four different pre-adenylated adapters using the method described by \cite{Behrens2021-gb}.
 The control was made using a mix of 50\% E.coli tRNA-Lys-CCA and 50\% E.coli tRNA-Lys-CC and thus its charge does not refer to aminoacylation but the CCA/CC ratio.
+Each dot represents a single charge tRNA-Seq sample.
 \textbf{(B)} Distribution of charge differences at the transcript level among samples with two barcode replicates, comparing adapters l1 vs. l2, l2 vs. l3 and l3 vs. l4.
 Deviation is reported as percentage points and the kernel density estimate (KDE) is overlaid.
 }{\fbox{\includegraphics[width=0.8\linewidth]{figures/Fig2S2.pdf}}}\label{figsupp:f2S2}
@@ -230,6 +231,7 @@ Using deacylated and gel purified human tRNA as substrate, pre-adenylated l2N as
 An irrelevant well has been crossed out to avoid image splicing.
 \textbf{(C)} Effect of ligase type.
 Using the E.coli tRNA-Lys-CCA oligo as substrate, pre-adenylated l1N as adapter and 4°C, 24 h incubation with 20\% DMSO.
+Rnl2tr KQ (T4 RNA Ligase 2, truncated KQ) is the standard ligase used for pre-adenylated adapters whereas Rnl2 (T4 RNA Ligase 2) does not require pre-adenylation of adapters.
 }{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig2S3.pdf}}}\label{figsupp:f2S3}
 
 \figsupp[Splint assisted ligation is highly efficient.]{
