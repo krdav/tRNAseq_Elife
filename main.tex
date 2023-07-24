@@ -125,7 +125,7 @@ Oxidation of deacylated tRNA yields a dialdehyde on the terminal ribose which en
 While this cleavage reaction is complex, involving several semi-stable intermediates and different pathways depending on the pH, it appears to be induced by high pH and the presence of a primary amine \citep{Uziel1975-ja}.
 Lysine has been identified as a good source of primary amine and incubation at 45°C has been found optimal \citep{Khym1961-xf, Neu1964-hu}.
 In previous charge tRNA-Seq methods, a borax buffered solution at pH=9.5 has been used to induce cleavage, instead we wanted to test using lysine at pH=8 to improve RNA stability.
-We found complete cleavage after 90 min (\FIG{Fig2}, panel B); however, this step also serves as deacylation step and some aminoacylations were still measurable after 90 min of lysine cleavage (\FIGSUPP[Fig2]{f2S1}, panel A).
+We found complete cleavage after just 10 min (\FIG{Fig2}, panel B); however, this step also serves as deacylation step and some aminoacylations were still measurable after up to 90 min of lysine cleavage (\FIGSUPP[Fig2]{f2S1}, panel A).
 Therefore, we settled on a 4 h incubation time, but even with this extended incubation, the decrease in pH made a large improvement on RNA integrity (\FIG{Fig2}, panel C).
 
 Finally, we wanted to perform the Whitfeld reaction as a one-pot reaction as shown by \cite{Watkins2022-er}.
@@ -186,7 +186,7 @@ Mix, 50/50 mix of CCA and CC.
 SE, short exposure.
 LE, long exposure.
 \textbf{(B)} Time required to complete lysine cleavage of the E.coli tRNA-Lys-CCA oligo (CCA) at 45°C, pH=8.
-Except the cleavage step, RNA was processed similar to \cite{Evans2017-st}.
+Cleavage at time 0 is likely due to the heat denaturation step performed in RNA loading buffer prior to running the gel.
 \textbf{(C)} TapeStation electropherogram comparing stability of whole cell RNA before and after 4 h lysine cleavage at pH=8 or 1.5 h borax cleavage at pH=9.5.
 tRNA range marked by red background, 18/28S by blue.
 See \FIGSUPP[Fig2]{f2S1}, panel B for RNA stability timecourse as it occurs on a gel.
@@ -208,8 +208,8 @@ After deacylation, RNA was purified and submitted to the Whitfeld reaction using
 The RNA was then processed using the described charge tRNA-Seq method.
 \textbf{(B)} RNA stability over time for lysine cleavage at pH=8 and borax cleavage at pH=9.5.
 \textbf{(C)} Lysine reacts with dialdehydes forming from quencher oxidation.
-One-pot Whitfeld reactions were performed at pH=8 and pH=9.5 and quenched with either glycerol (Gly), glucose (Glc), ribose (Rib) or uridine (Urd) at concentrations indicated.
-Pictures taken after the lysine cleavage step indicate side product formation consistent with lysine reacting with dialdehydes formed during the periodate quenching \citep{Saraiva2006-gw}.
+One-pot Whitfeld reactions were performed at pH=8 and pH=9.5 and quenched with either water (MQ), ethylene glycol (Egl), glycerol (Gly), glucose (Glc) or ribose (Rib).
+Pictures taken before (0 h) and after (4 h) the lysine cleavage step indicate side product formation consistent with lysine reacting with dialdehydes formed during the periodate quenching \citep{Saraiva2006-gw}.
 This side product causes problems in the later purification step.
 }{\fbox{\includegraphics[width=0.6\linewidth]{figures/Fig2S1.pdf}}}\label{figsupp:f2S1}
 
@@ -570,9 +570,9 @@ To compare the RNA integrity after cleavage with lysine vs. borax, samples of 10
 Tubes were incubated 45°C and samples taken at time 0, 1.5, 4 and 8 h.
 RNA integrity was determined using TapeStation (high sensitivity RNA) and 10\% Urea-TBE gel .
 Upon combining the steps of the Whitfeld reaction to a one-pot reaction a color change was observed after addition of lysine.
-% KD: This panel/experiment will change slightly
-To test the effect of the periodate quencher, 25 μL of freshly prepared 200 mM NaIO4 in 100 mM sodium acetate (pH=4.5) was quenched by 25 μL of either water (control), glycerol \citep{Alefelder1998-ln}, glucose \citep{Evans2017-st}, ribose \citep{Watkins2022-er} or uridine at concentrations indicated for 10 min at room temperature.
-Then 50 μL 1 M lysine at either pH 8 or 9.5 was added and reactions incubated at 45°C for 1 h before moving to room temperature for visual inspection (\FIGSUPP[Fig2]{f2S1}, panel C).
+To test the effect of the periodate quencher, 10 μL of freshly prepared 200 mM NaIO4 in 100 mM sodium acetate (pH=4.5) was quenched by 10 μL 1 M aqueous solution of either 
+ethylene glycol \citep{Neu1964-hu}, glycerol \citep{Alefelder1998-ln}, glucose \citep{Evans2017-st}, ribose \citep{Watkins2022-er} or water (control) for 10 min at room temperature.
+Then 100 μL 1 M lysine at either pH 8 or 9.5 was added and reactions incubated at 45°C for 4 h before moving to room temperature for visual inspection (\FIGSUPP[Fig2]{f2S1}, panel C).
 
 For ligation optimization human tRNA was isolated from H1299 cells.
 First, whole cell RNA was isolated as described above, reconstituted in water and deacylation at 45°C in 1 M lysine (pH=8) for 4 h.
