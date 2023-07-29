@@ -288,7 +288,7 @@ It has previously been noted that alignment of tRNA reads is challenging due to 
 Most commonly, the Bowtie1 or Bowtie2 aligners have been applied using various settings to accommodate short reads and the many mismatches \citep{Cozen2015-cx, Zheng2015-kj, Clark2016-ph, Evans2017-st, Pinkard2020-yd}.
 However, although these are ultra-fast, Bowtie1 does not support alignments with insertions or deletions, and while Bowtie2 does, neither is optimized for this context and so cannot guarantee that the best alignment is returned \citep{Langmead2009-yx, Langmead2012-ui}.
 We reasoned that many users of tRNA-Seq would rather sacrifice computational speed over mapping accuracy and therefore we apply a full all-against-all local alignment using the Smith-Waterman algorithm to provide the guaranteed best alignment(s).
-This is possible because the set of tRNA transcripts in a reference is only a few hundred sequences and thus we are able to align 1e8 tRNA-Seq reads to a human tRNA reference with 282 sequences in less than 8 h on an Intel Core i7-8700K Processor (12 threads, 4.70 GHz).
+This is possible because the set of tRNA transcripts in a reference is only a few hundred sequences and thus we are able to align 1e8 tRNA-Seq reads to a human tRNA reference with 457 sequences in less than 8 h on an Intel Core i7-8700K Processor (12 threads, 4.70 GHz).
 
 In addition to the choice of read alignment method, \cite{Behrens2021-gb} found that using a SNP-tolerant alignment substantially improved mapping when modified positions were defined as SNPs.
 We adapted this approach by masking modified positions in the reference to "N"; however, we cannot rely on annotated modifications because these are incomplete and their effect on RT misincorporation rates is hard to predict.
@@ -297,12 +297,13 @@ As such, this is an iterative process because the alignment will change slightly
 In addition to the number of iterations, masking is only applied on positions with a minimum mismatch frequency (\verb|min_mut_freq|) and either including or excluding reads with multiple transcript alignments (\verb|unique_anno_float|).
 Furthermore, a parameter (\verb|frac_max_score|) controls the sharing of a mask to  highly similar transcripts.
 To find the optimal combination of parameters for reference masking we performed a grid search with the objective of finding the masking that resulted in the least number of reads assigned to transcripts with multiple codons (\FIG{Fig3}, panel A).
-This lead to 334 positions in the 282 sequence reference getting masked and resulting in an alignment improvement, reducing the reads with multiple codon alignments from 11.34\% to 4.37\%.
+This lead to 533 positions in the 455 sequence reference getting masked and resulting in an alignment improvement, reducing the reads with multiple codon alignments from 11.71\% to 5.09\%.
 
 Masked positions do not contribute to the alignment score and thus possibly lowering it below the minimum threshold; however, we observed no trade-off between optimized reference masking and read mapping percentage (\FIG{Fig3}, panel B).
-Like \cite{Behrens2021-gb}, we observe a striking difference in the mapping of certain tRNA transcripts.
-For example, transcripts decoding the Ser-UCU codon (AGA anticodon) are lifted out of obscurity (\FIG{Fig3}, panel C).
-Generally, reference masking appears to increase annotations for around a dozem transcripts but a substantial mapping change only occurs for four codons (\FIGSUPP[Fig3]{f3S1}, panel a).
+Like \cite{Behrens2021-gb}, we observe a striking difference in the mapping of certain tRNA transcripts with inosine at the first position of the anticodon (position 34; I34).
+For example, transcripts decoding the Ser-UCU codon (IGA anticodon) are lifted out of obscurity through masking of I34 (\FIG{Fig3}, panel C).
+%KD Is it still four codons after reference database update?
+Generally, reference masking appears to increase annotations for around a dozen transcripts but a substantial mapping change only occurs for four codons (\FIGSUPP[Fig3]{f3S1}, panel a).
 The effect of reference masking on the charge measurements was low as expected because this is a relative number (\FIGSUPP[Fig3]{f3S1}, panel B).
 
 
@@ -719,7 +720,7 @@ We provide a boilerplate example of the whole read processing workflow on GitHub
 
 
 \subsection{Reference masking}
-A human tRNA transcript reference for alignment was made by downloading the fasta formatted hg38 high confidence mature tRNA sequences from GtRNAdb \citep{Chan2016-wt}.
+A human tRNA transcript reference for alignment was made from hg38 annotations in GtRNAdb \citep{Chan2016-wt}.
 These sequences were deduplicated and mitochondrial tRNAs and spike-in control sequences were appended.
 Then a BLAST database was generated, as required by SWIPE, using the \texttt{makeblastdb} application.
 To further improve the alignment specificity, a masked reference was made by converting positions with high likelihood of mismatch to Ns such that these have no negative contribution on the alignment score.
@@ -808,6 +809,7 @@ A point estimate for the three parameters were found using all timepoints and re
 
 
 \subsection{Data availability}
+%KD Fill this in
 Plots with Seaborn.
 Boxplots are plotting with quartile boxes and whiskers covering the remainder of datapoints within a maximum of 1.5 times the inter-quartile range.
 
