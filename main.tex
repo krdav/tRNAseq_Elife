@@ -54,37 +54,37 @@ Quantification of transfer RNA (tRNA) aminoacylation, also referred to as charge
 While radiolabeling is highly accurate, it is limited to purified tRNAs undergoing lab manipulation.
 Northern blotting uses differential migration of acylated tRNA during electrophoresis to measure acylation levels but has many known limitations such as cross-binding probes, low sensitivity, low throughput on multiple tRNAs, insufficient band separation etc.
 Chemical differentiation of acylated tRNAs combined with DNA microarrays were introduced to circumvent the problems with Northern blotting, but has since been superseded by high-throughput sequencing approaches that enable quantification on all tRNAs in one experiment.
-$See notes$
 
 Chemical differentiation of acylated tRNAs is achieved using the Malaprade reaction to attack the 2,3-dihydroxyls on the 3′ ribose of deacylated tRNA, causing ring opening and destabilization.
-The destabilized base is then eliminated using high pH and heat, resulting in a different 3' sequence of uncharged tRNAs (CC) compared to those protected by aminoacylation (CCA).
+The destabilized base is then eliminated using high pH and heat, resulting in a one base truncated 3' sequence of uncharged tRNAs compared to those protected by aminoacylation.
 %Aminoacylated tRNAs are protected from the Malaprade reaction due to esterification of one of the terminal ribose hydroxyls.
 This sequence of reactions was characterized and used extensively in the past in an effort to sequence RNA molecules \citep{Whitfeld1953-ca, Whitfeld1954-wl, Khym1961-xf, Neu1964-hu}, and while futile for RNA sequencing, the single base truncation has proven highly useful  to "tag" deacylated tRNAs.
 We shall refer to this reaction sequence as the "Whitfeld reaction" (\FIGSUPP[Fig1]{f1S1}).
 
-The accuracy and robustness of the aminoacylation measurement depends on two parts: the completeness of the Whitfeld reaction and the quality of tRNA sequencing (tRNA-Seq).
+The accuracy and robustness of aminoacylation measurements depend on two parts: the completeness of the Whitfeld reaction and the quality of tRNA sequencing (tRNA-Seq).
 A major problem in tRNA-Seq is base modifications known to be numerous on tRNAs.
 These can lead to stalling, misincorporation, skipping or falloff during the reverse transcription (RT) step of the sequencing protocol \citep{Motorin2007-nb}.
 The RT polymerase is most severely affected by base modifications disrupting the Watson–Crick base pairing, while other modifications are often less impactful or silent \citep{Wang2021-fc, Sas-Chen2019-um}.
-To increase RT readthrough the demethylase AlkB has been used \citep{Zheng2015-kj, Cozen2015-cx}, while more recently optimization of incubation conditions, including low salt and extended incubation time, can also increase readthrough \citep{Behrens2021-gb}.
-Several other factors can also lead to errors in tRNA-Seq such as low RNA integrity, incomplete deacylation prior to adapter ligation, adapter ligation bias, PCR amplification bias and problems in read alignment, necessitating further further protocol optimization to overcome these issues. 
+To increase RT readthrough the demethylase AlkB has been used \citep{Zheng2015-kj, Cozen2015-cx}, while more recently optimization of incubation conditions, including low salt and extended incubation time, can similarly increase readthrough \citep{Behrens2021-gb}.
+Several other factors can also lead to errors in tRNA-Seq such as low RNA integrity, incomplete deacylation prior to adapter ligation, adapter ligation bias, PCR amplification bias and errors in read alignment, necessitating further protocol optimization to overcome these issues. 
 
 Adapter ligation bias is another well documented problem in small RNA sequencing \citep{Fuchs2015-nb, Zhuang2012-nu}, but receives little attention in most tRNA-Seq protocols where it is particularly problematic because adapters often incorporate a barcode for sample multiplexing.
 The problem is further exacerbated when tRNA-Seq is coupled with the Whitfeld reaction, because this creates different sequence contexts for aminoacylated and deacylated tRNAs.
 One solution is to optimize conditions such that the ligation goes to completion.
-To that end, the tRNA secondary structure provides a useful opportunity as it contains four nucleotides on the 3′ end that do not participate in the basepairing of the acceptor stem; the discriminator base followed by the invariant CCA-end (\FIG{Fig1}).
-These free nucleotides can be engaged in basepairing by an oligo splint designed to guide the ligation of the adapter and can improve tRNA specificity and ligation efficiency \cite{Shigematsu2017-tv, Smith2015-ht}.
+To that end, the tRNA secondary structure provides a useful opportunity as it contains four nucleotides on the 3′ end that do not participate in the basepairing of the acceptor stem.
+These are the discriminator base followed by the invariant CCA-end (\FIG{Fig1}).
+These free nucleotides can be engaged in basepairing by an oligo splint designed to guide the ligation of the adapter and can improve tRNA specificity and ligation efficiency \citep{Shigematsu2017-tv, Smith2015-ht}.
 
 Read mapping is another known problem for tRNA-Seq.
 It arises due to the high error-rate of the RT polymerase when reading through modified bases in addition to frequent falloff.
-In combination, reads will frequently not have any continuous stretch of more than 15 nt. that perfectly match its reference.
+In combination, reads will often not have any continuous stretch of more than 15 nt. that perfectly match its reference.
 This is a problem for almost all alignment algorithms because they rely on some variation of subsequence matching to enable speed-up.
 The problem has been addressed by clustering of the reference sequences \citep{Hoffmann2018-uz} as well as masking known modified positions in the reference sequences \citep{Behrens2021-gb}.
 
 In recent years many variations of the tRNA-Seq method have been published \citep{Wang2021-fc, Zheng2015-kj, Cozen2015-cx, Shigematsu2017-tv, Erber2020-qg, Thomas2021-fi, Lucas2023-vm, Pinkard2020-yd, Warren2021-wt, Yamagami2022-yb}, but only few couple it with the Whitfeld reaction to probe aminoacylation levels \citep{Evans2017-st, Behrens2021-gb, Watkins2022-er} and little is known about the precision and accuracy of these measurements.
 Here, we present an up-to-date method for charge tRNA-Seq that integrates new and existing developments, including improved Whitfeld reaction chemistry, splint assisted ligation, high readthrough RT-PCR and improved read mapping, enabling us to measure tRNA charge, expression and modifications (\FIG{Fig1}).
 We perform tests of the quantitative capabilities of the method and quantify its precision and accuracy.
-Finally, we provide an open-source code repository, enabling users to try our read processing, mapping using non-heuristic alignment and statistical tools on their own data (\url{https://github.com/krdav/tRNA-charge-seq}).
+Finally, we provide an open-source code repository, enabling users to try our read processing, mapping and statistical tools on their own data (\url{https://github.com/krdav/tRNA-charge-seq}).
 
 
 \begin{figure}[ht!]
@@ -128,15 +128,15 @@ We found complete cleavage after just 10 min (\FIG{Fig2}, panel B); however, thi
 Therefore, we settled on a 4 h incubation time, but even with this extended incubation, the decrease in pH made a large improvement on RNA integrity (\FIG{Fig2}, panel C).
 
 Finally, we wanted to perform the Whitfeld reaction as a one-pot reaction as shown by \cite{Watkins2022-er}.
-However, we found that the typical quenchers used to remove unreacted periodate, glucose or ribose, are not compatible with lysine induced cleavage (\FIGSUPP[Fig2]{f2S1}, panel C).
-This is likely due to the generation of dialdehydes that cross-link lysines; therefore, we chose to use ethylene glycol which only forms formaldehyde upon periodate oxidation.
+However, we found that the typical quenchers used to remove unreacted periodate ( glucose or ribose) are not compatible with lysine induced cleavage (\FIGSUPP[Fig2]{f2S1}, panel C).
+This is likely due to the generation of dialdehydes that cross-link lysines; therefore, we chose to use ethylene glycol which forms formaldehyde upon periodate quenching.
 Additionally, ethylene glycol reacts fast and can be added in high molar excess without negatively affecting subsequent steps, thus enabling the whole Whitfeld reaction in one tube (\FIG{Fig2}, panel D).
 
 
 
 \subsection{Blunt-end adapter ligation introduces charge measurement bias}
 Following the Whitfeld reaction tRNAs must be sequenced in order to measure aminoacylation levels.
-To achieve this with enough throughout, we chose to ligate to barcoded adapters to enable sample pooling before the RT-PCR step \citep{McGlincy2017-ro}.
+To achieve this with enough throughout, we chose to ligate the samples to barcoded adapters to enable sample pooling before the RT-PCR step \citep{McGlincy2017-ro}.
 We followed the protocol of \cite{Behrens2021-gb}, with minor modifications to the oligo design, but found that the measured charge was highly variable between replicates and that the measurements were biased by the barcode identity to an unacceptable degree (\FIGSUPP[Fig2]{f2S2}).
 We hypothesized that this is due to ligation bias commonly encountered in blunt-end ligation \citep{Fuchs2015-nb, Zhuang2012-nu, Jayaprakash2011-ab} and reasoned that increasing ligation efficiency could mitigate the bias.
 However, our attempts to improved ligation efficiency failed as we were never able to reach more than $\sim$50\% ligation of the input tRNA (\FIGSUPP[Fig2]{f2S3}).
@@ -146,16 +146,16 @@ However, our attempts to improved ligation efficiency failed as we were never ab
 
 \subsection{Splint assisted ligation improves efficiency}
 Inspired by \cite{Smith2015-ht} and \cite{Shigematsu2017-tv} we turned to splint assisted ligation.
-This approach utilizes that tRNAs have four nucleotides protruding from the 3′ end and available for basepairing: the discriminator base, which can be any of the four RNA nucleotides, followed by the invariant CCA-end.
+This approach utilizes that tRNAs have four nucleotides protruding from the 3′ end and therefore available for basepairing: the discriminator base, which can be any of the four RNA nucleotides, followed by the invariant CCA-end.
 The splint oligo is designed to bind both the 3′ end of tRNAs and the 5′ end of an adapter (\FIG{Fig1}), thus bringing the two into proximity and increasing ligation efficiency.
 However, whereas earlier uses of splint assisted ligation could assume that all tRNAs end on CCA, we have a mix of CCA and CC-ending tRNAs and therefore needed to use two splints.
-As tRNAs compete for ligation it is imperative that CCA-ending tRNAs, with more base complementary and therefore stronger interaction with the splint, is not favoured.
+As tRNAs compete for ligation it is imperative that CCA-ending tRNAs, with stronger interaction with the splint, is not favoured over CC-ending tRNAs.
 Fortunately, we observed a near complete ligation between all of our nine barcoded adapters and both CCA-ending human tRNA and a CC-ending E. Coli tRNA-Lys oligo (\FIGSUPP[Fig2]{f2S4}, panel A and B).
 The ligation was specific as it was fully dependent on complementarity between the tRNA and the splint (\FIGSUPP[Fig2]{f2S4}, panel C).
 As we are only interested in ligation between tRNA and adapter, we block all other possible ligations through dephosphorylation of the 5' tRNA nucleotide and oligo modifications blocking the 3′ end of adapter and splint oligos.
 This affords us the advantage of using a pure DNA splint without any RNA nucleotides as those used in previous publications \citep{Smith2015-ht, Shigematsu2017-tv, Pinkard2020-yd, Warren2021-wt, Thomas2021-fi, Lucas2023-vm}.
 
-Importantly, we validated that tRNA processed using the one-pot Whitfeld reaction could be effectively used as substrate in the ligation reaction (\FIG{Fig2}, panel E) $and Figure 2 - figure Supplement 5 panel A$.
+Importantly, we validated that tRNA processed using the one-pot Whitfeld reaction could be effectively used as substrate in the ligation reaction (\FIG{Fig2}, panel E and \FIGSUPP[Fig2]{f2S5}, panel A).
 We noted that a small amount of unligated tRNA appeared in reactions with tRNA oxidized with periodate.
 This unligated tRNA is of unknown origin and largely refractory to further ligation (\FIGSUPP[Fig2]{f2S5}, panel B); however, as shown later using charge titration, this did not have a measurable impact on the accuracy of the aminoacylation measurement.
 
@@ -163,9 +163,8 @@ This unligated tRNA is of unknown origin and largely refractory to further ligat
 
 \subsection{Combining optimizations results in a robust method for measuring tRNA charge}
 After combining the optimized Whitfeld reaction with subsequent splint assisted ligation, we used the RT-PCR method proposed by \cite{Behrens2021-gb} using the TGIRT polymerase \citep{Mohr2013-hu} to maximize the readthrough of modified nucleotides.
-We later found that high readthrough also could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S6}).
+We later found that almost as high readthrough could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S6}).
 The RT-PCR was primed by an oligo containing a 10 nt. unique molecular identifier (UMI) to diversify the sequence context for the subsequent circular ligation and allow collapsing of reads derived from the same tRNA molecule during data analysis.
-
 A final PCR was performed to attach Illumina barcodes to pool samples for multiplex sequencing.
 
 Using this as our final charge tRNA-Seq method, we use the E.coli tRNA-Lys-CCA oligo as a spike-in control before the Whitfeld reaction to validate near complete conversion to its CC-end, suggesting efficient periodate oxidation (\FIGSUPP[Fig2]{f2S7}, panel A).
@@ -194,16 +193,16 @@ See \FIGSUPP[Fig2]{f2S1}, panel B for RNA stability timecourse as it occurs on a
 All samples were processed as a one-pot reaction, except the borax sample which was processed similar to \cite{Evans2017-st}.
 rSAP, shrimp alkaline phosphatase.
 \textbf{(E)} Ligation test comparing the effect of RNA processing.
-Deacylated and gel purified human tRNA was processed identically as in panel (D), then ligated to l1Sp.
+Deacylated and gel purified human tRNA was processed identically as in panel (D), then ligated to adapter l1Sp.
 Other adapters were tested with similar results (\FIGSUPP[Fig2]{f2S5}, panel A).
 \textbf{(F)} Baseline tRNA aminoacylation charge in H1299 cells grown in DMEM (4 replicates, bootstrapped 95\% confidence interval of the mean).
-Charge on tRNA\textsuperscript{His} is likely erroneously low because the discriminator base is shielded by base pairing \citep{Heinemann2012-hq}, creating a steric hindrance for the splint assisted ligation.
+Charge on tRNA\textsuperscript{His} is possibly erroneously low because the discriminator base is shielded by base pairing \citep{Heinemann2012-hq}, creating a steric hindrance for the splint assisted ligation.
 }
 \label{fig:Fig2}
 
 \figsupp[Optimizing lysine induced cleavage.]{
 Optimizing lysine induced cleavage for the charge tRNA-Seq method.
-\textbf{(A)} Measured aminoacylation level after 5, 30, 90 and 270 min of deacylation in 1 M lysine pH=8 at 45°C.
+\textbf{(A)} Aminoacylation remaining after 5, 30, 90 and 270 min of deacylation in 1 M lysine pH=8 at 45°C.
 After deacylation, RNA was purified and submitted to the Whitfeld reaction using lysine cleavage at pH=9.5 for 90 min at 45°C to ensure complete deacylation.
 The RNA was then processed using the described charge tRNA-Seq method.
 \textbf{(B)} RNA stability over time for lysine cleavage at pH=8 and borax cleavage at pH=9.5.
@@ -216,10 +215,10 @@ This side product causes problems in the later purification step.
 \figsupp[Measurement bias in charge tRNA-Seq using blunt-end ligation.]{
 Measurement bias in charge tRNA-Seq using blunt-end ligation.
 \textbf{(A)} Measured charge of a E.coli tRNA-Lys oligo control spiked into samples processed with four different pre-adenylated adapters using the method described by \cite{Behrens2021-gb}.
-The control was made using a mix of 50\% E.coli tRNA-Lys-CCA and 50\% E.coli tRNA-Lys-CC and thus its charge does not refer to aminoacylation but the CCA/CC ratio.
+The control was made using a mix of 50\% E.coli tRNA-Lys-CCA and 50\% E.coli tRNA-Lys-CC and thus simulating 50\% charge.
 Each dot represents a single charge tRNA-Seq sample.
 \textbf{(B)} Distribution of charge differences at the transcript level among samples with two barcode replicates, comparing adapters l1 vs. l2, l2 vs. l3 and l3 vs. l4.
-Deviation is reported as percentage points and the kernel density estimate (KDE) is overlaid.
+Deviation is reported as percentage point differences and the kernel density estimate (KDE) is overlaid.
 }{\fbox{\includegraphics[width=0.8\linewidth]{figures/Fig2S2.pdf}}}\label{figsupp:f2S2}
 
 \figsupp[tRNA-adapter blunt-end ligation attempted optimization.]{
@@ -231,6 +230,7 @@ Using deacylated and gel purified human tRNA as substrate, pre-adenylated l2N as
 An irrelevant well has been crossed out to avoid image splicing.
 \textbf{(C)} Effect of ligase type.
 Using the E.coli tRNA-Lys-CCA oligo as substrate, pre-adenylated l1N as adapter and 4°C, 24 h incubation with 20\% DMSO.
+Wells with "+l1N" were added additional none pre-adenylated adapter.
 Rnl2tr KQ (T4 RNA Ligase 2, truncated KQ) is the standard ligase used for pre-adenylated adapters whereas Rnl2 (T4 RNA Ligase 2) does not require pre-adenylation of adapters.
 }{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig2S3.pdf}}}\label{figsupp:f2S3}
 
@@ -246,7 +246,7 @@ For the non-complementary splint ligation the two standard TGGN and GGN overhang
 \figsupp[Ligation tests, related to panel E.]{
 \textbf{(A)} Ligation test comparing the effect of RNA processing.
 Similar to \FIG{Fig2}, panel E but with two different adapters.
-\textbf{(B)} The unligated tRNA that arises after tRNA is oxidized with periodate in panel A is refractory to further ligation.
+\textbf{(B)} The unligated tRNA that appears after tRNA is oxidized with periodate in panel A is refractory to further ligation.
 The unligated tRNA was gel purified from enough ligation reactions as shown in panel A to setup two new ligation reactions using either l1N pre-adenylated adapter for blunt end ligation or l6Sp for splint assisted ligation.
 For l1N, ligation was setup with 35 ng tRNA, 20 pmol adapter, 17.5\% PEG-8000, 20\% DMSO, 1xT4 RNA ligase buffer, 1 μL T4 RNA ligase 2 (truncated KQ) and 1 μL SuperaseIn.
 For l6Sp, the ligation was setup as described in the charge tRNA-Seq protocol.
@@ -262,13 +262,13 @@ Errorbars are bootstrapped 95\% confidence interval of the mean over the 7 indiv
 }{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig2S6.pdf}}}\label{figsupp:f2S6}
 
 \figsupp[Sequenced controls.]{
-Charge tRNA-Seq control samples and spike-ins validate method.
+Charge tRNA-Seq control samples and spike-ins validate the method.
 \textbf{(A)} Cleavage of the 3′ adenosine on spike-in oligo is near complete and similarly measured across adapters.
 Using the E.coli tRNA-Lys-CCA oligo as a spike-in control to monitor completion of the Whitfeld reaction.
 If complete, 100\% E.coli tRNA-Lys-CC should be produced and thus appearing as 0\% charged.
 Each dot represents one sample spiked with E.coli tRNA-Lys-CCA oligo before the Whitfeld reaction and processed using the charge tRNA-Seq processing described in the method section.
 \textbf{(B)} Aminoacylation level of human tRNA transcripts after undergoing deacylation by incubation at 45°C for 4 h in 1 M lysine (pH=8).
-Mitochondrial tRNA\textsuperscript{fMet} was excluded because formylated or acetylated amino acids are known to be highly resistant towards deacylation \citep{Schofield1968-qn}.
+Mitochondrial tRNA\textsuperscript{fMet} was excluded because formylated amino acids are known to be highly resistant towards deacylation \citep{Schofield1968-qn}.
 \textbf{(C)} Aminoacylation level of tRNA transcripts from four samples receiving sham oxidation (NaCl) during the Whitfeld reaction.
 }{\fbox{\includegraphics[width=0.7\linewidth]{figures/Fig2S7.pdf}}}\label{figsupp:f2S7}
 
@@ -281,29 +281,28 @@ A gel purified charge tRNA-Seq DNA library was resuspended in TBE buffer and inc
 \end{figure}
 
 
-
+ 
 
 \subsection{Reference masking improves read mapping}
 It has previously been noted that alignment of tRNA reads is challenging due to RT misincorporations and falloff \citep{Hoffmann2018-uz, Behrens2021-gb}.
 Most commonly, the Bowtie1 or Bowtie2 aligners have been applied using various settings to accommodate short reads and the many mismatches \citep{Cozen2015-cx, Zheng2015-kj, Clark2016-ph, Evans2017-st, Pinkard2020-yd}.
-However, although these are ultra-fast, Bowtie1 does not support alignments with insertions or deletions, and while Bowtie2 does, neither is optimized for this context and so cannot guarantee that the best alignment is returned \citep{Langmead2009-yx, Langmead2012-ui}.
-We reasoned that many users of tRNA-Seq would rather sacrifice computational speed over mapping accuracy and therefore we apply a full all-against-all local alignment using the Smith-Waterman algorithm to provide the guaranteed best alignment(s).
-This is possible because the set of tRNA transcripts in a reference is only a few hundred sequences and thus we are able to align 1e8 tRNA-Seq reads to a human tRNA reference with 457 sequences in less than 8 h on an Intel Core i7-8700K Processor (12 threads, 4.70 GHz).
+However, while these are ultra-fast and use widely for RNA-Seq, Bowtie1 does not support alignments with insertions or deletions, and although Bowtie2 does, it does not cannot guarantee that the best alignment is returned \citep{Langmead2009-yx, Langmead2012-ui}.
+We reasoned that many users of tRNA-Seq would rather sacrifice computational speed than mapping accuracy and therefore we apply a full all-against-all local alignment using the Smith-Waterman algorithm to provide the guaranteed best alignment(s).
+This is possible because the set of tRNA transcripts in a typical species is only a few hundred sequences and thus we are able to align 1e8 tRNA-Seq reads to a human tRNA reference with 457 sequences in less than 8 h on an Intel Core i7-8700K Processor (12 threads, 4.70 GHz).
 
-In addition to the choice of read alignment method, \cite{Behrens2021-gb} found that using a SNP-tolerant alignment substantially improved mapping when modified positions were defined as SNPs.
-We adapted this approach by masking modified positions in the reference to "N"; however, we cannot rely on annotated modifications because these are incomplete and their effect on RT misincorporation rates is hard to predict.
-Instead, we used the misincorporation information embedded in the sequencing data, extracting it after a first pass alignment and then using mismatch frequencies for reference masking.
+In addition to the choice of read alignment method, \cite{Behrens2021-gb} found that using a SNP-tolerant alignment substantially improved mapping when modified positions causing RT misincorporations were defined as SNPs.
+We adapted this approach by masking modified positions in the reference to "N"; however, we cannot rely solely on annotated modifications because these are incomplete and their effect on RT misincorporation rates is hard to predict.
+Instead, we used the misincorporation information embedded in the sequencing data, extracting it after a first pass alignment and then using mismatch frequencies to pick positions for reference masking.
 As such, this is an iterative process because the alignment will change slightly with a new masked reference.
-In addition to the number of iterations, masking is only applied on positions with a minimum mismatch frequency (\verb|min_mut_freq|) and either including or excluding reads with multiple transcript alignments (\verb|unique_anno_float|).
+In addition to the number of iterations, masking is only applied on positions with a minimum mismatch frequency (\verb|min_mut_freq|) and frequency is calculated either including or excluding reads with multiple transcript alignments (\verb|unique_anno_float|).
 Furthermore, a parameter (\verb|frac_max_score|) controls the sharing of a mask to  highly similar transcripts.
 To find the optimal combination of parameters for reference masking we performed a grid search with the objective of finding the masking that resulted in the least number of reads assigned to transcripts with multiple codons (\FIG{Fig3}, panel A).
 This lead to 533 positions in the 455 sequence reference getting masked and resulting in an alignment improvement, reducing the reads with multiple codon alignments from 11.71\% to 5.09\%.
 
 Masked positions do not contribute to the alignment score and thus possibly lowering it below the minimum threshold; however, we observed no trade-off between optimized reference masking and read mapping percentage (\FIG{Fig3}, panel B).
 Like \cite{Behrens2021-gb}, we observe a striking difference in the mapping of certain tRNA transcripts with inosine at the first position of the anticodon (position 34; I34).
-For example, transcripts decoding the Ser-UCU codon (IGA anticodon) are lifted out of obscurity through masking of I34 (\FIG{Fig3}, panel C).
-%KD Is it still four codons after reference database update?
-Generally, reference masking appears to increase annotations for around a dozen transcripts but a substantial mapping change only occurs for four codons (\FIGSUPP[Fig3]{f3S1}, panel a).
+For example, transcripts decoding the Ser-UCU codon (IGA anticodon) (\FIG{Fig3}, panel C).
+Generally, reference masking appears to increase annotations for around a dozen transcripts but a substantial mapping change only occurs for six codons (\FIGSUPP[Fig3]{f3S1}, panel a).
 The effect of reference masking on the charge measurements was low as expected because this is a relative number (\FIGSUPP[Fig3]{f3S1}, panel B).
 
 
@@ -315,30 +314,29 @@ Our computational method also supports using misincorporation data for inference
 As such the 5-methoxycarbonylmethyl-2-thiouridine (mcm5s2U) modification should be silent; however, thionucleosides are sensitive to periodate treatment, which oxidizes them to sulfonates and makes them sensitive to nucleophilic attack \citep{Ziff1968-la, Rao1974-zq}.
 When periodate oxidation of mcm5s2U is followed by lysine cleavage it would presumably result in a lysine adduct \citep{Ziff1968-la}, thus disrupting Watson–Crick base pairing.
 We verified this by comparing the misincorporation signature in samples processed with/without periodate oxidation, focusing on the human tRNAs Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU shown by \cite{Lentini2018-xs} to carry be mcm5s2U modification (\FIGSUPP[Fig3]{f3S2}).
-Large changes in the misincorporation signature is observed upon periodate oxidation, but curiously some tRNAs respond with a large decrease in RT readthrough while others see an increase in the mutation and/or gap frequency.
+Large changes in the misincorporation signature is observed upon periodate oxidation, but curiously some tRNAs respond with a large decrease in RT readthrough while others have an increased mutation and/or gap frequency.
 Similar observations were recently showed by \cite{Katanski2022-ij}.
 
 \begin{figure}[ht!]
 \centering
 \fbox{\includegraphics[width=0.85\linewidth]{figures/Fig3.pdf}}
 \caption{
-Masking of modified nucleotide positions of the reference tRNA transcript sequences improves alignment performance.
+Masking of the reference sequences improves alignment performance.
 \textbf{(A)} Grid search optimization of parameters determining the extent of reference masking (see method section for details).
-Each subplot shows the effect of one tuning parameter when combined with the best combination of the other three.
+Each subplot shows the mean effect of one tuning parameter when combined with the combination of all the other three.
 Parameters used for reference masking are chosen to minimize the percentage of reads assigned to tRNAs with multiple codons.
 \textbf{(B)} There is no trade-off between sequence mapping success and minimizing multiple codon mapping.
-\textbf{(C)} Reference masking increase RPM values of select codons.
-RPM levels of the codons shown was found before and after optimized reference masking.
+\textbf{(C)} Reference masking increase relative expression levels of select codons. 
+Reads per million (RPM) levels of the codons shown was found before and after optimized reference masking.
 Error bars are bootstrapped 95\% confidence interval of the mean over the 9  barcode replicate samples.
 }
 \label{fig:Fig3}
 
 \figsupp[Reference masking effect on RPM and charge levels.]{
 \textbf{(A)} Reference masking effect on RPM levels per transcripts (left) and per codon (right).
-Transcript points showing $>3$, and codon points showing $>1.5$, fold increase or decrease upon reference masking are colored orange.
-The highest fold change transcripts and codons are annotated on the right side of the plot.
+Transcripts showing $>3$, and codons showing $>1.4$, fold increase or decrease upon reference masking are colored orange and annotated on the right side of the plot.
 \textbf{(B)} Reference masking effect on charge levels per transcripts (left) and per codon (right).
-Points showing $>1.05$ fold increase or decrease upon reference masking are colored orange and annotated on the right side of the plot.
+Transcripts/codons showing $>1.05$ fold increase or decrease upon reference masking are colored orange and annotated on the right side of the plot.
 }{\fbox{\includegraphics[width=0.85\linewidth]{figures/Fig3S1.pdf}}}\label{figsupp:f3S1}
 
 \figsupp[Anticodon modification mcm5s2U is detected in periodate oxidized samples.]{
@@ -364,7 +362,7 @@ For RPM values, some barcode replicates were more narrowly distributed than othe
 \centering
 \fbox{\includegraphics[width=0.65\linewidth]{figures/Fig4.pdf}}
 \caption{
-Barcode replicates show high precision and no barcode bias.
+Barcode replicates show high precision and limited barcode bias.
 Each of the nine adapters were ligated to the same sample containing a heterogeneous mix of CC and CCA-ending tRNAs.
 Ligations were then pooled and submitted to the remainder of the charge tRNA-Seq protocol.
 \textbf{(A)} The percentage point deviation from the median charge at the codon level, grouped by barcode identity (left) or shown summarized as a density plot (right).
@@ -394,11 +392,11 @@ For all plots the red line is proportionality.
 
 \subsection{Charge titration shows high accuracy}
 Testing the accuracy of charge measurements is a much harder problem.
-Spiking in a defined ratio of CC and CCA-ending oligo to the ligation reaction is a common approach, but it ignores the possible effect of the Whitfeld reaction.
+Spiking in a defined ratio of CC and CCA-ending oligo to the ligation reaction is a common approach, but this ignores the possible incompleteness of the Whitfeld reaction.
 It is also possible to compare to charge measured by Northern blotting, but this presents a different set of issues with probe annealing, band resolution etc.
 As an alternative, we made a charge titration by mixing different proportions of intact and deacylated RNA allowing us to predict and measure charge levels of over 150 transcripts (\FIG{Fig5}, panel A).
 The results showed excellent proportionality between predicted and measured charge across the full range of values (\FIG{Fig5}, panel B), thus indicating that the charge measurements are highly accurate.
-This experiment also confirmed our previous observations that barcode bias is limited to the l4Sp adapter which is overestimating charge (\FIG{Fig5}, panel C).
+This experiment also confirmed our previous observations that barcode bias is limited to the l4Sp adapter, which is consistently overestimating charge (\FIG{Fig5}, panel C).
 Additionally, no bias was found in independently prepared sequencing libraries or any of the different mixing proportions of intact and deacylated RNA (\FIGSUPP[Fig5]{f5S2}).
 
 Inspired by \cite{Evans2017-st}, which used radiolabeling techniques to generate a single accurate tRNA charge reference point, we developed a 50\% charge control using 3′ phosphorylation as protection from periodate oxidation.
@@ -450,14 +448,14 @@ Interestingly, \cite{Peacock2014-wk} found that the aminoacylation half-life app
 However, most of the tRNAs used in this study were derived from in vitro transcription and only a limited set of RNA modifications were tested; additionally, the study did not cover all 20 native amino acids.
 Having developed an accurate method for measuring tRNA charge on over a hundred samples in a single sequencing run, we wanted to use this to determine the aminoacylation half-lifes of tRNA transcripts with their native RNA modifications.
 
-We used RNA purified from the H1299 cell line, starting at high tRNA charge (\FIG{Fig2}, panel F), and tracked the aminoacylation decay over time after switching to physiological buffer (pH=7.2) and incubation at 20°C similar to \cite{Peacock2014-wk}.
-After sampling 11 timepoints with 4 replicates, charge measurements for each transcript were fitted to a first-order decay function to estimate the half-life of each transcripts (Supplementary file 4), as exemplified by the representative transcript Arg-TCG-2-1 (\FIG{Fig6}, panel A).
+We used RNA purified from the H1299 cell line, starting at high tRNA charge (\FIG{Fig2}, panel F), and tracked the aminoacylation decay over time after switching to physiological buffer (pH=7.2) and incubating at 20°C, similar to \cite{Peacock2014-wk}.
+After sampling 11 timepoints with 4 replicates, charge measurements for each transcript were fitted to a first-order decay function to estimate the half-life of each transcripts (Supplementary file 4), as exemplified by the representative transcript Lys-TTT-3-1 (\FIG{Fig6}, panel A).
 When transcripts were grouped by their cognate amino acid, we could confirm that the half-lifes are indeed determined mostly by aminoacylation identity and that they span a large 37 fold range (\FIG{Fig6}, panel B).
 Our half-life estimates are highly correlated with those reported by \cite{Peacock2014-wk}, but surprisingly ours appear to be approximately 4 fold higher despite using the same incubation temperature and a similar buffer, with only slightly lower pH (7.2 vs. 7.5; \FIGSUPP[Fig6]{f6S1}, panel B).
 
 It seems counterintuitive that the aminoacylation half-life should be completely unaffected by the tRNA sequence; however, as the amino acid is attached to the invariant CCA-end, the nucleotides most proximal to the ester bond are the same for all tRNAs.
 The most proximal non-invariant nucleotide is the discriminator base.
-Because we sample all transcripts, we are able to observe that the discriminator base is indeed likely to influence the half-life and that a purine base likely promotes a longer aminoacylation half-life than a uracil (\FIG{Fig6}, panel C).
+Because we sample all transcripts, we are able to observe that the discriminator base is indeed likely to influence the half-life and that a purine base appears to promote a longer aminoacylation half-life than a uracil (\FIG{Fig6}, panel C).
 
 \begin{figure}[ht!]
 \centering
@@ -496,17 +494,19 @@ Related to the representative (i.e. ranked as the median) transcript shown in \F
 
 \section{Discussion}
 Accurate quantification is a prerequisite for making reliable observations standing the test of time and replication.
-We have shown a robust method for measuring tRNA charge and extensively validated it in the relevant context of human tRNA.
+We have presented a robust method for measuring tRNA charge and extensively validated it in the relevant context of human tRNA.
 Furthermore, we have quantified the measurement precision of charge and relative expression.
 Accuracy was only quantified for charge measurement whereas this is more challenging for expression levels \citep{Fuchs2015-nb}.
-One step towards accurate expression level measurements is efficient adapter ligation, such as the splint assisted ligation method used herein; however, future versions of tRNA-Seq should providing better validation and controls for relative expression measurements.
+One step towards accurate expression level measurements is efficient adapter ligation, such as the splint assisted ligation method used herein; however, future versions of tRNA-Seq should strive towards providing better validation and controls for relative expression measurements.
 % LS - I dont think you need the paragraph below this, its speculative without showing the data and appears to diminish the importance of what you ahve done here
 %KD 1) Providing suggestions for future improvements does not diminish anything, 2) suggestions are speculative by design but this one maybe not so much as you think, the data in the citations provide a strong rational
 In our version of the Whitfeld reaction we use lysine to induce base cleavage at low pH.
 We later found that ornithine is an even better inducer of cleavage \citep{Uziel1975-ja} and thus, the pH of the cleavage reaction could be lowered even further and possibly combined with Cu\textsuperscript{+2} as a deacylation catalyst \citep{Kroll1952-ci, Schofield1968-qn} to shorten incubation times.
 
 In our experience, as well as others \citep{Shigematsu2017-tv}, splint assisted ligation is highly efficient compared to blunt-end ligation.
-In contrast, \cite{Behrens2021-gb} achieved high efficiency blunt-end ligation, allowing inclusion of non-mature tRNAs without the normal CCA-end. While the reason for this discrepancy is not obvious, our results highlight the difficulty of using blunt-end ligations for tRNA-Seq and provide an alternative approach of splint assisted ligation to help mitigate those issues. One potential issue with this splint assisted approach is that tRNA\textsuperscript{His} sequence is not ideal for splint assisted ligation due to the additional G added to the 5′ end \citep{Heinemann2012-hq} and thus shielding the discriminator base from base pairing with the splint.
+In contrast, \cite{Behrens2021-gb} achieved high efficiency blunt-end ligation, allowing inclusion of non-mature tRNAs without the normal CCA-end.
+While the reason for this discrepancy is not obvious, our results highlight the difficulty of using blunt-end ligations for tRNA-Seq and provide an alternative approach of splint assisted ligation to help mitigate those issues.
+One potential issue with our approach is that tRNA\textsuperscript{His} sequence is not ideal for splint assisted ligation due to the additional G added to the 5′ end \citep{Heinemann2012-hq} and thus shielding the discriminator base from base pairing with the splint.
 Despite this, reads mapping to tRNA\textsuperscript{His} are surprisingly abundant and both CC and CCA-ending.
 In future versions of this method, we see the possibility of combining our optimizations with the on-bead sample processing developed by \cite{Watkins2022-er} to eliminate gel purification steps and achieve faster and cleaner processing.
 
@@ -514,7 +514,7 @@ We solve the tRNA alignment problem by non-heuristic alignment which is guarante
 This is computationally demanding but nevertheless quite possible on the small number of tRNA transcript references.
 A more challenging problem is the application of reference masking to improve the annotation accuracy.
 We used unique codon annotation as the objective in our optimization of reference masking, but this is a surrogate as the ground truth cannot be determined.
-Further improvements could be achieved by simulation of tRNA reads including realistic RT misincorporations, indels and fall off and optimizing alignment to this simulated ground truth.
+Further improvements could be achieved by simulation of tRNA reads including realistic RT misincorporations, indels and falloff and optimizing alignment to this simulated ground truth.
 Additionally, annotation performance could be increased further using tools, such as a as hidden Markov models (HMMs), to model complex phenomena such as interaction between modifications \citep{Wang2021-fc, Hernandez-Alias2022-ch}.
 
 In summary, we report a robust charge tRNA-Seq method that has been thoroughly tested and validated as precise and accurate for charge measurements.
