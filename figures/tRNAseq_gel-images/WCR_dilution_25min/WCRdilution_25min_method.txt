@@ -1,5 +1,0 @@
-
-Whole cell RNA (no pretreatment, dephosphorylation or anything) run on 10% denaturing gel for 25 min at 300V (STOPPED A LITTLE TOO EARLY, BETTER TO STOP AT 35 MIN).
-Doing 2-fold dilution starting at 5 ug per well.
-Gel loading from left to right:
-Ladder, 5ug, 2.5ug, ..., Ladder
