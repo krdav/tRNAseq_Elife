@@ -41,11 +41,14 @@ breaklines=true
 \maketitle
 
 \begin{abstract}
-tRNA aminoacylation levels are difficult to quantify with current methods having either low throughput or low precision and/or accuracy.
-We present an optimized charge tRNA-Seq method combining new and previously described developments to generate precise and accurate tRNA charge measurements.
-We show several controls and tests for validation of quantitation and provide an end-to-end method that scales to hundreds of samples including software for data processing.
-Our method also supports using the charge tRNA-Seq data to determine relative expression levels and reverse transcription misincorporations to infer RNA modifications.
+Current methods to quantify the fraction of aminoacylated tRNAs, also known as the tRNA charge, are limited by issues with either low throughput, precision, and/or accuracy.
+Here, we present an optimized charge tRNA-Seq method that combines previous developments with newly described approaches to establish a protocol for precise and accurate tRNA charge measurements.
+We verify that this protocol provides robust quantification of tRNA aminoacylation and we provide an end-to-end method that scales to hundreds of samples including software for data processing.
+Additionally, we show that this method supports measurements of relative tRNA expression levels and can be used to infer tRNA modifications through reverse transcription misincorporations, thereby supporting multipurpose applications in tRNA biology.
 \end{abstract}
+
+
+
 
 
 
@@ -815,9 +818,8 @@ A point estimate for the three parameters were found using all timepoints and re
 %KD Fill this in
 %Plots with Seaborn.
 %Boxplots are plotting with quartile boxes and whiskers covering the remainder of datapoints within a maximum of 1.5 times the inter-quartile range.
-Raw data and code for processing uploaded to:
-[some data dump link]
-
+Raw data and code for processing and recreating plots were uploaded to Zenodo:
+\url{https://doi.org/10.5281/zenodo.8200907}
 Python code available on Github:
 \url{github.com/krdav/tRNA-charge-seq}
 
