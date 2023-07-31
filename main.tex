@@ -560,7 +560,7 @@ After the RT-PCR incubation, the remainder of the sample processing follows the 
 
 
 \subsection{Charge tRNA-Seq method optimization}
-Optimization of the oxidation, cleavage and dephosphorylation, collectively called the Whitfeld reaction \cite{Whitfeld1953-ca}, was done using oligos E.coli tRNA-Lys-UUU-CCA and E.coli tRNA-Lys-UUU-CC (Supplementary file 1; anticodon omitted from name below).
+Optimization of the oxidation, cleavage and dephosphorylation, collectively called the Whitfeld reaction \citep{Whitfeld1953-ca}, was done using oligos E.coli tRNA-Lys-UUU-CCA and E.coli tRNA-Lys-UUU-CC (Supplementary file 1; anticodon omitted from name below).
 Both oligos were gel purified on a 10\% Urea-TBE gel to resolve full length from truncated oligos.
 First, the time required for oxidation was tested, following the same quenching and borax buffered high pH induced cleavage used by \cite{Evans2017-st}.
 For this, samples of 35 ng E.coli tRNA-Lys-CCA were prepared in 10 μL 100 mM sodium acetate (pH=4.5) and used as substrate for the Whitfeld reaction conversion to E.coli tRNA-Lys-CC.
@@ -569,7 +569,7 @@ Also using this approach, we tested using lysine induced cleavage \citep{Khym196
 The cleavage step also includes deacylation and to verify the completeness of this, four samples of 10 μg whole cell RNA were prepared in 10 μL 100 mM sodium acetate (pH=4.5) and incubated with 50 μL 1 M lysine (pH=8) at 45°C for 5, 30, 90 and 270 min.
 Then, 1 mL ice cold 80\% isopropanol containing 100 mM sodium acetate (pH=4.5) was added, RNA was precipitated, washed twice, dried and reconstituted in 10 μL 100 mM sodium acetate (pH=4.5).
 These deacylated samples were then submitted to the charge tRNA-Seq sample processing described below, except using lysine at pH=9.5 and 90 min incubation at 45°C to ensure complete deacylation.
-Following this, incubation time in lysine (pH=8) was chosen to be 4 h.
+From this, incubation time in lysine (pH=8) was chosen to be 4 h.
 To compare the RNA integrity after cleavage with lysine vs. borax, samples of 10 μg whole cell RNA were prepared in 10 μL 100 mM sodium acetate (pH=4.5) and added 50 μL of either 1 M lysine (pH=8) or 100 mM sodium borate (pH=9.5).
 Tubes were incubated 45°C and samples taken at time 0, 1.5, 4 and 8 h.
 RNA integrity was determined using TapeStation (high sensitivity RNA) and 10\% Urea-TBE gel .
@@ -607,8 +607,8 @@ RNA was then purified using the Monarch RNA Cleanup Kit (50 μg), eluting with 3
 A 6 μL sample was then denatured by mixing with 2x urea loading buffer (8 M urea, 30 mM sodium acetate, 2 mM EDTA, 0.02 \% (w/v) bromophenol blue and xylene cyanol, pH adjusted to 4.7-5) and incubating 2 min at 90°C.
 The tRNA fraction was then isolated on a 10\% Urea-TBE gel using SYBRGold staining and a blue light transilluminator for visualization.
 Gel elution was done by crushing the gel with a disposable pestle, adding 200 μL gel elution buffer and 1 μL SuperaseIn, then snap freezing in liquid nitrogen and incubating at 65°C for 5 mins with shaking.
-The gel slurry was filtered through a Spin-X filter following tRNA purification using the Oligo Clean \& Concentrator kit.
-The concentration of purified tRNA as measured, then it was annealed in  NEBuffer 2 by heating to 94°C for 2 min followed by cooling 1°C/s to 4°C.
+This gel slurry was filtered through a Spin-X filter followed by tRNA purification using the Oligo Clean \& Concentrator kit.
+The concentration of purified tRNA was measured, then it was annealed in  NEBuffer 2 by heating to 94°C for 2 min followed by cooling 1°C/s to 4°C.
 35 ng of the annealed tRNA was transferred to a PCR tube and to this was added 20 pmol annealed adapter:splint partial duplex, 1 μL 10x NEBuffer 2, 2 μL 10x T4 RNA ligase buffer, 4 μL 50\% PEG-8000, 1 μL SuperaseIn and 1 μL T4 RNA ligase 2.
 The annealed adapter:splint partial duplex was made by making an equimolar mix of the CCA and CC splint oligos, then using this to make an equimolar mix with the adapter oligo and annealing this in NEBuffer 2 by heating to 94°C for 2 min followed by cooling 0.3°C/s to 4°C.
 Each ligation reaction was adjusted to 20 μL with water, mixed and incubated 1 h at 37°C followed by 24 h at 4°C and heat inactivation at 80°C for 5 min.
@@ -663,9 +663,9 @@ The design of adapters used for splint assisted ligation was influenced by \cite
 First, we do not use ribonucleotides at any positions in our adapters or splint oligos.
 This affords us higher quality oligos due to the higher coupling efficiency of deoxyribose during oligo synthesis as well as robustness against hydrolysis of DNA compared to RNA.
 A primary reason to use ribonucleotides in the adapters and splint oligos is to increase ligation efficiency; however, we achieved $\sim$100\% ligation efficiency on isolated human tRNA using our design without ribonucleotides (\FIGSUPP[Fig2]{f2S4}, panel A).
-Second, instead of ligating the adapter to the 3′ and the splint to the 5′ of the tRNA, we only ligate the adapter and block the splint from ligation with a 3′ C3 spacer, as well as dephosphorylating the 5′ of the tRNA.
+Second, instead of ligating the adapter to the 3′ and the splint to the 5′ of the tRNA, we only ligate the adapter and block the splint from ligating using a 3′ C3 spacer, as well as dephosphorylating the 5′ of the tRNA.
 Similar to the blunt-end ligation adapters, a 3′ dideoxycytidine is included on all adapters to block self-ligation and concatemer formation.
-Third, we use two different lengths splint oligos with overhang compatible to NCCA and NCC-ending tRNA.
+Third, we use two different lengths splint oligos with overhang compatible with NCCA and NCC-ending tRNA.
 Fourth, our adapters vary in length by the size of their barcodes, from 5 to 8 nt.
 This is to offset the sequencing reading frame of read P2 (P7) as it progresses into the 3′ end of the tRNA, thus increasing the sequence diversity and base calling quality.
 
@@ -710,7 +710,7 @@ A read was assigned the annotation with the highest alignment score and upon tie
 When reporting data on the transcript level, a unique annotation was required for filtering, when reporting at the codon level multiple annotations were allowed but a unique anticodon was required and similarly for data on the amino acid level.
 Relative expression levels were calculated as reads per million (RPM) with a count correction such that reads with identical sequence and UMI were only counted once.
 Charge was calculated using uncorrected counts as this is a relative number.
-Mismatches, gaps and RT truncations were extracted by redoing the Smith-Waterman alignment between the read and its unmasked transcript annotation using a match score of 1, a mismatch score of -1, a gap opening score of -2 and a gap extension score of -1.
+Mismatches, gaps and RT truncations were extracted by redoing the Smith-Waterman alignment between the read and its unmasked transcript annotation using a match score of 1, a mismatch score of -2, a gap opening score of -3 and a gap extension score of -2.
 Using this new alignment, mismatched, gaps and the index at the end of the alignment were extracted.
 Then for each transcript the fraction of reads having mismatches and gaps at a given position was calculated and the percentage drop in coverage at each position, referred to here as RT stops.
 For both mutation, gap fractions and RT stops the UMI corrected read count was used.
@@ -728,14 +728,14 @@ Position-wise mismatch frequency was found as described above and filtered using
 These were then turned into a masked reference using four tuning parameters for picking the positions to mask.
 \verb|unique_anno|: Only count reads with a unique transcript annotation.
 \verb|min_mut_freq|: The minimum mismatch frequency to trigger masking.
-\verb|frac_max_score|: The minimum fraction of the maximum alignment score between two reference sequences to expand the masked positions in one reference to another, requiring both unmasked positions to have the same nucleotide.
+\verb|frac_max_score|: The minimum fraction of the maximum alignment score between two reference sequences to expand the masked positions in one reference to another, requiring both positions to have the same nucleotide and the acceptor position to have less than 100 observations.
 The purpose is for an abundant transcript to donate its masking to a highly similar, but less abundant, transcript likely having the same RNA modifications.
 \verb|iteration|: The number of masking iterations to perform.
 When changing the reference for alignment by masking the annotations can change, thus changing the position-wise mismatch frequency and the resulting reference masking.
-Running multiple iterations of reference masking stabilizes the change.
+Running multiple iterations of reference masking stabilizes this change.
 
 To find the optimal combination of tuning parameters a grid search was performed, testing all combinations of parameters shown in \FIG{Fig3}, panel A.
-The objective for the search is to minimize the percentage of reads assigned to transcripts with multiple anticodons.
+The objective of the search is to minimize the percentage of reads assigned to transcripts with multiple anticodons.
 Alternatively, the objective could be to minimize the percentage of reads assigned to multiple transcripts; however, this objective can lead the tuning parameters towards masking only a single transcript out of a family of highly similar transcripts, resulting in assignment of unique annotations to truncated reads, which cannot truly distinguish between transcripts of high similarity.
 This problem is less concerning using minimization of multiple anticodons since most families of highly similar transcripts have identical anticodons.
 
@@ -781,7 +781,9 @@ T^{AB}_i(p) = \frac{p T^A_i + (100-p) T^B_i F_i}{p + (100-p) F_i}
 In the above, only $F_i$ is unknown.
 The titration was made with 8 different mixing ratios, two of which are used to calculating $T^A_i$ and $T^B_i$, thus leaving 6 mixing ratios, each with several barcode replicates, to fit $F_i$.
 Fitting was performed by minimizing the sum of squared differences between predicted and measured charge using the Broyden–Fletcher–Goldfarb–Shanno (BFGS) algorithm with upper and lower bound constraints of 4 and 0.25.
-Then using \EQ{pred_charge} the differences between predicted and measured charge was found and broken down by adapter barcode to investigate ligation bias.
+Then \EQ{pred_charge} was used to calculate the predicted charge and the difference to the measured charge was found and broken down by adapter barcode to investigate ligation bias.
+
+
 
 
 
@@ -793,7 +795,7 @@ Time from start of incubation was tracked and samples drawn at the following tim
 For the 40 h timepoint, two samples were drawn: one standard and one receiving sham (NaCl) oxidation.
 Sample were taken by removing 8 μL, mixing it in a prepared tube with 2 μL ice cold 500 mM sodium acetate (pH=4.5) and storing it at -80°C until all timepoints were collected.
 This was repeated four times to generate independent replicates.
-Then samples were processed similar to the charge tRNA-Seq protocol described above, but with the three 5 min incubation times during oxidation and quenching increased to 30 min each due to the lower periodate solubility in the presence of potassium ions.
+Then samples were processed similar to the charge tRNA-Seq protocol described above, but with the three 5 min incubation times during periodate oxidation and quenching increased to 30 min each due to the lower periodate solubility in the presence of potassium ions.
 
 After read processing and alignment, data integrity was verified by checking that the E.coli tRNA spike-in control and the non-oxidized 40 h samples conformed to expectations.
 RNA integrity at the end of the experiment was also verified on a gel (\FIGSUPP[Fig6]{f6S1}, panel A).
@@ -810,9 +812,8 @@ A point estimate for the three parameters were found using all timepoints and re
 
 \subsection{Data availability}
 %KD Fill this in
-Plots with Seaborn.
-Boxplots are plotting with quartile boxes and whiskers covering the remainder of datapoints within a maximum of 1.5 times the inter-quartile range.
-
+%Plots with Seaborn.
+%Boxplots are plotting with quartile boxes and whiskers covering the remainder of datapoints within a maximum of 1.5 times the inter-quartile range.
 Raw data and code for processing uploaded to:
 [some data dump link]
 
@@ -822,7 +823,7 @@ Python code available on Github:
 
 
 \section{Acknowledgments}
-We would like to acknowledge Arvind Rasi Subramaniam for suggesting we setup charge tRNA-seq, Alicia Darnell for sharing relevant samples and data and David Sokolov for help with early method optimization.
+We would like to acknowledge Arvind Rasi Subramaniam for suggesting we setup charge tRNA-Seq, Alicia Darnell for sharing relevant samples and data and David Sokolov for help with early method optimization.
 
 
 
