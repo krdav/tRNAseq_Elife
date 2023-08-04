@@ -229,17 +229,17 @@ This side product causes problems in the later purification step.
 
 \figsupp[Measurement bias in charge tRNA-Seq using blunt-end ligation.]{
 Measurement bias in charge tRNA-Seq using blunt-end ligation.
-\textbf{(A)} Measured charge of a E.coli tRNA-Lys oligo control spiked into samples processed with four different pre-adenylated adapters using the method described by \cite{Behrens2021-gb}.
+\textbf{(A)} Measured charge of a E.coli tRNA-Lys oligo control spiked into samples processed with four different pre-adenylated adapters\KDadd{.}\KDdel{ using the method described by }\KDdel{\citeS{Behrens2021-gb}}.
 The control was made using a mix of 50\% E.coli tRNA-Lys-CCA and 50\% E.coli tRNA-Lys-CC and thus simulating 50\% charge.
 Each dot represents a single charge tRNA-Seq sample.
-\textbf{(B)} Distribution of charge differences at the transcript level among samples with two barcode replicates, comparing adapters l1 vs. l2, l2 vs. l3 and l3 vs. l4.
+\textbf{(B)} Distribution of charge differences at the transcript level among samples with two barcode replicates, comparing adapters A1 vs. A2, A2 vs. A3 and A3 vs. A4.
 Deviation is reported as percentage point differences and the kernel density estimate (KDE) is overlaid.
 }{\fbox{\includegraphics[width=0.8\linewidth]{Fig2S2.pdf}}}\label{figsupp:f2S2}
 
 \figsupp[tRNA-adapter blunt-end ligation attempted optimization.]{
 Despite optimization attempts, high ligation efficiency could not be achieved for blunt-end ligation. 
 \textbf{(A)} Effect of incubation temperature, time and addition of a phosphatase (rSAP).
-Using deacylated and gel purified human tRNA as substrate and pre-adenylated l3N as adapter, otherwise following the method in \cite{Behrens2021-gb}.
+Using deacylated and gel purified human tRNA as substrate and pre-adenylated l3N as adapter, otherwise following the \KDadd{blunt-end ligation method described in the methods section}\KDdel{method in }\KDdel{\citeS{Behrens2021-gb}}.
 \textbf{(B)} Effect of additives and higher adapter concentration.
 Using deacylated and gel purified human tRNA as substrate, pre-adenylated l2N as adapter and 4°C, 24 h incubation.
 An irrelevant well has been crossed out to avoid image splicing.
@@ -564,7 +564,7 @@ A 20 μL sample was move to a new tube and submitted to periodate oxidation and 
 After purification and reconstitution in water, 8 ng of a 50/50 mix of E.coli tRNA-Lys-CCA and E.coli tRNA-Lys-CC oligo was added as a CCA/CC ratio control.
 The true ratio of these oligos is hard to control because each contain a different fraction of truncated oligos that will not contribute to the number of mapped reads; however, the sequenced CCA/CC ratio is an important measure of the sample to sample variance.
 Then the RNA was 3′ dephosphorylated using T4 PNK and after another round of RNA purification the tRNA fraction was isolated on a 10\% Urea-TBE gel using SYBRGold staining and a blue light transilluminator for visualization.
-After gel elution and reconstitution in water, 100 ng tRNA was transferred to a PCR tube and ligated to 20 pmol pre-adenylated adapter (l1, l2, l3 or l4) in 25\% PEG-8000, 1xT4 RNA ligase buffer using 1 μL T4 RNA ligase 2 (truncated KQ) and 1 μL SuperaseIn.
+After gel elution and reconstitution in water, 100 ng tRNA was transferred to a PCR tube and ligated to 20 pmol pre-adenylated adapter (A1, A2, A3 or A4) in 25\% PEG-8000, 1xT4 RNA ligase buffer using 1 μL T4 RNA ligase 2 (truncated KQ) and 1 μL SuperaseIn.
 Prior to ligation adapters were adenylated using the NEB 5′ DNA Adenylation Kit following the manufacturers instruction.
 After purification, adapter adenylation was verified using differential gel migration.
 Ligation reactions were incubated 6 h at 25°C, pooled by adapter barcode and purified, followed by isolation of the ligation product from unligated tRNA using a 10\% Urea-TBE gel.
@@ -671,8 +671,8 @@ The 3′ phosphorylation protects from periodate oxidation and thus adding it be
 
 
 \subsection{Oligo design}
-For adapters used for blunt-end ligation the design was similar to \cite{McGlincy2017-ro} and \cite{Behrens2021-gb}, with a 5′ phosphorylation to enable adenylation and a 3′ dideoxycytidine to prevent self-ligation and concatemer formation.
-For adapters l1, l2, l3 and l4 the barcode sequence was 8 nt. starting at the 5′, for adapters l1N, l2N and l3N the barcode sequence was truncated to 5 nt. to make space for a preceding six random nucleotides to diversify the sequence context engaged in ligation.
+For adapters used for blunt-end ligation the design was similar to \cite{McGlincy2017-ro}\KDdel{ and \citeS{Behrens2021-gb}}, with a 5′ phosphorylation to enable adenylation and a 3′ dideoxycytidine to prevent self-ligation and concatemer formation.
+For adapters A1, A2, A3 and A4 the barcode sequence was 8 nt. starting at the 5′, for adapters l1N, l2N and l3N the barcode sequence was truncated to 5 nt. to make space for a preceding six random nucleotides to diversify the sequence context engaged in ligation.
 
 The design of adapters used for splint assisted ligation was influenced by \cite{Smith2015-ht} and \cite{Shigematsu2017-tv} but with several important differences listed below.
 First, we do not use ribonucleotides at any positions in our adapters or splint oligos.
@@ -684,7 +684,7 @@ Third, we use two different lengths splint oligos with overhang compatible with 
 Fourth, our adapters vary in length by the size of their barcodes, from 5 to 8 nt.
 This is to offset the sequencing reading frame of read P2 (P7) as it progresses into the 3′ end of the tRNA, thus increasing the sequence diversity and base calling quality.
 
-The RT-PCR oligo was designed in a similar way as \cite{McGlincy2017-ro} and \cite{Behrens2021-gb} with a 5′ phosphorylation for subsequent circular ligation of the cDNA and an 18-atom hexa-ethyleneglycol spacer (iSp18) to terminate the polymerase extension and avoiding rolling-circle amplification during the PCR to attach Illumina P7/P5 sequences.
+The RT-PCR oligo was designed in a similar way as \cite{McGlincy2017-ro}\KDdel{ and \citeS{Behrens2021-gb}} with a 5′ phosphorylation for subsequent circular ligation of the cDNA and an 18-atom hexa-ethyleneglycol spacer (iSp18) to terminate the polymerase extension and avoiding rolling-circle amplification during the PCR to attach Illumina P7/P5 sequences.
 The RT oligo has a random purine base on the 5′ to increase circular ligation efficiency.
 We added an additional 9 random nucleotides following this purine to increase the diversity of the sequence engaged in circular ligation.
 These random nucleotides also provide a unique molecular identifier (UMI) with 524288 possible sequences that enable collapsing of reads derived from the same tRNA molecule.
