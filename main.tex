@@ -20,6 +20,17 @@ breaklines=true
 }
 \DeclareSIUnit\Molar{M}
 
+
+% For tracing addition/deletion.
+% Remove before submission.
+\usepackage[normalem]{ulem}
+\newcommand{\KDdel}[1]{\sout{#1}}
+\newcommand{\KDadd}[1]{\textbf{\color{red}{#1}}}
+% Citations strike through is special case:
+\newcommand{\citeS}[2][]{\mbox{\cite[#1]{#2}}}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% ARTICLE SETUP
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -137,12 +148,13 @@ Additionally, ethylene glycol reacts fast and can be added in high molar excess 
 
 
 
-\subsection{Blunt-end adapter ligation introduces charge measurement bias}
+\subsection{Blunt-end adapter ligation \KDadd{can} introduce\KDdel{s} charge measurement bias}
 Following the Whitfeld reaction tRNAs must be sequenced in order to measure aminoacylation levels.
 To achieve this with enough throughout, we chose to ligate the samples to barcoded adapters to enable sample pooling before the RT-PCR step \citep{McGlincy2017-ro}.
-We followed the protocol of \cite{Behrens2021-gb}, with minor modifications to the oligo design, but found that the measured charge was highly variable between replicates and that the measurements were biased by the barcode identity to an unacceptable degree (\FIGSUPP[Fig2]{f2S2}).
+\KDdel{We followed the protocol of }\KDdel{\citeS{Behrens2021-gb}}\KDdel{, with minor modifications to the oligo design, but}
+\KDadd{However, we} found that the measured charge was highly variable between replicates and that the measurements were biased by the barcode identity to an unacceptable degree (\FIGSUPP[Fig2]{f2S2}).
 We hypothesized that this is due to ligation bias commonly encountered in blunt-end ligation \citep{Fuchs2015-nb, Zhuang2012-nu, Jayaprakash2011-ab} and reasoned that increasing ligation efficiency could mitigate the bias.
-However, our attempts to improved ligation efficiency failed as we were never able to reach more than $\sim$50\% ligation of the input tRNA (\FIGSUPP[Fig2]{f2S3}).
+\KDdel{However, o}\KDadd{O}ur attempts to improved ligation efficiency failed as we were never able to reach more than $\sim$50\% ligation of the input tRNA (\FIGSUPP[Fig2]{f2S3})\KDadd{; however, we note that others have reported high blunt-end ligation efficiency using a special adapter design \citep{Behrens2021-gb}}.
 
 
 
@@ -293,9 +305,8 @@ However, while these are ultra-fast and widely used for RNA-Seq, Bowtie1 does no
 We reasoned that many users of tRNA-Seq would rather sacrifice computational speed than mapping accuracy and therefore we apply a full all-against-all local alignment using the Smith-Waterman algorithm to provide the guaranteed best alignment(s).
 This is possible because the set of tRNA transcripts in a typical species is only a few hundred sequences and thus we are able to align 1e8 tRNA-Seq reads to a human tRNA reference with 457 sequences in less than 8 h on an Intel Core i7-8700K Processor (12 threads, 4.70 GHz).
 
-In addition to the choice of read alignment method, \cite{Behrens2021-gb} found that using a SNP-tolerant alignment substantially improved mapping when modified positions causing RT misincorporations were defined as SNPs.
-We adapted this approach by masking modified positions in the reference to "N"; however, we cannot rely solely on annotated modifications because these are incomplete and their effect on RT misincorporation rates is hard to predict.
-Instead, we used the misincorporation information embedded in the sequencing data, extracting it after a first pass alignment and then using mismatch frequencies to pick positions for reference masking.
+In addition to the choice of read alignment method, \cite{Behrens2021-gb} found that using a SNP-tolerant alignment substantially improved mapping when modified positions causing RT misincorporations were defined as SNPs\KDadd{ and that new modifications could be inferred from the data}.
+We adapted this approach by masking modified positions in the reference to "N"\KDdel{; however, we cannot rely solely on annotated modifications because these are incomplete and their effect on RT misincorporation rates is hard to predict. Instead, we used}\KDadd{ while relying solely on} the misincorporation information embedded in the sequencing data\KDdel{, extracting it after}\KDadd{. We extracted this information using} a first pass alignment and then \KDdel{using}\KDadd{used} mismatch frequencies to pick positions for reference masking.
 As such, this is an iterative process because the alignment will change slightly with a new masked reference.
 In addition to the number of iterations, masking is only applied on positions with a minimum mismatch frequency (\verb|min_mut_freq|) and frequency is calculated either including or excluding reads with multiple transcript alignments (\verb|unique_anno_float|).
 Furthermore, a parameter (\verb|frac_max_score|) controls the sharing of a mask to  highly similar transcripts.
