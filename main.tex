@@ -154,7 +154,7 @@ To achieve this with enough throughout, we chose to ligate the samples to barcod
 \KDdel{We followed the protocol of }\KDdel{\citeS{Behrens2021-gb}}\KDdel{, with minor modifications to the oligo design, but}
 \KDadd{However, we} found that the measured charge was highly variable between replicates and that the measurements were biased by the barcode identity to an unacceptable degree (\FIGSUPP[Fig2]{f2S2}).
 We hypothesized that this is due to ligation bias commonly encountered in blunt-end ligation \citep{Fuchs2015-nb, Zhuang2012-nu, Jayaprakash2011-ab} and reasoned that increasing ligation efficiency could mitigate the bias.
-\KDdel{However, o}\KDadd{O}ur attempts to improved ligation efficiency failed as we were never able to reach more than $\sim$50\% ligation of the input tRNA (\FIGSUPP[Fig2]{f2S3})\KDadd{; however, we note that others have reported high blunt-end ligation efficiency using a special adapter design \citep{Behrens2021-gb}}.
+\KDdel{However, o}\KDadd{O}ur attempts to improved ligation efficiency failed as we were never able to reach more than $\sim$50\% ligation of the input tRNA (\FIGSUPP[Fig2]{f2S3})\KDadd{; however, we note that others have reported high blunt-end ligation efficiency using an optimized adapter design \citep{Behrens2021-gb}}.
 
 
 
@@ -305,7 +305,7 @@ However, while these are ultra-fast and widely used for RNA-Seq, Bowtie1 does no
 We reasoned that many users of tRNA-Seq would rather sacrifice computational speed than mapping accuracy and therefore we apply a full all-against-all local alignment using the Smith-Waterman algorithm to provide the guaranteed best alignment(s).
 This is possible because the set of tRNA transcripts in a typical species is only a few hundred sequences and thus we are able to align 1e8 tRNA-Seq reads to a human tRNA reference with 457 sequences in less than 8 h on an Intel Core i7-8700K Processor (12 threads, 4.70 GHz).
 
-In addition to the choice of read alignment method, \cite{Behrens2021-gb} found that using a SNP-tolerant alignment substantially improved mapping when modified positions causing RT misincorporations were defined as SNPs\KDadd{ and that new modifications could be inferred from the data}.
+In addition to the choice of read alignment method, \cite{Behrens2021-gb} found that using a SNP-tolerant alignment substantially improved mapping when modified positions causing RT misincorporations were defined as SNPs\KDadd{ and that new modifications could be inferred from the data and used to further improve the alignment}.
 We adapted this approach by masking modified positions in the reference to "N"\KDdel{; however, we cannot rely solely on annotated modifications because these are incomplete and their effect on RT misincorporation rates is hard to predict. Instead, we used}\KDadd{ while relying solely on} the misincorporation information embedded in the sequencing data\KDdel{, extracting it after}\KDadd{. We extracted this information using} a first pass alignment and then \KDdel{using}\KDadd{used} mismatch frequencies to pick positions for reference masking.
 As such, this is an iterative process because the alignment will change slightly with a new masked reference.
 In addition to the number of iterations, masking is only applied on positions with a minimum mismatch frequency (\verb|min_mut_freq|) and frequency is calculated either including or excluding reads with multiple transcript alignments (\verb|unique_anno_float|).
@@ -520,7 +520,7 @@ We later found that ornithine is an even better inducer of cleavage \citep{Uziel
 
 In our experience, as well as others \citep{Shigematsu2017-tv}, splint assisted ligation is highly efficient compared to blunt-end ligation.
 In contrast, \cite{Behrens2021-gb} achieved high efficiency blunt-end ligation, allowing inclusion of non-mature tRNAs without the normal CCA-end.
-While the reason for this discrepancy is not obvious, our results highlight the difficulty of using blunt-end ligations for tRNA-Seq and provide an alternative approach of splint assisted ligation to help mitigate those issues.
+\KDdel{While the reason for this discrepancy is not obvious}\KDadd{Nevertheless}, our results highlight the difficulty of using blunt-end ligations for tRNA-Seq and provide an alternative approach of splint assisted ligation to help mitigate those issues.
 One potential issue with our approach is that the tRNA\textsuperscript{His} sequence is not ideal for splint assisted ligation due to the additional G added to the 5′ end \citep{Heinemann2012-hq} and thus shielding the discriminator base from base pairing with the splint.
 Despite this, reads mapping to tRNA\textsuperscript{His} are surprisingly abundant and both CC and CCA-ending.
 In future versions of this method, we see the possibility of combining our optimizations with the on-bead sample processing developed by \cite{Watkins2022-er} to eliminate gel purification steps and achieve faster and cleaner processing.
