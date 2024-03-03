@@ -168,7 +168,7 @@ This unligated tRNA is of unknown origin and largely refractory to further ligat
 
 \subsection{Combining optimizations results in a robust method for measuring tRNA charge}
 After combining the optimized Whitfeld reaction with subsequent splint assisted ligation, we used the RT-PCR method proposed by \cite{Behrens2021-gb} using the TGIRT polymerase \citep{Mohr2013-hu} to maximize the readthrough of modified nucleotides.
-We later found that similar readthrough could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S6}).
+We later found that similar readthrough could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S6}), albeit with worse mapping statistics (Appendix 1 - \TABLE{map_stats}).
 Furthermore, while expression level measurements are highly sensitive to the choice of polymerase, charge measurements are not (\FIGSUPP[Fig2]{f2S7}).
 The RT-PCR was primed by an oligo containing a 10 nt. unique molecular identifier (UMI) to diversify the sequence context for the subsequent circular ligation and allow collapsing of reads derived from the same tRNA molecule during data analysis.
 A final PCR was performed to attach Illumina barcodes to pool samples for multiplex sequencing.
@@ -312,8 +312,10 @@ In right text box, the average charge and the average replicate standard deviati
 \textbf{(B)} tRNA-Seq DNA library reannealing is inhibited by high salt concentrations.
 A gel purified charge tRNA-Seq DNA library was resuspended in TBE buffer and incubated 30 min at different temperatures with or without 1 M NaCl.
 }{\fbox{\includegraphics[width=0.5\linewidth]{Fig2S10.pdf}}}\label{figsupp:f2S10}
-
 \end{figure}
+
+
+
 
 
  
@@ -863,4 +865,28 @@ L.B.S. acknowledges support from the National Institute of General Medical Scien
 
 
 \bibliography{main}
+
+
+\appendix
+\addtocounter{appendix}{1}
+\label{first:app}
+\section{Appendix 1: Tables}
+
+\begin{table}[h!]
+\begin{tabular}{lllllll}
+              & \multicolumn{2}{c}{\textbf{Mapping success (\%)}} & \multicolumn{2}{c}{\textbf{Multiple annotations (\%)}} & \multicolumn{2}{c}{\textbf{Multiple codons (\%)}} \\
+              & TGIRT                   & Maxima                  & TGIRT                      & Maxima                    & TGIRT                   & Maxima                  \\ \cline{2-7} 
+              & 96.8                    & 95.2                    & 27.5                       & 35.5                      & 3.4                     & 6.1                     \\ \cline{2-7} 
+              & 93.8                    & 92.0                    & 27.5                       & 35.8                      & 3.5                     & 6.2                     \\ \cline{2-7} 
+              & 96.8                    & 95.2                    & 27.7                       & 35.4                      & 3.5                     & 6.0                     \\ \cline{2-7} 
+              & 92.3                    & 90.4                    & 27.3                       & 35.6                      & 3.6                     & 6.3                     \\ \cline{2-7} 
+              & 95.3                    & 93.6                    & 27.5                       & 35.7                      & 3.5                     & 6.3                     \\ \cline{2-7} 
+              & 93.8                    & 92.0                    & 27.6                       & 36.0                      & 3.6                     & 6.3                     \\ \cline{2-7} 
+              & 92.0                    & 90.3                    & 27.8                       & 36.2                      & 3.6                     & 6.6                     \\ \cline{2-7} 
+\textbf{Mean} & \textbf{94.4}           & \textbf{92.7}           & \textbf{27.6}              & \textbf{35.8}             & \textbf{3.5}            & \textbf{6.3}           
+\end{tabular}
+\captionof{table}{TGIRT vs. Maxima read mapping statistics. Each row is an individual RNA sample, barcoded, pooled and used for RT-PCR template with both TGIRT-III and Maxima.}
+\label{tab:map_stats}
+\end{table}
+
 \end{document}
