@@ -168,19 +168,26 @@ This unligated tRNA is of unknown origin and largely refractory to further ligat
 
 \subsection{Combining optimizations results in a robust method for measuring tRNA charge}
 After combining the optimized Whitfeld reaction with subsequent splint assisted ligation, we used the RT-PCR method proposed by \cite{Behrens2021-gb} using the TGIRT polymerase \citep{Mohr2013-hu} to maximize the readthrough of modified nucleotides.
-We later found that almost as high readthrough could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S6}).
+We later found that similar readthrough could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S6}).
+Furthermore, while expression level measurements are highly sensitive to the choice of polymerase, charge measurements are not (\FIGSUPP[Fig2]{f2S7}).
 The RT-PCR was primed by an oligo containing a 10 nt. unique molecular identifier (UMI) to diversify the sequence context for the subsequent circular ligation and allow collapsing of reads derived from the same tRNA molecule during data analysis.
 A final PCR was performed to attach Illumina barcodes to pool samples for multiplex sequencing.
 
-Using this as our final charge tRNA-Seq method, we use the E.coli tRNA-Lys-CCA oligo as a spike-in control before the Whitfeld reaction to validate near complete conversion to its CC-end product, suggesting efficient periodate oxidation (\FIGSUPP[Fig2]{f2S7}, panel A).
-Similarly, we validated the completeness of deacylation using deacylated controls and the integrity of the tRNA CCA-end using non-oxidized controls (\FIGSUPP[Fig2]{f2S7}, panel B and C).
+Using this as our final charge tRNA-Seq method, we use the E.coli tRNA-Lys-CCA oligo as a spike-in control before the Whitfeld reaction to validate near complete conversion to its CC-end product, suggesting efficient periodate oxidation (\FIGSUPP[Fig2]{f2S8}, panel A).
+Similarly, we validated the completeness of deacylation using deacylated controls and the integrity of the tRNA CCA-end using non-oxidized controls (\FIGSUPP[Fig2]{f2S8}, panel B and C).
 We then measured the baseline charge of H1299 cells grown in DMEM using four replicates, observing excellent repeatability and high charge for most codons (\FIG{Fig2}, panel F).
-Direct comparison to other methods are complicated by the use of different cell lines, RNA extraction and processing; nevertheless, our charge measurements for H1299 cells at baseline are generally a few percentage points higher than those by \cite{Evans2017-st} for 293T cells (\FIGSUPP[Fig2]{f2S8}).
+Direct comparison to other methods are complicated by the use of different cell lines, RNA extraction and processing; nevertheless, our charge measurements for H1299 cells at baseline are generally a few percentage points higher than those by \cite{Evans2017-st} for 293T cells (\FIGSUPP[Fig2]{f2S9}).
 Interestingly, we also observe low baseline charge for tRNA\textsuperscript{Ser} codons and a tRNA\textsuperscript{Glu} codon, validating a similar observation by \cite{Evans2017-st}.
 
-\begin{figure}[ht!]
+\begin{figure}[h]
+\captionsetup{labelformat=empty}
 \centering
 \fbox{\includegraphics[width=0.8\linewidth]{Fig2.pdf}}
+\caption{}
+\end{figure}
+% Split, to put figure caption on new page
+\begin{figure}[ht!]
+\ContinuedFloat
 \caption{
 Optimizing the chemistry of charge tRNA-Seq.
 \textbf{(A)} Time required to complete periodate oxidation of the E.coli tRNA-Lys-CCA oligo on ice.
@@ -266,8 +273,20 @@ For Maxima, other incubation conditions tested are: 1 h at 60°C (similar to \ci
 After RT-PCR, the RNA template was removed by NaOH hydrolysis, liberating the DNA adapter annotated on the gel.
 \textbf{(B)} Coverage plots for cytoplasmic tRNA transcripts grouped by cognate amino acid, comparing samples prepared with TGIRT-III or Maxima using standard incubation (42°C, 16 h).
 \textbf{(C)} Percentage of full length transcripts grouped by cognate amino acid (i.e. left side of plots in panel B).
-Errorbars are bootstrapped 95\% confidence interval of the mean over the 7 individual samples barcoded, pooled and used for RT-PCR template with both TGIRT-III and Maxima.
+Errorbars are bootstrapped 95\% confidence interval of the mean over the 7 individual samples, barcoded, pooled and used for RT-PCR template with both TGIRT-III and Maxima.
 }{\fbox{\includegraphics[width=0.99\linewidth]{Fig2S6.pdf}}}\label{figsupp:f2S6}
+
+\figsupp[RPM and charge comparison TGIRT vs. Maxima.]{
+tRNA expression level measurements are sensitive to the choice of RT polymerase while charge measurements are not.
+\textbf{(A)} Comparing relative tRNA expression of TGIRT vs. Maxima.
+\textbf{(B)} Comparing tRNA charge of TGIRT vs. Maxima.
+\textbf{(C)} Density plot showing the percentage deviation of RPM measurements using TGIRT vs. Maxima, compared to the average of both.
+\textbf{(D)} Density plot showing the percentage point deviation of charge measurements using TGIRT vs. Maxima, compared to the average of both.
+Data is shown at transcript level for 7 individual RNA samples, barcoded, pooled and used for RT-PCR template with both TGIRT-III and Maxima.
+The red line in (A) and (B) is equality.
+Density plots are provided with kernel density estimate (KDE) in blue, normal distribution estimate in red and inserts with mean ($\mu$) and standard deviation ($\sigma$).
+For density plots, a negative deviation is the result of RPM or charge readings being higher for TGIRT than for Maxima, and vice versa for positive deviations.
+}{\fbox{\includegraphics[width=0.75\linewidth]{Fig2S7.pdf}}}\label{figsupp:f2S7}
 
 \figsupp[Sequenced controls.]{
 Charge tRNA-Seq control samples and spike-ins validate the method.
@@ -278,21 +297,21 @@ Each dot represents one sample spiked with E.coli tRNA-Lys-CCA oligo before the 
 \textbf{(B)} Aminoacylation level of human tRNA transcripts after undergoing deacylation by incubation at 45°C for 4 h in 1 M lysine (pH=8).
 Mitochondrial tRNA\textsuperscript{fMet} was excluded because formylated amino acids are known to be highly resistant towards deacylation \citep{Schofield1968-qn}.
 \textbf{(C)} Aminoacylation level of tRNA transcripts from four samples receiving sham oxidation (NaCl) during the Whitfeld reaction.
-}{\fbox{\includegraphics[width=0.7\linewidth]{Fig2S7.pdf}}}\label{figsupp:f2S7}
+}{\fbox{\includegraphics[width=0.7\linewidth]{Fig2S8.pdf}}}\label{figsupp:f2S8}
 
 \figsupp[Comparison to charged DM-tRNA-seq.]{
 Charge measurement comparison between H1299 at baseline (this work) and 293T at baseline \citep{Evans2017-st}.
-Each point is an isodecoder shared by both datasets, errorbars are plus/minus one standard deviation of the sample replicates and the red line is proportionality.
+Each point is an isodecoder shared by both datasets, errorbars are plus/minus one standard deviation of the sample replicates and the red line is equality.
 H1299 charge measurements with four replicates also displayed in \FIG{Fig2}, panel F.
 293T charge measurement with six replicates, from NCBI Geo database (accession GSE97259, supplementary files).
 In right text box, the average charge and the average replicate standard deviation, across all isodecoders.
-}{\fbox{\includegraphics[width=0.5\linewidth]{Fig2S8.pdf}}}\label{figsupp:f2S8}
+}{\fbox{\includegraphics[width=0.55\linewidth]{Fig2S9.pdf}}}\label{figsupp:f2S9}
 
 \figsupp[tRNA homology requires careful PCR conditions.]{
 \textbf{(A)} The specificity of the final library PCR step (attaching Illumina P7 and P5 sequences) deteriorates with increasing product-to-primer ratios, probably due to high tRNA homology and PCR crossover \citep{Holcomb2014-vz}.
 \textbf{(B)} tRNA-Seq DNA library reannealing is inhibited by high salt concentrations.
 A gel purified charge tRNA-Seq DNA library was resuspended in TBE buffer and incubated 30 min at different temperatures with or without 1 M NaCl.
-}{\fbox{\includegraphics[width=0.5\linewidth]{Fig2S9.pdf}}}\label{figsupp:f2S9}
+}{\fbox{\includegraphics[width=0.5\linewidth]{Fig2S10.pdf}}}\label{figsupp:f2S10}
 
 \end{figure}
 
@@ -341,7 +360,7 @@ Masking of the reference sequences improves alignment performance.
 Each subplot shows the mean effect of one tuning parameter when combined with the combination of all the other three.
 Parameters used for reference masking are chosen to minimize the percentage of reads assigned to tRNAs with multiple codons.
 \textbf{(B)} There is no trade-off between sequence mapping success and minimizing multiple codon mapping.
-\textbf{(C)} Reference masking increase relative expression levels of select codons. 
+\textbf{(C)} Reference masking increase relative expression levels of select codons.
 Reads per million (RPM) levels of the codons shown was found before and after optimized reference masking.
 Error bars are bootstrapped 95\% confidence interval of the mean over the 9  barcode replicate samples.
 }
@@ -358,8 +377,12 @@ Transcripts/codons showing $>1.05$ fold increase or decrease upon reference mask
 Mismatch frequency, gap frequency and RT stop percentage is increased upon periodate oxidation for transcripts known to be 5-methoxycarbonylmethyl-2-thiouridine (mcm\textsuperscript{5}s\textsuperscript{2}U) modified.
 The mcm\textsuperscript{5}s\textsuperscript{2}U modification has been shown to be present on the first anticodon nucleoside (position 34) in human tRNA Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU, while absent in the similar tRNA Arg-UCG \citep{Lentini2018-xs}.
 }{\fbox{\includegraphics[width=0.55\linewidth]{Fig3S2.pdf}}}\label{figsupp:f3S2}
-\end{figure}
 
+\figsupp[Anticodon modification mcm\textsuperscript{5}s\textsuperscript{2}U is detected in periodate oxidized samples.]{
+Mismatch frequency, gap frequency and RT stop percentage is increased upon periodate oxidation for transcripts known to be 5-methoxycarbonylmethyl-2-thiouridine (mcm\textsuperscript{5}s\textsuperscript{2}U) modified.
+The mcm\textsuperscript{5}s\textsuperscript{2}U modification has been shown to be present on the first anticodon nucleoside (position 34) in human tRNA Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU, while absent in the similar tRNA Arg-UCG \citep{Lentini2018-xs}.
+}{\fbox{\includegraphics[width=0.55\linewidth]{Fig3S3.pdf}}}\label{figsupp:f3S3}
+\end{figure}
 
 
 
@@ -391,7 +414,7 @@ Best and worst pairwise comparisons between barcode replicates.
 Sorting pairwise comparisons between barcode replicates according to the sum of squared differences and showing the best and worst either at the transcript or codon level.
 \textbf{(A)} For charge levels, adapter l4Sp tends to overestimate charge.
 \textbf{(B)} For RPM levels.
-For all plots the red line is proportionality.
+For all plots the red line is equality.
 }{\fbox{\includegraphics[width=.98\linewidth]{Fig4S1.pdf}}}\label{figsupp:f4S1}
 \end{figure}
 \figsupp[Charge and RPM deviation at the transcript level.]{
@@ -419,7 +442,7 @@ This control was spiked into samples before the Whitfeld reaction and showed a m
 \caption{
 Charge titration shows linearity over the full range of charge measurements.
 \textbf{(A)} Schematic illustration of the method to generate samples with predictable charge percentages.
-\textbf{(B)} Titration data for a representative tRNA transcript, Val-TAC-2-1, with the red line indicating proportionality between predicted and measured charge.
+\textbf{(B)} Titration data for a representative tRNA transcript, Val-TAC-2-1, with the red line indicating equality between predicted and measured charge.
 For reference, the best and worst fitting tRNA transcripts are shown in \FIGSUPP[Fig5]{f5S1}.
 \textbf{(C)} Error binned by adapter barcode.
 Error is the percentage point difference between the measured vs. predicted charge for all transcripts in the bin.
@@ -628,7 +651,7 @@ Samples were pooled by adapter barcode, purified using the Oligo Clean \& Concen
 
 Reverse transcription was setup with 60 ng of the purified adapter ligated tRNA as template using the buffer composition, incubation temperature and time suggested by \cite{Behrens2021-gb}.
 To 10 $\mu$L template in a PCR tube, 2 $\mu$L 1.25 $\mu$M RT oligo and 4 $\mu$L RT buffer was added following denaturation and annealing by incubation at 90°C for 2 min, 70°C for 30 s and cooling 0.2°C/s to 4°C.
-Then, to each tube 1 $\mu$L 100 mM DTT, 1 $\mu$L SuperaseIn and 1 $\mu$L TGIRT-III RT polymerase (or Maxima H Minus for \FIGSUPP[Fig2]{f2S6}) was added following 10 min incubation at 42°C.
+Then, to each tube 1 $\mu$L 100 mM DTT, 1 $\mu$L SuperaseIn and 1 $\mu$L TGIRT-III RT polymerase (or Maxima H Minus for \FIGSUPP[Fig2]{f2S6} and \FIGSUPP[Fig2]{f2S7}) was added following 10 min incubation at 42°C.
 Then 1 $\mu$L 25 mM dNTPs was added and the incubation was resumed at 42°C for 16 h on a thermocycler with the heated lid set to 50°C.
 The RNA template was hydrolyzed by adding 1 $\mu$L 5 M NaOH followed by incubation at 95°C for 3 min.
 The samples were then purified using the Oligo Clean \& Concentrator kit and the cDNA was isolated on a gel and purified similarly to the initial tRNA isolation, eluting with 7 $\mu$L water.
@@ -637,12 +660,12 @@ The reaction was incubated at 60°C for 3 h on a thermocycler with a 70°C heate
 
 PCR was used to attach Illumina P7/P5 sequences to flank the tRNA insert.
 Each PCR reaction was setup to contain 0.6 $\mu$L circularized cDNA, 1.5 $\mu$L 10 mM dNTPs, 5 $\mu$L 10 $\mu$M P7 oligo, 5 $\mu$L 10 $\mu$M P5 oligo, 10 $\mu$L 5x KAPA HiFi buffer, 1 $\mu$L KAPA HiFi polymerase and 26.9 $\mu$L water.
-The PCR reactions were incubated at 95°C for 3 min followed by 3 cycles of 98°C for 20 s, 68°C for 10 s and 72°C for 15 s, and then followed by X cycles of 98°C for 20 s and 72°C for 15 s, with X being empirically determined (\FIGSUPP[Fig2]{f2S9}, panel A).
+The PCR reactions were incubated at 95°C for 3 min followed by 3 cycles of 98°C for 20 s, 68°C for 10 s and 72°C for 15 s, and then followed by X cycles of 98°C for 20 s and 72°C for 15 s, with X being empirically determined (\FIGSUPP[Fig2]{f2S10}, panel A).
 The optimal number of PCR cycles were determined by preparing three PCR reactions, incubating them with X=10, 12 and 14 and running 4 $\mu$L of each reaction on a 4-12\% TBE gel.
 The PCR reactions with optimal X, resulting in abundant amplification product with little PCR crossover, were purified using the DNA Clean \& Concentrator-5 kit and resolved on a 4-12\% TBE gel.
 The gel was stained using SYBRGold and visualized using a blue light transilluminator to isolated the library DNA by cutting out the size range covering all possible insert lengths (170-290 bp).
 Gel elution was done by crushing the gel with a disposable pestle, adding 300 $\mu$L TBE, snap freezing in liquid nitrogen and incubating at room temperature overnight with mixing.
-If necessary, elution time could be decreased by incubation at higher temperature; although, this required adding higher salt concentrations to prevent DNA reannealing (\FIGSUPP[Fig2]{f2S9}, panel B).
+If necessary, elution time could be decreased by incubation at higher temperature; although, this required adding higher salt concentrations to prevent DNA reannealing (\FIGSUPP[Fig2]{f2S10}, panel B).
 The gel slurry was filtered through a Spin-X filter following DNA purification using the DNA Clean \& Concentrator-5 kit and eluting with 20 $\mu$L 10 mM Tris (pH=8).
 DNA with different Illumina P7/P5 barcodes were pooled for multiplexing and sequenced using Illumina paired end sequencing using 2x100 bp reads.
 
