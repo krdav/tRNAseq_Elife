@@ -29,8 +29,8 @@ breaklines=true
 
 \author[1,2]{Kristian Davidsen}
 \author[1*]{Lucas B Sullivan}
-\affil[1]{Fred Hutchinson Cancer Center}
-\affil[2]{Molecular and cellular biology program, University of Washington}
+\affil[1]{Human Biology Division, Fred Hutchinson Cancer Center, United States}
+\affil[2]{Molecular and Cellular Biology Program, University of Washington, United States}
 
 \corr{lucas@fredhutch.org}{LBS}
 
@@ -55,7 +55,7 @@ Additionally, we show that this method supports measurements of relative tRNA ex
 
 
 \section{Introduction}
-Quantification of transfer RNA (tRNA) aminoacylation, also referred to as charge, has been performed using radiolabeling \citep{Wolfson2002-gp}, Northern blotting \citep{Ho1987-ug, Varshney1991-zp, Stenum2017-wn}, DNA microarrays \citep{Dittmar2005-va} and high-throughput sequencing \citep{Evans2017-st}.
+Quantification of transfer RNA (tRNA) aminoacylation, also referred to as charge, has been performed using radiolabeling \citep{Wolfson2002-gp}, amino acid analysis \citep{Hill1986-nr}, Northern blotting \citep{Ho1987-ug, Varshney1991-zp, Stenum2017-wn}, DNA microarrays \citep{Dittmar2005-va} and high-throughput sequencing \citep{Evans2017-st}.
 While radiolabeling is highly accurate, it is limited to purified tRNAs undergoing lab manipulation.
 Northern blotting uses differential migration of acylated tRNA during electrophoresis to measure acylation levels but has many known limitations such as cross-binding probes, low sensitivity, low throughput on multiple tRNAs, insufficient band separation etc.
 Chemical differentiation of acylated tRNAs combined with DNA microarrays were introduced to circumvent the problems with Northern blotting, but has since been superseded by high-throughput sequencing approaches that enable quantification on all tRNAs in one experiment.
@@ -67,7 +67,7 @@ This sequence of reactions was characterized and used extensively in the past in
 We shall refer to this reaction sequence as the "Whitfeld reaction" (\FIGSUPP[Fig1]{f1S1}).
 
 The accuracy and robustness of aminoacylation measurements depend on two parts: the completeness of the Whitfeld reaction and the quality of tRNA sequencing (tRNA-Seq).
-A major problem in tRNA-Seq is base modifications known to be numerous on tRNAs.
+A major problem in tRNA-Seq is base modifications, known to be numerous on tRNAs.
 These can lead to stalling, misincorporation, skipping or falloff during the reverse transcription (RT) step of the sequencing protocol \citep{Motorin2007-nb}.
 The RT polymerase is most severely affected by base modifications disrupting the Watson–Crick base pairing, while other modifications are often less impactful or silent \citep{Wang2021-fc, Sas-Chen2019-um}.
 To increase RT readthrough the demethylase AlkB has been used \citep{Zheng2015-kj, Cozen2015-cx}, while more recently optimization of incubation conditions, including low salt and extended incubation time, can similarly increase readthrough \citep{Behrens2021-gb}.
@@ -86,7 +86,7 @@ In combination, reads will often not have any continuous stretch of more than 15
 This is a problem for almost all alignment algorithms because they rely on some variation of subsequence matching to enable speed-up.
 The problem has been addressed by clustering of the reference sequences \citep{Hoffmann2018-uz} as well as masking known modified positions in the reference sequences \citep{Behrens2021-gb}.
 
-In recent years many variations of the tRNA-Seq method have been published \citep{Wang2021-fc, Zheng2015-kj, Cozen2015-cx, Shigematsu2017-tv, Erber2020-qg, Thomas2021-fi, Lucas2023-vm, Pinkard2020-yd, Warren2021-wt, Yamagami2022-yb}, but only few couple it with the Whitfeld reaction to probe aminoacylation levels \citep{Evans2017-st, Behrens2021-gb, Watkins2022-er} and little is known about the precision and accuracy of these measurements.
+In recent years many variations of the tRNA-Seq method have been published \citep{Wang2021-fc, Zheng2015-kj, Cozen2015-cx, Shigematsu2017-tv, Erber2020-qg, Thomas2021-fi, Lucas2023-vm, Pinkard2020-yd, Warren2021-wt, Yamagami2022-yb}, but only a few couple it with the Whitfeld reaction to probe aminoacylation levels \citep{Evans2017-st, Behrens2021-gb, Watkins2022-er} and little is known about the precision and accuracy of these measurements.
 Here, we present an up-to-date method for charge tRNA-Seq that integrates new and existing developments, including improved Whitfeld reaction chemistry, splint assisted ligation, high readthrough RT-PCR and improved read mapping, enabling us to measure tRNA charge, expression and modifications (\FIG{Fig1}).
 We perform tests of the quantitative capabilities of the method and determine its precision and accuracy.
 Finally, we provide an open-source code repository, enabling others to use our read processing, mapping and statistical tools on their own data (\url{https://github.com/krdav/tRNA-charge-seq}).
@@ -99,6 +99,7 @@ Finally, we provide an open-source code repository, enabling others to use our r
 Summary illustrating the steps of the charge tRNA-Seq method we used to measure aminoacylation, relative expression and tRNA modification levels.
 First, the Whitfeld reaction (detailed in \FIGSUPP[Fig1]{f1S1}) is used to discriminate between tRNAs with and without an aminoacylation by cleaving off the 3’ base of deacylated tRNA.
 Second, the tRNA secondary structure exposes the discriminator base (N) followed by the CCA/CC-end, creating a sticky-end for splint assisted ligation to a barcoded adapter.
+P at the 5’ end of adapter oligos indicates phosphorylation.
 Stars (*) on the 3’ end of splint and adapter oligos indicate modifications to block self-ligation.
 Third, using the purified ligation product, RT-PCR is used to generate cDNA.
 Fourth, the cDNA is converted into a dsDNA library and sequenced to determine tRNA charge, expression and modifications.
@@ -303,7 +304,7 @@ Mitochondrial tRNA\textsuperscript{fMet} was excluded because formylated amino a
 Charge measurement comparison between H1299 at baseline (this work) and 293T at baseline \citep{Evans2017-st}.
 Each point is an isodecoder shared by both datasets, errorbars are plus/minus one standard deviation of the sample replicates and the red line is equality.
 H1299 charge measurements with four replicates also displayed in \FIG{Fig2}, panel F.
-293T charge measurement with six replicates, from NCBI Geo database (accession GSE97259, supplementary files).
+293T charge measurement with six replicates, from NCBI Geo database (accession GSE97259, supplementary file).
 In right text box, the average charge and the average replicate standard deviation, across all isodecoders.
 }{\fbox{\includegraphics[width=0.55\linewidth]{Fig2S9.pdf}}}\label{figsupp:f2S9}
 
@@ -352,6 +353,9 @@ When periodate oxidation of mcm\textsuperscript{5}s\textsuperscript{2}U is follo
 We verified this by comparing the misincorporation signature in samples processed with/without periodate oxidation, focusing on the human tRNAs Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU shown by \cite{Lentini2018-xs} to carry the mcm\textsuperscript{5}s\textsuperscript{2}U modification (\FIGSUPP[Fig3]{f3S2}).
 Large changes in the misincorporation signature is observed upon periodate oxidation, but curiously some tRNAs respond with a large decrease in RT readthrough while others have an increased mutation and/or gap frequency.
 Similar observations were recently showed by \cite{Katanski2022-ij}.
+Interestingly, the misincorporation signature also depends on the polymerase used, and thus the Maxima RT polymerase generally shows better readthrough and increased mutation and gap frequency on the mcm\textsuperscript{5}s\textsuperscript{2}U modification compared to TGIRT (\FIGSUPP[Fig3]{f3S3}).
+
+
 
 \begin{figure}[ht!]
 \centering
@@ -380,9 +384,10 @@ Mismatch frequency, gap frequency and RT stop percentage is increased upon perio
 The mcm\textsuperscript{5}s\textsuperscript{2}U modification has been shown to be present on the first anticodon nucleoside (position 34) in human tRNA Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU, while absent in the similar tRNA Arg-UCG \citep{Lentini2018-xs}.
 }{\fbox{\includegraphics[width=0.55\linewidth]{Fig3S2.pdf}}}\label{figsupp:f3S2}
 
-\figsupp[Anticodon modification mcm\textsuperscript{5}s\textsuperscript{2}U is detected in periodate oxidized samples.]{
-Mismatch frequency, gap frequency and RT stop percentage is increased upon periodate oxidation for transcripts known to be 5-methoxycarbonylmethyl-2-thiouridine (mcm\textsuperscript{5}s\textsuperscript{2}U) modified.
-The mcm\textsuperscript{5}s\textsuperscript{2}U modification has been shown to be present on the first anticodon nucleoside (position 34) in human tRNA Lys-UUU, Gln-UUG, Glu-UUC and Arg-UCU, while absent in the similar tRNA Arg-UCG \citep{Lentini2018-xs}.
+\figsupp[Polymerase dependent mcm\textsuperscript{5}s\textsuperscript{2}U misincorporation signature.]{
+Polymerase dependent mismatch frequency, gap frequency and RT stop percentage for the mcm\textsuperscript{5}s\textsuperscript{2}U modified position.
+Comparing TGIRT vs. Maxima RT polymerases, otherwise similar to \FIGSUPP[Fig3]{f3S2}.
+Data is shown for 7 individual RNA samples that were submitted to the Whitfeld reaction, barcoded, pooled and used for RT-PCR template with both TGIRT-III and Maxima.
 }{\fbox{\includegraphics[width=0.55\linewidth]{Fig3S3.pdf}}}\label{figsupp:f3S3}
 \end{figure}
 
@@ -411,6 +416,7 @@ Density plots are provided with kernel density estimate (KDE) in blue, normal di
 For plots of transcript level data see \FIGSUPP[Fig4]{f4S2}.
 }
 \label{fig:Fig4}
+
 \figsupp[Best and worst barcode replicates.]{
 Best and worst pairwise comparisons between barcode replicates.
 Sorting pairwise comparisons between barcode replicates according to the sum of squared differences and showing the best and worst either at the transcript or codon level.
@@ -418,11 +424,11 @@ Sorting pairwise comparisons between barcode replicates according to the sum of 
 \textbf{(B)} For RPM levels.
 For all plots the red line is equality.
 }{\fbox{\includegraphics[width=.98\linewidth]{Fig4S1.pdf}}}\label{figsupp:f4S1}
-\end{figure}
+
 \figsupp[Charge and RPM deviation at the transcript level.]{
 Similar to \FIG{Fig4}, but at the transcript level.
 }{\fbox{\includegraphics[width=0.62\linewidth]{Fig4S2.pdf}}}\label{figsupp:f4S2}
-
+\end{figure}
 
 
 
