@@ -169,7 +169,7 @@ This unligated tRNA is of unknown origin and largely refractory to further ligat
 
 \subsection{Combining optimizations results in a robust method for measuring tRNA charge}
 After combining the optimized Whitfeld reaction with subsequent splint assisted ligation, we used the RT-PCR method proposed by \cite{Behrens2021-gb} using the TGIRT polymerase \citep{Mohr2013-hu} to maximize the readthrough of modified nucleotides.
-We later found that similar readthrough could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S6}), albeit with worse mapping statistics (Appendix 1 - \TABLE{map_stats}).
+We later found that similar readthrough could be achieved using Maxima RT polymerase (\FIGSUPP[Fig2]{f2S6}), albeit with worse mapping statistics (Supplementary File 4).
 Furthermore, while expression level measurements are highly sensitive to the choice of polymerase, charge measurements are not (\FIGSUPP[Fig2]{f2S7}).
 The RT-PCR was primed by an oligo containing a 10 nt. unique molecular identifier (UMI) to diversify the sequence context for the subsequent circular ligation and allow collapsing of reads derived from the same tRNA molecule during data analysis.
 A final PCR was performed to attach Illumina barcodes to pool samples for multiplex sequencing.
@@ -492,7 +492,7 @@ However, most of the tRNAs used in this study were derived from in vitro transcr
 Having developed an accurate method for measuring tRNA charge on over a hundred samples in a single sequencing run, we wanted to use this to determine the aminoacylation half-lives of tRNA transcripts with their native RNA modifications.
 
 We used RNA purified from the H1299 cell line, starting at high tRNA charge (\FIG{Fig2}, panel F), and tracked the aminoacylation decay over time after switching to physiological buffer (pH=7.2) and incubating at 20°C, similar to \cite{Peacock2014-wk}.
-After sampling 11 timepoints with 4 replicates, charge measurements for each transcript were fitted to a first-order decay function to estimate the half-life of each transcripts (Supplementary file 4), as exemplified by the representative transcript Lys-TTT-3-1 (\FIG{Fig6}, panel A).
+After sampling 11 timepoints with 4 replicates, charge measurements for each transcript were fitted to a first-order decay function to estimate the half-life of each transcripts (Source Data File 4), as exemplified by the representative transcript Lys-TTT-3-1 (\FIG{Fig6}, panel A).
 When transcripts were grouped by their cognate amino acid, we could confirm that the half-lives are indeed determined mostly by aminoacylation identity and that they span a 37 fold range (\FIG{Fig6}, panel B).
 Our half-life estimates are highly correlated with those reported by \cite{Peacock2014-wk}, but surprisingly ours appear to be approximately 4 fold higher despite using the same incubation temperature and a similar buffer, with only slightly lower pH (7.2 vs. 7.5; \FIGSUPP[Fig6]{f6S1}, panel B).
 
@@ -586,7 +586,7 @@ A last wash was performed using 1 mL 100\% IPA and after removing the supernatan
 
 
 \subsection{Charge tRNA-Seq using blunt-end ligation}
-For charge tRNA-Seq using blunt-end ligation shown in \FIGSUPP[Fig2]{f2S2} the protocol described by \cite{Behrens2021-gb} was followed with the exception of using different adapter sequences, a UMI containing RT oligo (Supplementary file 1), more rounds of amplification and gel based size selection for the final sequence library and using paired-end sequencing.
+For charge tRNA-Seq using blunt-end ligation shown in \FIGSUPP[Fig2]{f2S2} the protocol described by \cite{Behrens2021-gb} was followed with the exception of using different adapter sequences, a UMI containing RT oligo (Source Data File 1), more rounds of amplification and gel based size selection for the final sequence library and using paired-end sequencing.
 Briefly, whole cell RNA was extracted, reconstituted in 100 mM sodium acetate (pH=4.5) and concentration adjusted to 1 $\mu$g/$\mu$L.
 A 20 $\mu$L sample was moved to a new tube and submitted to periodate oxidation and 3’ base elimination using sodium borate as described by \cite{Evans2017-st}.
 After purification and reconstitution in water, 8 ng of a 50/50 mix of E.coli tRNA-Lys-CCA and E.coli tRNA-Lys-CC oligo was added as a CCA/CC ratio control.
@@ -603,7 +603,7 @@ After the RT-PCR incubation, the remainder of the sample processing follows the 
 
 
 \subsection{Charge tRNA-Seq method optimization}
-Optimization of the oxidation, cleavage and dephosphorylation, collectively called the Whitfeld reaction \citep{Whitfeld1953-ca}, was done using oligos E.coli tRNA-Lys-UUU-CCA and E.coli tRNA-Lys-UUU-CC (Supplementary file 1; anticodon omitted from name below).
+Optimization of the oxidation, cleavage and dephosphorylation, collectively called the Whitfeld reaction \citep{Whitfeld1953-ca}, was done using oligos E.coli tRNA-Lys-UUU-CCA and E.coli tRNA-Lys-UUU-CC (Source Data File 1; anticodon omitted from name below).
 Both oligos were gel purified on a 10\% Urea-TBE gel to resolve full length from truncated oligos.
 First, the time required for oxidation was tested, following the same quenching and borax buffered high pH induced cleavage used by \cite{Evans2017-st}.
 For this, samples of 35 ng E.coli tRNA-Lys-CCA were prepared in 10 $\mu$L 100 mM sodium acetate (pH=4.5) and used as substrate for the Whitfeld reaction conversion to E.coli tRNA-Lys-CC.
@@ -627,7 +627,7 @@ Then RNA was purified using the Monarch RNA Cleanup Kit (50 $\mu$g) and run on a
 tRNA was defined as the range between 70 and 85 nt. as approximated by the low range ssRNA ladder.
 For blunt-end ligations in \FIGSUPP[Fig2]{f2S3}, 40 ng tRNA, either isolated from H1299 cells or as E.coli tRNA-Lys-CC oligo, was ligated to 20 pmol pre-adenylated adapter in a 20 $\mu$L reaction containing 25\% PEG-8000, 200 U T4 RNA ligase 2 (truncated KQ; Rnl2tr KQ), 10 U SUPERaseIn and the vendor provided buffer.
 For splint assisted ligation in \FIGSUPP[Fig2]{f2S4}, 35 ng tRNA, either isolated from H1299 cells or as E.coli tRNA-Lys-CC oligo, was ligated to 20 pmol annealed adapter:splint partial duplex as described for charge tRNA-Seq sample processing below.
-For the non-complementary splint test, two splint oligos were made with CAAC and AAC overhangs (Supplementary file 1) and annealed to adapter l1Sp.
+For the non-complementary splint test, two splint oligos were made with CAAC and AAC overhangs (Source Data File 1) and annealed to adapter l1Sp.
 For the ligation test in \FIG{Fig2}, panel E and \FIGSUPP[Fig2]{f2S5}, panel A, 500 ng tRNA isolated from H1299 cells was subjected to the one-pot Whitfeld reaction described for charge tRNA-Seq sample processing below but with a single step removed.
 For the no oxidation sample NaIO\textsubscript{4} was replaced with NaCl, for the no dephosphorylation sample shrimp alkaline phosphatase (rSAP) was replaced with water and for the no cleavage sample RNA was purified after periodate quenching.
 These were compared to a sample processed as described in \cite{Evans2017-st}.
@@ -636,7 +636,7 @@ All samples were purified using the Monarch RNA Cleanup Kit and 35 ng was used p
 
 
 \subsection{Charge tRNA-Seq sample processing}
-Stepwise description with details in Supplementary file 2.
+Stepwise description with details in Source Data File 2.
 Whole cell RNA was reconstituted in 100 mM sodium acetate (pH=4.5) and keep on ice until the end of the periodate oxidation step.
 For deacylated control samples, RNA was prepared by first performing a deacylation step on the input RNA by incubation in 1 M lysine (pH=8) at 45°C for 4 h, followed by purification using the Monarch RNA Cleanup Kit (50 $\mu$g).
 The RNA concentration was adjusted to 1 $\mu$g/$\mu$L, 10 $\mu$L was transferred to a fresh tube and 1 $\mu$L E.coli tRNA spike-in control was added.
@@ -725,7 +725,7 @@ With $E[X]$ being the expected number of unique UMI observations, $n$ being the 
 
 The final dsDNA library was designed as an Illumina TruSeq dual index library with combined i5 and i7 indices attached by PCR with P7/P5 oligos.
 These oligos were synthesized with a phosphorothioate bond between the last two nucleotides to prevent degradation by the KAPA HiFi polymerase.
-An overview of the RNA/DNA manipulations including ligation of adapters, RT-PCR, circularization and library PCR is provided in Supplementary file 3.
+An overview of the RNA/DNA manipulations including ligation of adapters, RT-PCR, circularization and library PCR is provided in Source Data File 3.
 
 
 
@@ -849,7 +849,7 @@ N(t) = N_0 \left( \frac{1}{2} \right) ^\frac{t}{t_{1/2}} + N_{\infty}
 Where $N(t)$ is the charge of a given codon as a function of time, $N_0$ is the charge at time zero and $t_{1/2}$ is the decay half-life.
 We added the $N_{\infty}$ parameter to model the lower asymptote of charge to accommodate the small fraction of tRNAs that still presents with a CCA-end after full deacylation.
 The three parameters were fitted to the data by minimizing the sum of squared errors using the Broyden–Fletcher–Goldfarb–Shanno (BFGS) algorithm with upper and lower bound constraints for $N_0$ between 100 and 0 percent, for $t_{1/2}$ between 1e5 and 1 min and for $N_{\infty}$ between 3.5 and 0 percent.
-A point estimate for the three parameters were found using all timepoints and replicates and a 95\% confidence interval was found using bootstrapping (N=1000) by sampling a single time-series made up of random draws from the replicates (Supplementary file 4).
+A point estimate for the three parameters were found using all timepoints and replicates and a 95\% confidence interval was found using bootstrapping (N=1000) by sampling a single time-series made up of random draws from the replicates (Source Data File 4).
 
 
 
@@ -858,6 +858,16 @@ Raw data and code for processing and recreating plots were uploaded to Zenodo:
 \url{https://doi.org/10.5281/zenodo.8200906}\\
 Python code is available on Github:
 \url{https://github.com/krdav/tRNA-charge-seq}
+
+
+\subsection{Additional Files}
+\begin{itemize}
+    \item Supplementary File 1: Oligo and reagents list
+    \item Supplementary File 2: Step-by-step tRNA-Seq protocol
+    \item Supplementary File 3: Overview of the RNA/DNA manipulation steps
+    \item Supplementary File 4: TGIRT versus Maxima read mapping statistics
+    \item Supplementary File 5: tRNA aminoacylation half-life fitting data
+\end{itemize}
 
 
 
